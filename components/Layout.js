@@ -5,7 +5,7 @@ const Layout = ({ children }) => {
     return (
         <>
             <NavBar />
-            <Container lg>
+            <Container lg direction="column">
                 {children}
             </Container>
             {/* <Footer /> */}

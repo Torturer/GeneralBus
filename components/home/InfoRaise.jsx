@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 const InfoRaise = (props) => {
 
-    const {push} = useRouter()
+    const { push } = useRouter()
 
     const dataTarget = data.filter((raise) => props.id == raise._id)
     if (!dataTarget.length) { return <></> }
@@ -20,7 +20,7 @@ const InfoRaise = (props) => {
 
 
     return (
-        <Container sm display="flex" direction="column">
+        <>
             <Spacer y={3} />
             <Table
                 bordered
@@ -86,18 +86,14 @@ const InfoRaise = (props) => {
                         </Table.Row>
                     ))}
                 </Table.Body>
-                <Table.Pagination
-                color="primary"
-                    shadow
-                    noMargin
-                    align="center"
-                    rowsPerPage={7}
-                />
             </Table>
-            <Spacer y={1}/>
-            <Button size="sm" onClick={() => push("/")
-            }>назад</Button>
-        </Container>
+            <Spacer y={1} />
+            <Button 
+            size="sm" 
+            onClick={() => push("/")}
+            css={{margin: "0px auto"}}
+            >назад</Button>
+        </>
     )
 }
 
