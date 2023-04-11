@@ -10,8 +10,8 @@ export default function Table_Service(props) {
 
     const [columns, setColums] = useState([
         { name: "Транспорт", uid: "bus" },
-        { name: "Відправлення", uid: "timeStart" },
-        { name: "Звідки та куди", uid: "fligth" },
+        { name: "Дата", uid: "timeStart" },
+        { name: "Маршрут", uid: "fligth" },
         { name: "Ціна", uid: "price" },
         { name: "Статус", uid: "status" },
         { name: "Деталі", uid: "details" },
