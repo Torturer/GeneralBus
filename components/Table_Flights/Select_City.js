@@ -19,40 +19,32 @@ export default function Select_City({ data, changeFun }) {
     }, [selected])
 
     return (
-        <Container alignItems='center' >
+        <Container alignItems='center' justifyContent="center" >
             <Spacer y={2} />
-            <Row>
-                <Container
-                    alignItems='center'
-                    direction='row'
-                    flexWrap="wrap"
-                    fluid>
-                    <Checkbox.Group
-                        label="Виберіть місто відправлення"
-                        value={selected}
-                        onChange={setSelected}
-                        css={{ display: "flex", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}
-                    >
-                        <Container
-                            fluid
-                            display='flex'
-                            direction='row'
-                        >
-                            {cityes ? cityes.map((city, key) => {
-                                return (
-                                    <Checkbox
-                                        value={city}
-                                        key={key}
-                                        css={{margin: "0px 18px 0px 0px", justifyContent: "space-around", flexDirection: "row"}}
-                                    >
-                                        {city}
-                                    </Checkbox>)
-                            })
-                                : null}
-                        </Container>
-                    </Checkbox.Group>
+            <Checkbox.Group
+                label="Виберіть місто відправлення"
+                value={selected}
+                onChange={setSelected}
+                css={{ display: "flex", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}
+            >
+                <Container css={{
+                    justifyContent: "center",
+                    display: "flex"
+                }}>
+                    {cityes ? cityes.map((city, key) => {
+                        return (
+                            <Checkbox
+                                value={city}
+                                key={key}
+                                css={{ margin: "20px 18px 0px 0px", justifyContent: "space-around", flexDirection: "row" }}
+                            >
+                                {city}
+                            </Checkbox>
+                        )
+                    })
+                        : null}
                 </Container>
-            </Row>
+            </Checkbox.Group>
             <Spacer y={1} />
         </Container>
     );
