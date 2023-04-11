@@ -5,6 +5,7 @@ import { EditIcon } from "./icon/EditIcon";
 import { DeleteIcon } from "./icon/DeleteIcon";
 import { useState } from "react";
 import { EyeIcon } from "./icon/EyeIcon";
+import Link from "next/link";
 
 export default function Table_Service(props) {
 
@@ -14,9 +15,16 @@ export default function Table_Service(props) {
         { name: "Маршрут", uid: "fligth" },
         { name: "Ціна", uid: "price" },
         { name: "Статус", uid: "status" },
-        { name: "Деталі", uid: "details" },
+        { name: "Зупинки", uid: "details" },
         { name: "ACTIONS", uid: "actions" },
     ])
+
+    const rediractDetails = async (id) => {
+        const link = "/raise/" + id
+        return [{
+            destination: link
+        }]
+    }
 
     const renderCell = (raise, columnKey) => {
         const cellValue = raise[columnKey];
@@ -78,9 +86,11 @@ export default function Table_Service(props) {
                 return (
                     <Col css={{ d: "flex" }}>
                         <Tooltip content="Більше про рейс">
-                            <IconButton onClick={() => console.log("View user", raise._id)}>
-                                <EyeIcon size={20} fill="#979797" />
-                            </IconButton>
+                            <Link href={`/raise/` + raise._id}>
+                                <IconButton>
+                                    <EyeIcon size={20} fill="#979797" />
+                                </IconButton>
+                            </Link>
                         </Tooltip>
                     </Col>
                 )
@@ -90,7 +100,7 @@ export default function Table_Service(props) {
                     <Row justify="center" align="center">
                         <Col css={{ d: "flex" }}>
                             <Tooltip content="Редагувати рейс">
-                                <IconButton onClick={() => console.log("Edit user", user.id)}>
+                                <IconButton >
                                     <EditIcon size={20} fill="#979797" />
                                 </IconButton>
                             </Tooltip>
@@ -99,7 +109,6 @@ export default function Table_Service(props) {
                             <Tooltip
                                 content="Видалити рейс"
                                 color="error"
-                                onClick={() => console.log("Delete user", user.id)}
                             >
                                 <IconButton>
                                     <DeleteIcon size={20} fill="#FF0080" />
@@ -125,7 +134,7 @@ export default function Table_Service(props) {
                 {columns.map((column) => (
                     <Table.Column
                         key={column.uid}
-                        hideHeader={column.uid === "actions" || column.uid === "details"}
+                        hideHeader={column.uid === "actions"}
                         align={column.uid === "actions" ? "center" : "start"}
                     >
                         {column.name}
@@ -142,6 +151,14 @@ export default function Table_Service(props) {
                     </Table.Row>
                 ))}
             </Table.Body>
+            {props.selectData.length > 5 ?
+                <Table.Pagination
+                    shadow
+                    noMargin
+                    align="center"
+                    rowsPerPage={5}
+                />
+                : null}
         </Table>
     );
 }

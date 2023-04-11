@@ -19,7 +19,10 @@ export default function Select_City({ data, changeFun }) {
     }, [selected])
 
     return (
-        <Container alignItems='center' justifyContent="center" >
+        <Container 
+        alignItems='center' 
+        justify='center'
+        >
             <Spacer y={2} />
             <Checkbox.Group
                 label="Виберіть місто відправлення"
@@ -27,10 +30,14 @@ export default function Select_City({ data, changeFun }) {
                 onChange={setSelected}
                 css={{ display: "flex", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}
             >
-                <Container css={{
-                    justifyContent: "center",
+                <Container 
+                css={{
                     display: "flex"
-                }}>
+                }}
+                justify='center'
+
+                
+                >
                     {cityes ? cityes.map((city, key) => {
                         return (
                             <Checkbox

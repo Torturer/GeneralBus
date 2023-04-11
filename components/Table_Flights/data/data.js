@@ -53,6 +53,27 @@ const dataRaises = [{
             time: "13:30",
             map: {},
             status: "active"
+        },
+        {
+            _id: 7,
+            nameStop: "Зупинка Філатова",
+            time: "13:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 8,
+            nameStop: "Зупинка Філатова",
+            time: "13:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 9,
+            nameStop: "Зупинка Філатова",
+            time: "13:30",
+            map: {},
+            status: "active"
         }
     ]
 },
@@ -287,6 +308,163 @@ const dataRaises = [{
             status: "active"
         }
     ]
-}]
+},
+{
+    _id: 6,
+    city: "Одеса",
+    busNumber: "BH7080BI",
+    busName: "Toyota",
+    busImg: "https://sc04.alicdn.com/kf/H706a0317bd284863bc4f36b4417eb8eea.jpg",
+    price: 1800,
+    phone: "+380984323434",
+    map: {},
+    landingTime: "8:00",
+    dataOfLanding: "13 Жовтня",
+    status: "active",
+    cityTrget: ["Кишинів", "Бухарест"],
+    listOfStops: [
+        {
+            _id: 1,
+            nameStop: "Зупинка Філатова",
+            time: "8:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 2,
+            nameStop: "Зупинка Філатова",
+            time: "9:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 3,
+            nameStop: "Зупинка Філатова",
+            time: "10:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 4,
+            nameStop: "Зупинка Філатова",
+            time: "11:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 5,
+            nameStop: "Зупинка Філатова",
+            time: "12:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 6,
+            nameStop: "Зупинка Філатова",
+            time: "13:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 7,
+            nameStop: "Зупинка Філатова",
+            time: "13:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 8,
+            nameStop: "Зупинка Філатова",
+            time: "13:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 9,
+            nameStop: "Зупинка Філатова",
+            time: "13:30",
+            map: {},
+            status: "active"
+        }
+    ]
+}, {
+    _id: 7,
+    city: "Одеса",
+    busNumber: "BH7080BI",
+    busName: "Toyota",
+    busImg: "https://sc04.alicdn.com/kf/H706a0317bd284863bc4f36b4417eb8eea.jpg",
+    price: 1800,
+    phone: "+380984323434",
+    map: {},
+    landingTime: "8:00",
+    dataOfLanding: "13 Жовтня",
+    status: "active",
+    cityTrget: ["Кишинів", "Бухарест"],
+    listOfStops: [
+        {
+            _id: 1,
+            nameStop: "Зупинка Філатова",
+            time: "8:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 2,
+            nameStop: "Зупинка Філатова",
+            time: "9:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 3,
+            nameStop: "Зупинка Філатова",
+            time: "10:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 4,
+            nameStop: "Зупинка Філатова",
+            time: "11:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 5,
+            nameStop: "Зупинка Філатова",
+            time: "12:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 6,
+            nameStop: "Зупинка Філатова",
+            time: "13:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 7,
+            nameStop: "Зупинка Філатова",
+            time: "13:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 8,
+            nameStop: "Зупинка Філатова",
+            time: "13:30",
+            map: {},
+            status: "active"
+        },
+        {
+            _id: 9,
+            nameStop: "Зупинка Філатова",
+            time: "13:30",
+            map: {},
+            status: "active"
+        }
+    ]
+},]
 
 export default dataRaises

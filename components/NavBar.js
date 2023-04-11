@@ -2,13 +2,9 @@ import Image from 'next/image';
 import logoImg from "@/public/logo.png"
 import { Navbar, Button, Text } from "@nextui-org/react";
 import { useState } from 'react';
-import dynamic from 'next/dynamic';
 import Modal_SignUp from './Modal_SignUp';
 import Modal_Regestration from './Modal_Regestration';
-
-// const Modal_SignUp = dynamic(() => import(`./Modal_SignUp`))
-// const Modal_Regestration = dynamic(() => import(`./Modal_Regestration`))
-
+import Link from 'next/link';
 
 export default function NavBar() {
 
@@ -20,7 +16,6 @@ export default function NavBar() {
     const openRegestration = () => setActRegestration(true)
     const closeRegestration = () => setActRegestration(false)
 
-
     return (
         <>
             <Navbar isBordered variant="sticky" shouldHideOnScroll >
@@ -30,10 +25,12 @@ export default function NavBar() {
                         GeneralBus
                     </Text>
                 </Navbar.Brand>
-                <Navbar.Content hideIn="xs">
-                    <Navbar.Link href="#">Про нас</Navbar.Link>
-                    <Navbar.Link href="#">Послуги</Navbar.Link>
-                    <Navbar.Link href="#">Звязок</Navbar.Link>
+                <Navbar.Content hideIn="xs" activeColor="secondary" variant="default">
+                    <Navbar.Link isActive >
+                        <Link href="/">Головна</Link>
+                    </Navbar.Link>
+                    <Navbar.Link >Послуги</Navbar.Link>
+                    <Navbar.Link >Звязок</Navbar.Link>
                 </Navbar.Content>
                 <Navbar.Content>
 
@@ -41,15 +38,12 @@ export default function NavBar() {
                         Увійти
                     </Navbar.Link>
                     <Navbar.Item>
-                        <Button auto flat onClick={openRegestration}>
+                        <Button auto flat color="primary" onClick={openRegestration}>
                             Реєстрація
                         </Button>
                     </Navbar.Item>
                 </Navbar.Content>
             </Navbar>
-
-
-
 
             {VisibleModalSignUp ? <Modal_SignUp
                 open={VisibleModalSignUp}
