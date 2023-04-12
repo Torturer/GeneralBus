@@ -1,4 +1,4 @@
-import { Table, Row, Col, Tooltip, Text, Badge } from "@nextui-org/react";
+import { Table, Row, Col, Tooltip, Text, Badge, Button, Spacer } from "@nextui-org/react";
 import { StyledBadge } from "./icon/StyledBadge";
 import { IconButton } from "./icon/IconButton";
 import { EditIcon } from "./icon/EditIcon";
@@ -15,7 +15,7 @@ export default function Table_Service(props) {
         { name: "Дата", uid: "timeStart" },
         { name: "Маршрут", uid: "fligth" },
         { name: "Ціна", uid: "price" },
-        { name: "Статус", uid: "status" },
+        // { name: "Статус", uid: "status" },
         { name: "Зупинки", uid: "details" },
         { name: "ACTIONS", uid: "actions" },
     ])
@@ -33,7 +33,7 @@ export default function Table_Service(props) {
             case "bus":
                 return (
                     <User squared src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>
-                        <a href={"tel:" + raise.phone } alt="">{raise.phone}</a>
+                        <a href={"tel:" + raise.phone} alt="">{raise.phone}</a>
                     </User>
                 );
 
@@ -76,12 +76,12 @@ export default function Table_Service(props) {
                     </Col >
                 )
 
-            // case "status":
-            //     return <StyledBadge
-            //         type={raise.status === "complete" ? "vacation" : raise.status}
-            //     >
-            //         {raise.status === "active" ? "Активний" : raise.status === "paused" ? "Завантажується" : "Виконаний"}
-            //     </StyledBadge>;
+            case "status":
+                return <StyledBadge
+                    type={raise.status === "complete" ? "vacation" : raise.status}
+                >
+                    {raise.status === "active" ? "Активний" : raise.status === "paused" ? "Завантажується" : "Виконаний"}
+                </StyledBadge>;
 
             case "details":
                 return (
@@ -126,40 +126,51 @@ export default function Table_Service(props) {
 
 
     return (
-        <Table
-            aria-label="Example table with custom cells"
-            lined
-            selectionMode="none"
-        >
-            <Table.Header>
-                {columns.map((column) => (
-                    <Table.Column
-                        key={column.uid}
-                        hideHeader={column.uid === "actions"}
-                        align={column.uid === "actions" ? "center" : "start"}
-                    >
-                        {column.name}
-                    </Table.Column>
-                ))}
-            </Table.Header>
+        <>
+            <Table
+                aria-label="Example table with custom cells"
+                lined
+                selectionMode="none"
+            >
+                <Table.Header>
+                    {columns.map((column) => (
+                        <Table.Column
+                            key={column.uid}
+                            hideHeader={column.uid === "actions"}
+                            align={column.uid === "actions" ? "center" : "start"}
+                        >
+                            {column.name}
+                        </Table.Column>
+                    ))}
+                </Table.Header>
 
-            <Table.Body>
-                {props.selectData.map((item, index) => (
-                    <Table.Row key={index + 125} >
-                        {(columnKey) => (
-                            <Table.Cell css={columnKey === 'bus' ? {minWidth: "200px"}: {}}>{renderCell(item, columnKey)}</Table.Cell>
-                        )}
-                    </Table.Row>
-                ))}
-            </Table.Body>
-            {props.selectData.length > 5 ?
-                <Table.Pagination
-                    shadow
-                    noMargin
-                    align="center"
-                    rowsPerPage={5}
-                />
-                : null}
-        </Table>
+                <Table.Body>
+                    {props.selectData.map((item, index) => (
+                        <Table.Row key={index + 125} >
+                            {(columnKey) => (
+                                <Table.Cell css={columnKey === 'bus' ? { minWidth: "200px" } : {}}>{renderCell(item, columnKey)}</Table.Cell>
+                            )}
+                        </Table.Row>
+                    ))}
+                </Table.Body>
+                {props.selectData.length > 8 ?
+                    <Table.Pagination
+                        shadow
+                        noMargin
+                        align="center"
+                        rowsPerPage={8}
+                    />
+                    : null}
+            </Table>
+            <Spacer y={1}/>
+            <Button
+                size="sm"
+                // onPress={() => push("/")}
+                css={{ margin: "0px auto" }}
+            >додати рейс
+            </Button>
+            <Spacer y={1}/>
+        </>
+
     );
 }

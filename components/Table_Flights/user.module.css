@@ -7,6 +7,8 @@
 .user_box_avatar {
     border-radius: 10px;
     margin-right: 12px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
 }
 

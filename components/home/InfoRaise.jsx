@@ -88,11 +88,12 @@ const InfoRaise = (props) => {
                 </Table.Body>
             </Table>
             <Spacer y={1} />
-            <Button 
-            size="sm" 
-            onPress={() => push("/")}
-            css={{margin: "0px auto"}}
-            >назад</Button>
+            <Button
+                size="sm"
+                onPress={() => push("/")}
+                css={{ margin: "0px auto" }}
+            >назад
+            </Button>
         </>
     )
 }
