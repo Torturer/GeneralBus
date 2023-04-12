@@ -6,7 +6,7 @@ import { DeleteIcon } from "./icon/DeleteIcon";
 import { useState } from "react";
 import { EyeIcon } from "./icon/EyeIcon";
 import Link from "next/link";
-import User from "./User";
+import User from "../component/User";
 
 export default function Table_Service(props) {
 
@@ -162,15 +162,6 @@ export default function Table_Service(props) {
                     />
                     : null}
             </Table>
-            <Spacer y={1}/>
-            <Button
-                size="sm"
-                // onPress={() => push("/")}
-                css={{ margin: "0px auto" }}
-            >додати рейс
-            </Button>
-            <Spacer y={1}/>
         </>
-
     );
 }

@@ -1,5 +1,5 @@
 import { Container } from "@nextui-org/react";
-import NavBar from "../NavBar";
+import NavBar from "../NavBar/NavBar";
 import Table_Fligts from "../Table_Flights/Table_Fligts";
 import Layout from "../Layout";
 

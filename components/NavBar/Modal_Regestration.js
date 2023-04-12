@@ -1,6 +1,6 @@
 import { Button, Input, Modal, Row, Checkbox, Text } from '@nextui-org/react';
-import { Mail } from './icon/Mail';
-import { Password } from './icon/Password';
+import { Mail } from '../component/icon/Mail';
+import { Password } from '../component/icon/Password';
 
 function Modal_Regestration(props) {
     const { open, closeFun } = props
