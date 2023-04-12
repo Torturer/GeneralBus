@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Checkbox, Container, Spacer, Col, Row } from "@nextui-org/react";
+import { Checkbox, Container, Spacer } from "@nextui-org/react";
 
 export default function Select_City({ data, changeFun }) {
     const [selected, setSelected] = useState([]);

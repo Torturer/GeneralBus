@@ -1,4 +1,4 @@
-import { Table, Row, Col, Tooltip, Text, Badge, Button, Spacer } from "@nextui-org/react";
+import { Table, Row, Col, Tooltip, Text, Badge } from "@nextui-org/react";
 import { StyledBadge } from "./icon/StyledBadge";
 import { IconButton } from "./icon/IconButton";
 import { EditIcon } from "./icon/EditIcon";
@@ -47,7 +47,7 @@ export default function Table_Service(props) {
                         </Row>
                         <Row>
                             <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
-                                {raise.cityTrget.join(` -> `)} { }
+                                {raise.cityTarget.goGoCity + " -> " + raise.cityTarget.stopCity}
                             </Text>
                         </Row>
                     </Col >
@@ -101,7 +101,7 @@ export default function Table_Service(props) {
                     <Row justify="center" align="center">
                         <Col css={{ d: "flex" }}>
                             <Tooltip content="Редагувати рейс">
-                                <IconButton >
+                                <IconButton onClick={() => props.pushToForm(raise._id)}>
                                     <EditIcon size={20} fill="#979797" />
                                 </IconButton>
                             </Tooltip>

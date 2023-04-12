@@ -9,7 +9,7 @@ const Loader = (props) => {
                 size="xl"
                 textColor={props.status}
                 color={props.status}>
-                {props.status === "success" ? "Успіх" : props.status === "error" && "Помилка"}
+                {props.status === "success" ? "Успішно" : props.status === "error" && "Помилка"}
             </Loading>
         </div>
     )

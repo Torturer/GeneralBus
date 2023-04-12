@@ -1,7 +1,5 @@
-import { Button, Checkbox, Input, Loading, Modal, Row, Text } from "@nextui-org/react";
-import { Mail } from "../component/icon/Mail";
-import { Password } from "../component/icon/Password";
-import { useState } from "react";
+import { Button, Container, Grid, Input, Modal, Text } from "@nextui-org/react";
+import { useEffect, useState } from "react";
 import Loader from "../component/Loader";
 
 const FligrModal = (props) => {
@@ -9,6 +7,19 @@ const FligrModal = (props) => {
     const [showLoader, setShowLoader] = useState(false)
     const [statusLoader, setStatusLoader] = useState("primary")
 
+
+    const [nameBus, setNameBus] = useState(props.nameBus),
+        [urlImg, setUrlImg] = useState(props.urlImg),
+        [numberBus, setNumberBus] = useState(props.numberBus),
+        [phoneNumber, setPhoneNumber] = useState(props.phoneNumber),
+        [cityStart, setCityStart] = useState(props.cityStart),
+        [cityGoGo, setCityGoGo] = useState(props.cityGoGo),
+        [cityStop, setCityStop] = useState(props.cityStop),
+        [time, setTime] = useState(props.time),
+        [date, setDate] = useState(props.date),
+        [price, setPrice] = useState(props.price)
+
+    const [actButtonSend, setActButtonSend] = useState(false)
 
 
     const sendData = async () => {
@@ -28,6 +39,12 @@ const FligrModal = (props) => {
         }
     }
 
+    useEffect(() => {
+        if (price && date && time && cityStop && cityGoGo && phoneNumber && numberBus && urlImg && nameBus) {
+            setActButtonSend(false)
+        } else { setActButtonSend(true) }
+
+    }, [price, date, time, cityStop, cityGoGo, cityStart, phoneNumber, numberBus, urlImg, nameBus])
 
 
 
@@ -40,7 +57,9 @@ const FligrModal = (props) => {
             :
             <Modal
                 closeButton
+                autoMargin
                 blur
+                fullScreen
                 aria-labelledby="modal-title"
                 open={props.active}
                 onClose={props.switch}
@@ -52,31 +71,115 @@ const FligrModal = (props) => {
                         <Text id="modal-title" size={18}>Додавання рейсу</Text>
                     }
                 </Modal.Header>
-                <Modal.Body>
-                    <Input
-                        clearable
-                        bordered
-                        fullWidth
-                        color="primary"
-                        size="lg"
-                        placeholder="Email"
-                        contentLeft={<Mail fill="currentColor" />}
-                    />
-                    <Input
-                        clearable
-                        bordered
-                        fullWidth
-                        color="primary"
-                        size="lg"
-                        placeholder="Password"
-                        contentLeft={<Password fill="currentColor" />}
-                    />
+                <Modal.Body justify="center">
+                    <Container sm alignContent="space-around" justify="center">
+                        <Grid.Container gap={2}>
+                            <Grid>
+                                <Input
+                                    placeholder="Мерседес"
+                                    label="Назва автобусу"
+                                    type="text"
+                                    width="270px"
+                                    value={nameBus}
+                                    onChange={(e) => setNameBus(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid>
+                                <Input
+                                    placeholder="https:/url"
+                                    label="Посилання на каринку"
+                                    type="text"
+                                    width="270px"
+                                    value={urlImg}
+                                    onChange={(e) => setUrlImg(e.target.value)}
+                                />
+                            </Grid>
+
+                            <Grid>
+                                <Input
+                                    placeholder="BH0007HK"
+                                    label="Номер автобусу"
+                                    type="text"
+                                    width="270px"
+                                    value={numberBus}
+                                    onChange={(e) => setNumberBus(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid>
+                                <Input
+                                    placeholder="+380808000090"
+                                    label="Номер телефону"
+                                    type="text"
+                                    width="270px"
+                                    value={phoneNumber}
+                                    onChange={(e) => setPhoneNumber(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid>
+                                <Input
+                                    placeholder="Київ"
+                                    label="Місто відправлення"
+                                    type="text"
+                                    width="270px"
+                                    value={cityStart}
+                                    onChange={(e) => setCityStart(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid>
+                                <Input
+                                    placeholder="Варшава"
+                                    label="Попутне місто якщо є"
+                                    type="text"
+                                    width="270px"
+                                    value={cityGoGo}
+                                    onChange={(e) => setCityGoGo(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid>
+                                <Input
+                                    placeholder="Берлін"
+                                    label="Місто прибуття"
+                                    type="text"
+                                    width="270px"
+                                    value={cityStop}
+                                    onChange={(e) => setCityStop(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid>
+                                <Input
+                                    width="270px"
+                                    label="Ціна одного місця"
+                                    type="number"
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid>
+                                <Input
+                                    width="270px"
+                                    label="Час"
+                                    type="time"
+                                    value={time}
+                                    onChange={(e) => setTime(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid>
+                                <Input
+                                    width="270px"
+                                    label="Дата"
+                                    type="date"
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)}
+                                />
+                            </Grid>
+                        </Grid.Container>
+                    </Container>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button auto flat color="error" onPress={props.switch}>
                         Відміна
                     </Button>
-                    <Button auto onPress={sendData} >
+                    <Button auto onPress={sendData} disabled={actButtonSend} >
                         Додати
                     </Button>
                 </Modal.Footer>
