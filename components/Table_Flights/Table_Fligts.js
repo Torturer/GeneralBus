@@ -35,7 +35,7 @@ function Table_Fligts(props) {
             <Spacer y={1} />
 
             {
-                activeModalFligt ? <FligrModal active={activeModalFligt} switch={switchModalFligt}/> : null
+                activeModalFligt ? <FligrModal active={activeModalFligt} switch={switchModalFligt} fullScreen={true}/> : null
             }
         </>
     );
