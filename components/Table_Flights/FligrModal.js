@@ -1,6 +1,7 @@
 import { Button, Container, Grid, Input, Modal, Text } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import Loader from "../component/Loader";
+import styled from "./FligrModal.module.css"
 
 const FligrModal = (props) => {
 
@@ -60,6 +61,7 @@ const FligrModal = (props) => {
                 autoMargin
                 blur
                 fullScreen
+                justify="center"
                 aria-labelledby="modal-title"
                 open={props.active}
                 onClose={props.switch}
@@ -87,7 +89,7 @@ const FligrModal = (props) => {
                             <Grid>
                                 <Input
                                     placeholder="https:/url"
-                                    label="Посилання на каринку"
+                                    label="Посилання на картинку"
                                     type="text"
                                     width="270px"
                                     value={urlImg}
@@ -175,7 +177,7 @@ const FligrModal = (props) => {
                         </Grid.Container>
                     </Container>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer className={styled.modal_footter} >
                     <Button auto flat color="error" onPress={props.switch}>
                         Відміна
                     </Button>
