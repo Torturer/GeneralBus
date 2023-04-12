@@ -20,14 +20,14 @@ export default function NavBar() {
         <>
             <Navbar isBordered variant="sticky" shouldHideOnScroll >
                 <Navbar.Brand>
-                    <Image src={logoImg} width={36} height={36} alt="logo" />
+                    <Image src={logoImg} width={36} height={36} alt="logo" quality={100} />
                     <Text css={{ marginLeft: "15px" }} b color="inherit" hideIn="xs" >
                         GeneralBus
                     </Text>
                 </Navbar.Brand>
                 <Navbar.Content hideIn="xs" activeColor="secondary" variant="default">
                     <Navbar.Link isActive >
-                        <Link href="/">Головна</Link>
+                        Головна
                     </Navbar.Link>
                     <Navbar.Link >Послуги</Navbar.Link>
                     <Navbar.Link >Звязок</Navbar.Link>

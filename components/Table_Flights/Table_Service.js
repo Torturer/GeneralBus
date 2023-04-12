@@ -1,4 +1,4 @@
-import { Table, Row, Col, Tooltip, User, Text, Badge } from "@nextui-org/react";
+import { Table, Row, Col, Tooltip, Text, Badge } from "@nextui-org/react";
 import { StyledBadge } from "./icon/StyledBadge";
 import { IconButton } from "./icon/IconButton";
 import { EditIcon } from "./icon/EditIcon";
@@ -6,6 +6,7 @@ import { DeleteIcon } from "./icon/DeleteIcon";
 import { useState } from "react";
 import { EyeIcon } from "./icon/EyeIcon";
 import Link from "next/link";
+import User from "./User";
 
 export default function Table_Service(props) {
 
@@ -31,8 +32,8 @@ export default function Table_Service(props) {
         switch (columnKey) {
             case "bus":
                 return (
-                    <User squared src={raise.busImg} name={raise.busName + " -- " + raise.busNumber} css={{ p: 0 }}>
-                        <a href={"tel:" + raise.phone}>{raise.phone}</a>
+                    <User squared src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>
+                        <a href={"tel:" + raise.phone } alt="">{raise.phone}</a>
                     </User>
                 );
 
@@ -75,12 +76,12 @@ export default function Table_Service(props) {
                     </Col >
                 )
 
-            case "status":
-                return <StyledBadge
-                    type={raise.status === "complete" ? "vacation" : raise.status}
-                >
-                    {raise.status === "active" ? "Активний" : raise.status === "paused" ? "Завантажується" : "Виконаний"}
-                </StyledBadge>;
+            // case "status":
+            //     return <StyledBadge
+            //         type={raise.status === "complete" ? "vacation" : raise.status}
+            //     >
+            //         {raise.status === "active" ? "Активний" : raise.status === "paused" ? "Завантажується" : "Виконаний"}
+            //     </StyledBadge>;
 
             case "details":
                 return (
@@ -144,9 +145,9 @@ export default function Table_Service(props) {
 
             <Table.Body>
                 {props.selectData.map((item, index) => (
-                    <Table.Row key={index + 125}>
+                    <Table.Row key={index + 125} >
                         {(columnKey) => (
-                            <Table.Cell>{renderCell(item, columnKey)}</Table.Cell>
+                            <Table.Cell css={columnKey === 'bus' ? {minWidth: "200px"}: {}}>{renderCell(item, columnKey)}</Table.Cell>
                         )}
                     </Table.Row>
                 ))}

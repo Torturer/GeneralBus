@@ -1,0 +1,15 @@
+.user_box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user_box_avatar {
+    border-radius: 10px;
+    margin-right: 12px;
+    object-fit: cover;
+}
+
+.user_box_link {
+    font-size: 14px;
+}

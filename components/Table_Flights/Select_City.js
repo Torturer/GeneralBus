@@ -19,9 +19,9 @@ export default function Select_City({ data, changeFun }) {
     }, [selected])
 
     return (
-        <Container 
-        alignItems='center' 
-        justify='center'
+        <Container
+            alignItems='center'
+            justify='center'
         >
             <Spacer y={2} />
             <Checkbox.Group
@@ -30,13 +30,13 @@ export default function Select_City({ data, changeFun }) {
                 onChange={setSelected}
                 css={{ display: "flex", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}
             >
-                <Container 
-                css={{
-                    display: "flex"
-                }}
-                justify='center'
+                <Container
+                    css={{
+                        display: "flex"
+                    }}
+                    justify='center'
 
-                
+
                 >
                     {cityes ? cityes.map((city, key) => {
                         return (

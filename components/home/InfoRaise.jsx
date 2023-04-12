@@ -90,7 +90,7 @@ const InfoRaise = (props) => {
             <Spacer y={1} />
             <Button 
             size="sm" 
-            onClick={() => push("/")}
+            onPress={() => push("/")}
             css={{margin: "0px auto"}}
             >назад</Button>
         </>
