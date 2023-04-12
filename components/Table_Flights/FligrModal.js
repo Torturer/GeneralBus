@@ -73,7 +73,7 @@ const FligrModal = (props) => {
                 </Modal.Header>
                 <Modal.Body justify="center">
                     <Container sm alignContent="space-around" justify="center">
-                        <Grid.Container gap={2}>
+                        <Grid.Container gap={2} justify="center">
                             <Grid>
                                 <Input
                                     placeholder="Мерседес"
