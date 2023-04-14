@@ -188,6 +188,7 @@ const FligrModal = (props) => {
                         </Row>
                     </Container>
                 </Modal.Body>
+                <Modal.Footer/>
             </Modal>
         } </>
     );
