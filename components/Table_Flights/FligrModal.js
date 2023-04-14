@@ -186,6 +186,7 @@ const FligrModal = (props) => {
                                 {props.nameBus ? "Редагувати" : "Додати"}
                             </Button>
                         </Row>
+                        <Spacer y={3}/>
                     </Container>
                 </Modal.Body>
                 <Modal.Footer/>
