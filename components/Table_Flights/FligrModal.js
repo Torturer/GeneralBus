@@ -57,11 +57,13 @@ const FligrModal = (props) => {
             <Loader status={statusLoader} />
             :
             <Modal
-                closeButton
-                blur
+                scroll
                 fullScreen
-                justify="center"
+                closeButton
                 aria-labelledby="modal-title"
+                aria-describedby="modal-description"
+                blur
+                justify="center"
                 open={props.active}
                 onClose={props.switch}
                 className={styled.modal_fligt}
@@ -177,7 +179,7 @@ const FligrModal = (props) => {
                         </Grid.Container>
                     </Container>
                 </Modal.Body>
-                <Modal.Footer className={styled.modal_footter} >
+                <Modal.Footer >
                     <Button auto flat color="error" onPress={props.switch}>
                         Відміна
                     </Button>
