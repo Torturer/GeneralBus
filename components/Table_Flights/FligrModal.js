@@ -1,4 +1,4 @@
-import { Button, Container, Grid, Input, Modal, Text } from "@nextui-org/react";
+import { Button, Container, Grid, Input, Modal, Row, Spacer, Text } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import Loader from "../component/Loader";
 import styled from "./FligrModal.module.css"
@@ -177,16 +177,17 @@ const FligrModal = (props) => {
                                 />
                             </Grid>
                         </Grid.Container>
+                        <Spacer y={1}/>
+                        <Row gap={3} justify="space-evenly" css={{marginLeft: "0px"}} >
+                            <Button auto flat color="error" onPress={props.switch}>
+                                Відміна
+                            </Button>
+                            <Button auto onPress={sendData} disabled={actButtonSend} >
+                                {props.nameBus ? "Редагувати" : "Додати"}
+                            </Button>
+                        </Row>
                     </Container>
                 </Modal.Body>
-                <Modal.Footer >
-                    <Button auto flat color="error" onPress={props.switch}>
-                        Відміна
-                    </Button>
-                    <Button auto onPress={sendData} disabled={actButtonSend} >
-                        Додати
-                    </Button>
-                </Modal.Footer>
             </Modal>
         } </>
     );
