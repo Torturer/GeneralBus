@@ -58,13 +58,13 @@ const FligrModal = (props) => {
             :
             <Modal
                 closeButton
-                autoMargin
                 blur
                 fullScreen
                 justify="center"
                 aria-labelledby="modal-title"
                 open={props.active}
                 onClose={props.switch}
+                className={styled.modal_fligt}
             >
                 <Modal.Header>
                     {props.data ?
@@ -75,13 +75,13 @@ const FligrModal = (props) => {
                 </Modal.Header>
                 <Modal.Body justify="center">
                     <Container sm alignContent="space-around" justify="center">
-                        <Grid.Container gap={2} justify="center">
+                        <Grid.Container gap={1} justify="center">
                             <Grid>
                                 <Input
                                     placeholder="Мерседес"
                                     label="Назва автобусу"
                                     type="text"
-                                    width="270px"
+                                    width="290px"
                                     value={nameBus}
                                     onChange={(e) => setNameBus(e.target.value)}
                                 />
@@ -91,7 +91,7 @@ const FligrModal = (props) => {
                                     placeholder="https:/url"
                                     label="Посилання на картинку"
                                     type="text"
-                                    width="270px"
+                                    width="290px"
                                     value={urlImg}
                                     onChange={(e) => setUrlImg(e.target.value)}
                                 />
@@ -102,7 +102,7 @@ const FligrModal = (props) => {
                                     placeholder="BH0007HK"
                                     label="Номер автобусу"
                                     type="text"
-                                    width="270px"
+                                    width="290px"
                                     value={numberBus}
                                     onChange={(e) => setNumberBus(e.target.value)}
                                 />
@@ -112,7 +112,7 @@ const FligrModal = (props) => {
                                     placeholder="+380808000090"
                                     label="Номер телефону"
                                     type="text"
-                                    width="270px"
+                                    width="290px"
                                     value={phoneNumber}
                                     onChange={(e) => setPhoneNumber(e.target.value)}
                                 />
@@ -122,7 +122,7 @@ const FligrModal = (props) => {
                                     placeholder="Київ"
                                     label="Місто відправлення"
                                     type="text"
-                                    width="270px"
+                                    width="290px"
                                     value={cityStart}
                                     onChange={(e) => setCityStart(e.target.value)}
                                 />
@@ -132,7 +132,7 @@ const FligrModal = (props) => {
                                     placeholder="Варшава"
                                     label="Попутне місто якщо є"
                                     type="text"
-                                    width="270px"
+                                    width="290px"
                                     value={cityGoGo}
                                     onChange={(e) => setCityGoGo(e.target.value)}
                                 />
@@ -142,14 +142,14 @@ const FligrModal = (props) => {
                                     placeholder="Берлін"
                                     label="Місто прибуття"
                                     type="text"
-                                    width="270px"
+                                    width="290px"
                                     value={cityStop}
                                     onChange={(e) => setCityStop(e.target.value)}
                                 />
                             </Grid>
                             <Grid>
                                 <Input
-                                    width="270px"
+                                    width="290px"
                                     label="Ціна одного місця"
                                     type="number"
                                     value={price}
@@ -158,7 +158,7 @@ const FligrModal = (props) => {
                             </Grid>
                             <Grid>
                                 <Input
-                                    width="270px"
+                                    width="290px"
                                     label="Час"
                                     type="time"
                                     value={time}
@@ -167,7 +167,7 @@ const FligrModal = (props) => {
                             </Grid>
                             <Grid>
                                 <Input
-                                    width="270px"
+                                    width="290px"
                                     label="Дата"
                                     type="date"
                                     value={date}
