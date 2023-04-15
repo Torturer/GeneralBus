@@ -45,7 +45,6 @@ function Table_Fligts(props) {
                 css={{ margin: "0px auto" }}
             >Додати рейс
             </Button>
-            <Spacer y={1} />
 
             {
                 activeModalFligt ?
@@ -74,28 +73,6 @@ function Table_Fligts(props) {
                     /> : null
             }
         </>
-        // city: "Одеса",
-        // busNumber: "BH7080BI",
-        // busName: "Toyota",
-        // busImg: "https://sc04.alicdn.com/kf/H706a0317bd284863bc4f36b4417eb8eea.jpg",
-        // price: 1800,
-        // phone: "+380984323434",
-        // map: {},
-        // landingTime: "8:00",
-        // dataOfLanding: "13 Жовтня",
-        // status: "active",
-        // cityTrget: ["Кишинів", "Бухарест"],
-
-
-        // [urlImg, setUrlImg] = useState(props.urlImg),
-        // [numberBus, setNumberBus] = useState(props.numberBus),
-        // [phoneNumber, setPhoneNumber] = useState(props.phoneNumber),
-        // [cityStart, setCityStart] = useState(props.cityStart),
-        // [cityGoGo, setCityGoGo] = useState(props.cityGoGo),
-        // [cityStop, setCityStop] = useState(props.cityStop),
-        // [time, setTime] = useState(props.time),
-        // [date, setDate] = useState(props.date)
-
     );
 }
 
