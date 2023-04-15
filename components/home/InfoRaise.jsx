@@ -1,10 +1,9 @@
 import data from "../Table_Flights/data/data"
-import { Button, Col, Container, Row, Spacer, Table, Text, Tooltip } from '@nextui-org/react';
+import { Button, Col, Row, Spacer, Table, Text, Tooltip } from '@nextui-org/react';
 import { IconButton } from "../Table_Flights/icon/IconButton";
 import { EditIcon } from "../Table_Flights/icon/EditIcon";
 import { DeleteIcon } from "../Table_Flights/icon/DeleteIcon";
 import { StyledBadge } from "../Table_Flights/icon/StyledBadge";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 

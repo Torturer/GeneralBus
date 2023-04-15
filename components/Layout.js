@@ -1,5 +1,6 @@
 import { Container } from "@nextui-org/react";
 import NavBar from "./NavBar/NavBar";
+import Footter from "./Footter";
 
 const Layout = ({ children }) => {
     return (
@@ -8,7 +9,7 @@ const Layout = ({ children }) => {
             <Container lg direction="column">
                 {children}
             </Container>
-            {/* <Footer /> */}
+            <Footter />
         </>
     );
 }
