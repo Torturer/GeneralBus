@@ -43,6 +43,7 @@ function Table_Fligts(props) {
                 size="sm"
                 onPress={() => setActiveModalFligt(true)}
                 css={{ margin: "0px auto" }}
+                color="warning"
             >Додати рейс
             </Button>
 

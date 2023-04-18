@@ -1,4 +1,4 @@
-import { Table, Row, Col, Tooltip, Text, Badge } from "@nextui-org/react";
+import { Table, Row, Col, Tooltip, Text, Badge, Spacer } from "@nextui-org/react";
 import { StyledBadge } from "./icon/StyledBadge";
 import { IconButton } from "./icon/IconButton";
 import { EditIcon } from "./icon/EditIcon";
@@ -39,7 +39,7 @@ export default function Table_Service(props) {
 
             case "fligth":
                 return (
-                    <Col>
+                    <Col css={{ minWidth: "130px" }}>
                         <Row>
                             <Text b size={15} css={{ tt: "capitalize" }}>
                                 {raise.city}
@@ -98,7 +98,7 @@ export default function Table_Service(props) {
 
             case "actions":
                 return (
-                    <Row justify="center" align="center">
+                    <Row justify="center" align="center" gap={1}>
                         <Col css={{ d: "flex" }}>
                             <Tooltip content="Редагувати рейс">
                                 <IconButton onClick={() => props.pushToForm(raise._id)}>
@@ -129,12 +129,25 @@ export default function Table_Service(props) {
         <>
             <Table
                 aria-label="Example table with custom cells"
-                lined
                 selectionMode="none"
+                css={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    width: "100%",
+                }}
             >
-                <Table.Header>
+                <Table.Header css={{
+                    display: "none",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    width: "100%",
+                }}>
                     {columns.map((column) => (
                         <Table.Column
+                            css={{ display: "none" }}
                             key={column.uid}
                             hideHeader={column.uid === "actions"}
                             align={column.uid === "actions" ? "center" : "start"}
@@ -144,23 +157,35 @@ export default function Table_Service(props) {
                     ))}
                 </Table.Header>
 
-                <Table.Body>
+                <Table.Body css={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    width: "100%"
+                }}>
                     {props.selectData.map((item, index) => (
-                        <Table.Row key={index + 125} >
+                        <Table.Row key={index + 125} css={{
+                            display: "flex",
+                            justifyContent: "space-evenly",
+                            alignItems: "center",
+                            flexFlow: "row wrap",
+                            width: "100%",
+                            borderBottom: "3px inset"
+                        }}>
                             {(columnKey) => (
                                 <Table.Cell css={columnKey === 'bus' ? { minWidth: "200px" } : {}}>{renderCell(item, columnKey)}</Table.Cell>
                             )}
                         </Table.Row>
                     ))}
                 </Table.Body>
-                {props.selectData.length > 8 ?
+                {props.selectData.length > 5 ?
                     <Table.Pagination
-                        shadow
-                        noMargin
                         align="center"
-                        rowsPerPage={8}
+                        rowsPerPage={5}
                     />
                     : null}
+
             </Table>
         </>
     );
