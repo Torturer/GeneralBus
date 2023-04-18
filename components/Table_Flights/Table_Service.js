@@ -181,6 +181,7 @@ export default function Table_Service(props) {
                 </Table.Body>
                 {props.selectData.length > 5 ?
                     <Table.Pagination
+                        noMargin
                         align="center"
                         rowsPerPage={5}
                     />
