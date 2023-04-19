@@ -7,8 +7,8 @@ const User = (props) => {
         <div className={styled.user_box}>
             <Image className={styled.user_box_avatar}
                 src={props.src}
-                width={80}
-                height={80}
+                width={40}
+                height={40}
                 quality={100}
                 alt=""
             />
