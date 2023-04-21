@@ -1,13 +1,17 @@
-import Layout from '@/components/Layout';
 import '@/styles/globals.css'
 import { NextUIProvider } from '@nextui-org/react';
 import { useSSR } from '@nextui-org/react'
+import { AppProps } from 'next/app';
+import dynamic from 'next/dynamic';
+import React from 'react';
 
-export default function App({ Component, pageProps }) {
+const Layout = dynamic(() => import('@/components/Layout'))
+
+export default function App({ Component, pageProps }: AppProps) {
   const { isBrowser } = useSSR()
   return (
     isBrowser && (
-      <NextUIProvider>
+      <NextUIProvider>:
         <Layout>
           <Component {...pageProps} />
         </Layout>

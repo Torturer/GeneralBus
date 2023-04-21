@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import data from "../Table_Flights/data/data"
 import { Button, Col, Row, Spacer, Table, Text, Tooltip } from '@nextui-org/react';
 import { IconButton } from "../Table_Flights/icon/IconButton";
@@ -6,17 +7,14 @@ import { DeleteIcon } from "../Table_Flights/icon/DeleteIcon";
 import { StyledBadge } from "../Table_Flights/icon/StyledBadge";
 import { useRouter } from "next/router";
 
+type IProps = {
+    id: number | string[]
+}
 
-
-const InfoRaise = (props) => {
+const InfoRaise: FC<IProps> = ({id}): JSX.Element => {
 
     const { push } = useRouter()
-
-    const dataTarget = data.filter((raise) => props.id == raise._id)
-    if (!dataTarget.length) { return <></> }
-
-    const listOfStops = dataTarget[0].listOfStops
-
+    const listOfStops = data.find((raise) => id === raise._id).listOfStops
 
     return (
         <>
@@ -54,7 +52,7 @@ const InfoRaise = (props) => {
                             </Table.Cell>
                             <Table.Cell>
                                 <StyledBadge
-                                    type={stop.status === "complete" ? "vacation" : stop.status}
+                                    type={stop.status === "complete" ? "vacation" : "active"}
                                 >
                                     {stop.status === "active" ? "Активний" : stop.status === "paused" ? "Завантажується" : "Виконаний"}
                                 </StyledBadge>
@@ -65,7 +63,7 @@ const InfoRaise = (props) => {
                                     <Col css={{ d: "flex" }}>
                                         <Tooltip content="Редагувати рейс">
                                             <IconButton>
-                                                <EditIcon size={20} fill="#979797" />
+                                                <EditIcon size={20} fill="#979797" height={undefined} width={undefined} />
                                             </IconButton>
                                         </Tooltip>
                                     </Col>
@@ -75,7 +73,7 @@ const InfoRaise = (props) => {
                                             color="error"
                                         >
                                             <IconButton>
-                                                <DeleteIcon size={20} fill="#FF0080" />
+                                                <DeleteIcon size={20} fill="#FF0080" height={undefined} width={undefined} />
                                             </IconButton>
                                         </Tooltip>
                                     </Col>

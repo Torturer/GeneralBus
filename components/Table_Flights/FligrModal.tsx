@@ -1,24 +1,36 @@
+import React, {FC} from "react";
+
 import { Button, Container, Grid, Input, Modal, Row, Spacer, Text } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import Loader from "../component/Loader";
-import styled from "./FligrModal.module.css"
 
-const FligrModal = (props) => {
+import styled from "../../styles/FligrModal.module.css"
+import { IDataRaise } from "./data/data";
+
+type IFligrModal = {
+    switchFun: () => void;
+    active: boolean;
+    data?: IDataRaise;
+}
+
+const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
+
+    const {data, active, switchFun} = props;
 
     const [showLoader, setShowLoader] = useState(false)
     const [statusLoader, setStatusLoader] = useState("primary")
 
 
-    const [nameBus, setNameBus] = useState(props.nameBus),
-        [urlImg, setUrlImg] = useState(props.urlImg),
-        [numberBus, setNumberBus] = useState(props.numberBus),
-        [phoneNumber, setPhoneNumber] = useState(props.phoneNumber),
-        [cityStart, setCityStart] = useState(props.cityStart),
-        [cityGoGo, setCityGoGo] = useState(props.cityGoGo),
-        [cityStop, setCityStop] = useState(props.cityStop),
-        [time, setTime] = useState(props.time),
-        [date, setDate] = useState(props.date),
-        [price, setPrice] = useState(props.price)
+    const [nameBus, setNameBus] = useState(data && data.busName),
+        [urlImg, setUrlImg] = useState(data && data.busImg),
+        [numberBus, setNumberBus] = useState(data && data.busName),
+        [phoneNumber, setPhoneNumber] = useState(data && data.phone),
+        [cityStart, setCityStart] = useState(data && data.phone),
+        [cityGoGo, setCityGoGo] = useState(data && data.cityTarget.goGoCity),
+        [cityStop, setCityStop] = useState(data && data.cityTarget.stopCity),
+        [time, setTime] = useState(data && data.landingTime),
+        [date, setDate] = useState(data && data.dataOfLanding),
+        [price, setPrice] = useState(data && data.price)
 
     const [actButtonSend, setActButtonSend] = useState(false)
 
@@ -28,9 +40,9 @@ const FligrModal = (props) => {
             setShowLoader(true)
             setTimeout(() => setStatusLoader("success"), 2000)
             setTimeout(() => {
-                setShowLoader(false)
-                setStatusLoader("primary")
-                props.switch()
+                setShowLoader(false);
+                setStatusLoader("primary");
+                switchFun();
             }, 4000)
 
         } catch (error) {
@@ -57,25 +69,23 @@ const FligrModal = (props) => {
             <Loader status={statusLoader} />
             :
             <Modal
-                scroll
                 fullScreen
                 closeButton
                 aria-labelledby="modal-title"
                 aria-describedby="modal-description"
                 blur
-                justify="center"
-                open={props.active}
-                onClose={props.switch}
+                open={active}
+                onClose={switchFun}
                 className={styled.modal_fligt}
             >
                 <Modal.Header>
-                    {props.data ?
+                    {data ?
                         <Text id="modal-title" size={18}>Редагування рейсу</Text>
                         :
                         <Text id="modal-title" size={18}>Додавання рейсу</Text>
                     }
                 </Modal.Header>
-                <Modal.Body justify="center">
+                <Modal.Body>
                     <Container sm alignContent="space-around" justify="center">
                         <Grid.Container gap={1} justify="center">
                             <Grid>
@@ -155,7 +165,7 @@ const FligrModal = (props) => {
                                     label="Ціна одного місця"
                                     type="number"
                                     value={price}
-                                    onChange={(e) => setPrice(e.target.value)}
+                                    onChange={(e) => setPrice(parseInt(e.target.value))}
                                 />
                             </Grid>
                             <Grid>
@@ -177,19 +187,19 @@ const FligrModal = (props) => {
                                 />
                             </Grid>
                         </Grid.Container>
-                        <Spacer y={1}/>
-                        <Row gap={3} justify="space-evenly" css={{marginLeft: "0px"}} >
-                            <Button auto flat color="error" onPress={props.switch}>
+                        <Spacer y={1} />
+                        <Row gap={3} justify="space-evenly" css={{ marginLeft: "0px" }} >
+                            <Button auto flat color="error" onPress={switchFun}>
                                 Відміна
                             </Button>
                             <Button auto onPress={sendData} disabled={actButtonSend} >
-                                {props.nameBus ? "Редагувати" : "Додати"}
+                                {nameBus ? "Редагувати" : "Додати"}
                             </Button>
                         </Row>
-                        <Spacer y={3}/>
+                        <Spacer y={3} />
                     </Container>
                 </Modal.Body>
-                <Modal.Footer/>
+                <Modal.Footer />
             </Modal>
         } </>
     );

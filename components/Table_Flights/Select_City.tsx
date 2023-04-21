@@ -1,21 +1,28 @@
+import React, { FC } from "react";
+
+import {IDataRaise} from "./data/data"
+
 import { useEffect, useState } from 'react'
 import { Checkbox, Container, Spacer } from "@nextui-org/react";
 
+type ICityTarget = string[]
+type ICityRange = string[]
+
 export default function Select_City({ data, changeFun }) {
-    const [selected, setSelected] = useState([]);
-    const [cityes, setCityes] = useState([]);
+    const [selected, setSelected] = useState((['']));
+    const [cityes, setCityes] = useState(['']);
 
     useEffect(() => {
-        const x = []
+        const x:ICityRange = []
 
-        data.forEach(raise => {
+        data.forEach((raise:IDataRaise) => {
             !x.includes(raise.city) && x.push(raise.city)
         });
         setCityes(x)
     }, [])
 
     useEffect(() => {
-        changeFun(selected)
+        changeFun((selected))
     }, [selected])
 
     return (
@@ -27,7 +34,7 @@ export default function Select_City({ data, changeFun }) {
             <Checkbox.Group
                 label="Виберіть місто відправлення"
                 value={selected}
-                onChange={setSelected}
+                onChange={(setSelected)}
                 css={{ display: "flex", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}
             >
                 <Container

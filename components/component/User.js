@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styled from "./user.module.css"
+import styled from "../../styles/user.module.css"
 import { Text } from "@nextui-org/react";
 
 const User = (props) => {

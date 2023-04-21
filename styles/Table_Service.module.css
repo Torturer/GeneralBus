@@ -1,0 +1,19 @@
+.table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.table_cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.cityText { 
+    min-width: 140px;
+    margin: 10px;
+}

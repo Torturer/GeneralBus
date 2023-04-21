@@ -1,4 +1,40 @@
-const dataRaises = [{
+
+interface IDataRaiseCityTarget {
+    goGoCity: string;
+    stopCity: string;
+}
+
+interface IListOFStops {
+    _id: number;
+    nameStop: string;
+    time: string;
+    map: object;
+    status: string;
+}
+
+
+
+export interface IDataRaise {
+     _id : number;
+     city: string;
+     busNumber: string;
+     busName: string;
+     busImg: string;
+     price: number;
+     phone: string;
+     map: object;
+     landingTime: string;
+     dataOfLanding: string;
+     status: string;
+     cityTarget: IDataRaiseCityTarget;
+     listOfStops: IListOFStops[];
+}
+
+
+
+
+
+const dataRaises: IDataRaise[] = [{
     _id: 1,
     city: "Одеса",
     busNumber: "BH7080BI",

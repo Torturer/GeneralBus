@@ -16,6 +16,6 @@
     "search.experimental.notebookSearch": false,
     "search.mode": "reuseEditor",
     "search.searchEditor.defaultNumberOfContextLines": 1,
-    "explorer.confirmDragAndDrop": true,
+    "explorer.confirmDragAndDrop": false,
     "explorer.autoReveal": true
 }

@@ -1,9 +1,10 @@
 import { Container } from "@nextui-org/react";
 import NavBar from "./NavBar/NavBar";
 import Footter from "./Footter";
-import styled from "./Layout.module.css"
+import styled from "../styles/Layout.module.css"
+import React from "react";
 
-const Layout = ({ children }) => {
+const Layout = ({ children }) :JSX.Element => {
     return (
         <div className={styled.container_root}>
             <NavBar />
