@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import { Loading } from "@nextui-org/react"
-import styles from "./Loader.module.css"
+import styles from "../../styles/Layaout/Loader/Loader.module.css"
 
 type IProps = {
     status: "default" | "success" | "error" | "primary"

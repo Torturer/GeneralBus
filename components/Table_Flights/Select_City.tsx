@@ -9,11 +9,11 @@ type ICityTarget = string[]
 type ICityRange = string[]
 
 export default function Select_City({ data, changeFun }) {
-    const [selected, setSelected] = useState((['']));
-    const [cityes, setCityes] = useState(['']);
+    const [selected, setSelected] = useState<ICityTarget>((['']));
+    const [cityes, setCityes] = useState<ICityRange>(['']);
 
     useEffect(() => {
-        const x:ICityRange = []
+        const x:string[] = []
 
         data.forEach((raise:IDataRaise) => {
             !x.includes(raise.city) && x.push(raise.city)

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;    
+    gap: 5px;
 }
 
 .table_cell {
@@ -17,7 +17,9 @@
 
 .cityText {
     min-width: 140px;
+    display: flex;
     margin: 10px;
+    flex-direction: column;
 }
 
 .price_box {
@@ -25,10 +27,13 @@
 }
 
 .time_fligt {
+    min-width: 140px;
+    display: flex;
     margin: 10px;
+    flex-direction: column;
 }
 
-.info { 
+.info {
     margin: 10px;
     display: flex;
     justify-content: center;
@@ -50,9 +55,7 @@
 
 }
 
-@media(max-width: 422px) {
-    .table {
+/* @media(max-width: 422px) {
+    .table {}
 
-    }
-
-}
+} */

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import type { IDataRaise } from "./data/data";
 
-import { Row, Col, Tooltip, Text, Badge } from "@nextui-org/react";
+import { Tooltip, Text, Badge } from "@nextui-org/react";
 import { IconButton } from "./icon/IconButton";
 import { EditIcon } from "./icon/EditIcon";
 import { DeleteIcon } from "./icon/DeleteIcon";
@@ -29,16 +29,12 @@ const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
 
                         <div className={styles.box_city_price}>
                             <div className={styles.cityText}>
-                                <Row>
-                                    <Text b size={15} css={{ tt: "capitalize" }}>
-                                        {raise.city}
-                                    </Text>
-                                </Row>
-                                <Row>
-                                    <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
-                                        {raise.cityTarget.goGoCity + " -> " + raise.cityTarget.stopCity}
-                                    </Text>
-                                </Row>
+                                <Text b size={15} css={{ tt: "capitalize" }}>
+                                    {raise.city}
+                                </Text>
+                                <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
+                                    {raise.cityTarget.goGoCity + " -> " + raise.cityTarget.stopCity}
+                                </Text>
                             </div >
 
                             <Badge className={styles.price_box} isSquared color="primary" variant="bordered">
@@ -48,16 +44,12 @@ const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
 
                         <div className={styles.box_time_info}>
                             <div className={styles.time_fligt}>
-                                <Row>
-                                    <Text b size={15} css={{ tt: "capitalize" }}>
-                                        {raise.landingTime}
-                                    </Text>
-                                </Row>
-                                <Row>
-                                    <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
-                                        {raise.dataOfLanding}
-                                    </Text>
-                                </Row>
+                                <Text b size={15} css={{ tt: "capitalize" }}>
+                                    {raise.landingTime}
+                                </Text>
+                                <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
+                                    {raise.dataOfLanding}
+                                </Text>
                             </div >
 
                             <div className={styles.info}>
@@ -72,23 +64,19 @@ const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
                         </div>
 
                         <div className={styles.tools} >
-                            <Col >
-                                <Tooltip content="Редагувати рейс">
-                                    <IconButton onClick={() => pushToForm(raise._id)}>
-                                        <EditIcon size={20} fill="#979797" height={undefined} width={undefined} />
-                                    </IconButton>
-                                </Tooltip>
-                            </Col>
-                            <Col >
-                                <Tooltip
-                                    content="Видалити рейс"
-                                    color="error"
-                                >
-                                    <IconButton>
-                                        <DeleteIcon size={20} fill="#FF0080" height={undefined} width={undefined} />
-                                    </IconButton>
-                                </Tooltip>
-                            </Col>
+                            <Tooltip content="Редагувати рейс">
+                                <IconButton onClick={() => pushToForm(raise._id)}>
+                                    <EditIcon size={20} fill="#979797" height={undefined} width={undefined} />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip
+                                content="Видалити рейс"
+                                color="error"
+                            >
+                                <IconButton>
+                                    <DeleteIcon size={20} fill="#FF0080" height={undefined} width={undefined} />
+                                </IconButton>
+                            </Tooltip>
                         </div>
                     </div>
                 )
