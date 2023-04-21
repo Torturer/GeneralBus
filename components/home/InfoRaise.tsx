@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import data from "../Table_Flights/data/data"
-import { Button, Col, Row, Spacer, Table, Text, Tooltip } from '@nextui-org/react';
-import { IconButton } from "../Table_Flights/icon/IconButton";
-import { EditIcon } from "../Table_Flights/icon/EditIcon";
-import { DeleteIcon } from "../Table_Flights/icon/DeleteIcon";
-import { StyledBadge } from "../Table_Flights/icon/StyledBadge";
+// import { Button, Col, Row, Spacer, Table, Text, Tooltip } from '@nextui-org/react';
+// import { IconButton } from "../Table_Flights/icon/IconButton";
+// import { EditIcon } from "../Table_Flights/icon/EditIcon";
+// import { DeleteIcon } from "../Table_Flights/icon/DeleteIcon";
+// import { StyledBadge } from "../Table_Flights/icon/StyledBadge";
 import { useRouter } from "next/router";
 
 type IProps = {
@@ -20,7 +20,7 @@ const InfoRaise: FC<IProps> = ({ id }): JSX.Element => {
 
     return (
         <>
-            <Spacer y={3} />
+            {/* <Spacer y={3} />
 
 
             {listOfStops.map((stop, index) => (
@@ -59,7 +59,7 @@ const InfoRaise: FC<IProps> = ({ id }): JSX.Element => {
                 onPress={() => push("/")}
                 css={{ margin: "0px auto" }}
             >назад
-            </Button>
+            </Button> */}
         </>
     )
 }
