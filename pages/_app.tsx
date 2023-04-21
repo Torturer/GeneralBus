@@ -1,5 +1,5 @@
 import '@/styles/globals.css'
-import { NextUIProvider } from '@nextui-org/react';
+// import { NextUIProvider } from '@nextui-org/react';
 import { useSSR } from '@nextui-org/react'
 import { AppProps } from 'next/app';
 // import dynamic from 'next/dynamic';
@@ -12,11 +12,11 @@ export default function App({ Component, pageProps }: AppProps) {
   const { isBrowser } = useSSR()
   return (
     isBrowser && (
-      <NextUIProvider>:
+      // <NextUIProvider>:
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </NextUIProvider>
+      // </NextUIProvider>
     )
   )
 }
