@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row, Spacer } from "@nextui-org/react";
 import { FaFacebookSquare, FaInstagram, FaTelegram, FaViber } from "react-icons/fa";
 
-import styles from "../styles/Footter.module.css"
+import styles from "../styles/Layaout/Footer/Footter.module.css"
 
 
 

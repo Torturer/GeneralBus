@@ -4,7 +4,7 @@ import { Button, Container, Grid, Input, Modal, Row, Spacer, Text } from "@nextu
 import { useEffect, useState } from "react";
 import Loader from "../component/Loader";
 
-import styled from "../../styles/FligrModal.module.css"
+import styled from "../../styles/FligtTable/FligrModal.module.css"
 import { IDataRaise } from "./data/data";
 
 type IFligrModal = {
@@ -13,12 +13,17 @@ type IFligrModal = {
     data?: IDataRaise;
 }
 
+type IStatus = "default" | "success" | "error" | "primary"
+
 const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
+
+
+    const defaultStatus:IStatus = "primary"
 
     const {data, active, switchFun} = props;
 
     const [showLoader, setShowLoader] = useState(false)
-    const [statusLoader, setStatusLoader] = useState("primary")
+    const [statusLoader, setStatusLoader] = useState<IStatus>("primary")
 
 
     const [nameBus, setNameBus] = useState(data && data.busName),

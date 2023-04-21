@@ -9,14 +9,14 @@ import { EyeIcon } from "./icon/EyeIcon";
 import Link from "next/link";
 import User from "../component/User";
 
-import styles from "../../styles/Table_Service.module.css"
+import styles from "../../styles/FligtTable/Table_Service.module.css"
 
 type IProps = {
     selectData: IDataRaise[];
     pushToForm: (id: number) => void;
 }
 
-const Table_Service: FC<IProps> = ({selectData, pushToForm}): JSX.Element => {
+const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
 
     return (
         <div className={styles.table}>
@@ -26,55 +26,60 @@ const Table_Service: FC<IProps> = ({selectData, pushToForm}): JSX.Element => {
                         <User squared src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>
                             <a href={"tel:" + raise.phone} title="">{raise.phone}</a>
                         </User>
-                        <div className={styles.cityText}>
-                            <Row>
-                                <Text b size={15} css={{ tt: "capitalize" }}>
-                                    {raise.city}
-                                </Text>
-                            </Row>
-                            <Row>
-                                <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
-                                    {raise.cityTarget.goGoCity + " -> " + raise.cityTarget.stopCity}
-                                </Text>
-                            </Row>
-                        </div >
 
-                        <Badge isSquared color="primary" variant="bordered">
-                            {raise.price + " UAH"}
-                        </Badge>
+                        <div className={styles.box_city_price}>
+                            <div className={styles.cityText}>
+                                <Row>
+                                    <Text b size={15} css={{ tt: "capitalize" }}>
+                                        {raise.city}
+                                    </Text>
+                                </Row>
+                                <Row>
+                                    <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
+                                        {raise.cityTarget.goGoCity + " -> " + raise.cityTarget.stopCity}
+                                    </Text>
+                                </Row>
+                            </div >
 
-                        <div>
-                            <Row>
-                                <Text b size={15} css={{ tt: "capitalize" }}>
-                                    {raise.landingTime}
-                                </Text>
-                            </Row>
-                            <Row>
-                                <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
-                                    {raise.dataOfLanding}
-                                </Text>
-                            </Row>
-                        </div >
-
-                        <div>
-                            <Tooltip content="Більше про рейс">
-                                <Link href={`/raise/` + raise._id} prefetch={false}>
-                                    <IconButton>
-                                        <EyeIcon size={20} fill="#979797" height={undefined} width={undefined} />
-                                    </IconButton>
-                                </Link>
-                            </Tooltip>
+                            <Badge className={styles.price_box} isSquared color="primary" variant="bordered">
+                                {raise.price + " UAH"}
+                            </Badge>
                         </div>
 
-                        <div >
-                            <Col css={{ d: "flex" }}>
+                        <div className={styles.box_time_info}>
+                            <div className={styles.time_fligt}>
+                                <Row>
+                                    <Text b size={15} css={{ tt: "capitalize" }}>
+                                        {raise.landingTime}
+                                    </Text>
+                                </Row>
+                                <Row>
+                                    <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
+                                        {raise.dataOfLanding}
+                                    </Text>
+                                </Row>
+                            </div >
+
+                            <div className={styles.info}>
+                                <Tooltip content="Більше про рейс">
+                                    <Link href={`/raise/` + raise._id} prefetch={false}>
+                                        <IconButton>
+                                            <EyeIcon size={20} fill="#979797" height={undefined} width={undefined} />
+                                        </IconButton>
+                                    </Link>
+                                </Tooltip>
+                            </div>
+                        </div>
+
+                        <div className={styles.tools} >
+                            <Col >
                                 <Tooltip content="Редагувати рейс">
                                     <IconButton onClick={() => pushToForm(raise._id)}>
                                         <EditIcon size={20} fill="#979797" height={undefined} width={undefined} />
                                     </IconButton>
                                 </Tooltip>
                             </Col>
-                            <Col css={{ d: "flex" }}>
+                            <Col >
                                 <Tooltip
                                     content="Видалити рейс"
                                     color="error"
