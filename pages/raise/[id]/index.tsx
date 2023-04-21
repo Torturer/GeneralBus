@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 import { useRouter } from "next/router"
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
+import InfoRaise from "@/components/home/InfoRaise";
 
-const InfoRaise = dynamic(() => import('@/components/home/InfoRaise'))
+// const InfoRaise = dynamic(() => import('@/components/home/InfoRaise'))
 
 const RaisePage: FC = (props): JSX.Element => {
 

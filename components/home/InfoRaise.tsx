@@ -6,7 +6,7 @@ import data from "../Table_Flights/data/data"
 // import { DeleteIcon } from "../Table_Flights/icon/DeleteIcon";
 // import { StyledBadge } from "../Table_Flights/icon/StyledBadge";
 
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 type IProps = {
     id: number | string[]
@@ -14,9 +14,9 @@ type IProps = {
 
 const InfoRaise: FC<IProps> = ({ id }): JSX.Element => {
 
-    const { push } = useRouter()
-    const dataTarget = data.find((raise) => id === raise._id)
-    const listOfStops = dataTarget.listOfStops
+    // const { push } = useRouter()
+    // const dataTarget = data.find((raise) => id === raise._id)
+    // const listOfStops = dataTarget.listOfStops
 
 
     return (
