@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import type { IDataRaise } from "./data/data";
 
 import { Tooltip, Text, Badge } from "@nextui-org/react";

@@ -1,10 +1,9 @@
 import Image from 'next/image';
-import logoImg from "@/public/logo.png"
+import logoImg from "../../../public/logo.png"
 import { Navbar, Button, Text } from "@nextui-org/react";
 import { useState } from 'react';
 import Modal_SignUp from './Modal_SignUp';
 import Modal_Regestration from './Modal_Regestration';
-import Link from 'next/link';
 
 export default function NavBar() {
 

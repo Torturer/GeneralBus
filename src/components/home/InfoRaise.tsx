@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import data from "../Table_Flights/data/data"
+// import {dataRaises} from "../Table_Flights/data/data"
 // import { Button, Col, Row, Spacer, Table, Text, Tooltip } from '@nextui-org/react';
 // import { IconButton } from "../Table_Flights/icon/IconButton";
 // import { EditIcon } from "../Table_Flights/icon/EditIcon";

@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from 'react'
 import { Col, Row, Spacer } from "@nextui-org/react";
 import { FaFacebookSquare, FaInstagram, FaTelegram, FaViber } from "react-icons/fa";
 
@@ -6,7 +6,7 @@ import styles from "../styles/Layaout/Footer/Footter.module.css"
 
 
 
-const Footter = (): JSX.Element => {
+const Footter: FC = (): JSX.Element => {
     // const soc = {
     //     instagram: "https://instagram",
     //     facebook: "https://facebook",

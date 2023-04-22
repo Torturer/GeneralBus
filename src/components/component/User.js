@@ -1,6 +1,7 @@
 import Image from "next/image";
-import styled from "../../styles/FligtTable/user.module.css"
+
 import { Text } from "@nextui-org/react";
+import styled from "../../styles/FligtTable/user.module.css"
 
 const User = (props) => {
     return (

@@ -1,6 +1,5 @@
-import React, { FC } from "react";
-
-import {IDataRaise} from "./data/data"
+import { FC } from "react";
+import { IDataRaise } from "./data/data"
 
 import { useEffect, useState } from 'react'
 import { Checkbox, Container, Spacer } from "@nextui-org/react";
@@ -8,21 +7,27 @@ import { Checkbox, Container, Spacer } from "@nextui-org/react";
 type ICityTarget = string[]
 type ICityRange = string[]
 
-export default function Select_City({ data, changeFun }) {
-    const [selected, setSelected] = useState<ICityTarget>((['']));
-    const [cityes, setCityes] = useState<ICityRange>(['']);
+interface IProps {
+    data: IDataRaise[];
+    changeFun: (dataRaise: string[]) => void;
+    // add any other required props here
+}
+
+const Select_City: FC<IProps> = ({ data, changeFun}) => {
+    const [selected, setSelected] = useState<ICityTarget>();
+    const [cityes, setCityes] = useState<ICityRange>();
 
     useEffect(() => {
-        const x:string[] = []
+        const x: string[] = []
 
-        data.forEach((raise:IDataRaise) => {
+        data.forEach((raise: IDataRaise) => {
             !x.includes(raise.city) && x.push(raise.city)
         });
         setCityes(x)
     }, [])
 
     useEffect(() => {
-        changeFun((selected))
+        changeFun((selected as ICityTarget))
     }, [selected])
 
     return (
@@ -63,3 +68,5 @@ export default function Select_City({ data, changeFun }) {
         </Container>
     );
 }
+
+export default Select_City;

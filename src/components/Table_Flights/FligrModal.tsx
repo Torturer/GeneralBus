@@ -1,11 +1,11 @@
-import React, {FC} from "react";
-
-import { Button, Container, Grid, Input, Modal, Row, Spacer, Text } from "@nextui-org/react";
+import { FC } from "react"
+import { IDataRaise } from "./data/data";
 import { useEffect, useState } from "react";
+import { Button, Container, Grid, Input, Modal, Row, Spacer, Text } from "@nextui-org/react";
 import Loader from "../component/Loader";
 
 import styled from "../../styles/FligtTable/FligrModal.module.css"
-import { IDataRaise } from "./data/data";
+
 
 type IFligrModal = {
     switchFun: () => void;
@@ -18,9 +18,9 @@ type IStatus = "default" | "success" | "error" | "primary"
 const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
 
 
-    const defaultStatus:IStatus = "primary"
+    const defaultStatus: IStatus = "primary"
 
-    const {data, active, switchFun} = props;
+    const { data, active, switchFun } = props;
 
     const [showLoader, setShowLoader] = useState(false)
     const [statusLoader, setStatusLoader] = useState<IStatus>("primary")

@@ -15,19 +15,19 @@ interface IListOFStops {
 
 
 export interface IDataRaise {
-     _id : number;
-     city: string;
-     busNumber: string;
-     busName: string;
-     busImg: string;
-     price: number;
-     phone: string;
-     map: object;
-     landingTime: string;
-     dataOfLanding: string;
-     status: string;
-     cityTarget: IDataRaiseCityTarget;
-     listOfStops: IListOFStops[];
+    _id: number;
+    city: string;
+    busNumber: string;
+    busName: string;
+    busImg: string;
+    price: number;
+    phone: string;
+    map: object;
+    landingTime: string;
+    dataOfLanding: string;
+    status: string;
+    cityTarget: IDataRaiseCityTarget;
+    listOfStops: IListOFStops[];
 }
 
 
@@ -524,4 +524,4 @@ const dataRaises: IDataRaise[] = [{
     ]
 },]
 
-export default dataRaises
+export { dataRaises }

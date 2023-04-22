@@ -1,37 +1,42 @@
-import React, { FC } from "react";
+import { FC, useState } from "react";
+import { IDataRaise, dataRaises } from "./data/data";
 
 import { Button, Spacer } from "@nextui-org/react";
 import Select_City from "./Select_City";
 import Table_Service from "./Table_Service";
-import data from "./data/data"
-import { useState } from "react";
+
 import FligrModal from "./FligrModal";
+
 
 const Table_Fligts: FC = (): JSX.Element => {
 
-    const [selectRaises, setSelectRaises] = useState(data); // List of selected flights
+    const [selectRaises, setSelectRaises] = useState(dataRaises); // List of selected flights
     const [activeModalFligt, setActiveModalFligt] = useState(false) // Activates adding a new flight
     const [activeRedaction, setActiveRedaction] = useState(false) // Activates editing a flight
 
-    const [dataPushToForm, setDataPushToForm] = useState(data[0])
+    const [dataPushToForm, setDataPushToForm] = useState(dataRaises[0])
 
-    const dataFilterChange = (dataRaise: [key: string]) => { setSelectRaises(data.filter((raise => dataRaise.includes(raise.city)))) } // Filter data fun
+    const dataFilterChange = (dataRaise: string[]) => { 
+       dataRaise ? setSelectRaises(dataRaises.filter((raise => dataRaise.includes(raise.city)))) : setSelectRaises(dataRaises) 
+    } // Filter data fun
     const switchActiveRedaction = (): void => { setActiveRedaction(false) } // Fun deactivate editing
     const switchModalFligt = (): void => { setActiveModalFligt(false) } // Fun deactivate modal
 
     // Fun target editing data and activate modal
-    const pushToForm = (id: number): void => { 
-        setDataPushToForm(data.find((raise) => raise._id === id))
-        setActiveRedaction(true)
-    }
-
+    const pushToForm = (id: number): void => {
+        const foundRaise = (dataRaises).find((raise) => raise._id === id);
+        if (foundRaise !== undefined) {
+            setDataPushToForm(foundRaise);
+            setActiveRedaction(true);
+        }
+    };
     return (
         <>
             <Select_City
-                data={data}
+                data={dataRaises}
                 changeFun={dataFilterChange}
             />
-            <Table_Service selectData={selectRaises.length ? selectRaises : data} pushToForm={pushToForm} />
+            <Table_Service selectData={selectRaises.length ? selectRaises : dataRaises} pushToForm={pushToForm} />
             <Spacer y={1} />
             <Button
                 size="sm"
@@ -61,3 +66,4 @@ const Table_Fligts: FC = (): JSX.Element => {
 }
 
 export default Table_Fligts;
+
