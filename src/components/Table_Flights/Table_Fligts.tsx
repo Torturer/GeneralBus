@@ -16,8 +16,8 @@ const Table_Fligts: FC = (): JSX.Element => {
 
     const [dataPushToForm, setDataPushToForm] = useState(dataRaises[0])
 
-    const dataFilterChange = (dataRaise: string[]) => { 
-       dataRaise ? setSelectRaises(dataRaises.filter((raise => dataRaise.includes(raise.city)))) : setSelectRaises(dataRaises) 
+    const dataFilterChange = (target: string[]) => { 
+        target ? setSelectRaises(dataRaises.filter((raise => target.includes(raise.city)))) : setSelectRaises(dataRaises) 
     } // Filter data fun
     const switchActiveRedaction = (): void => { setActiveRedaction(false) } // Fun deactivate editing
     const switchModalFligt = (): void => { setActiveModalFligt(false) } // Fun deactivate modal
