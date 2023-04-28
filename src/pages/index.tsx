@@ -6,8 +6,6 @@ import FligrModal from "@/components/Table_Flights/FligrModal";
 import { GetStaticProps, NextPage, NextPageContext } from "next";
 import { IDataRaise } from "@/components/Table_Flights/data/data";
 
-import API from "@/pages/api/raises"
-
 
 
 interface IProps {
@@ -63,46 +61,56 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
 
 export default Table_Flights;
 
-Table_Flights.getInitialProps = async (context: NextPageContext) => {
+export const getServerSideProps = async () => {
+    const res = await fetch(`http://0.0.0.0:3000/api/raises`);
+    // Parsing the JSON data received from the API
+    const data = await res.json();
 
-    try {
-        // Making an API request to get the data
-        const res = await fetch(`http://localhost:3000/api/raises`);
-        // Parsing the JSON data received from the API
-        const data = await res.json();
-
-        return { raises: JSON.parse(JSON.stringify(data)) };
-
-    } catch (error) {
-        console.log(error)
-    }
-
-    return {
-        raises: undefined
-    }
+    return {props: { raises: data }}
 
 }
 
+// Table_Flights.getInitialProps = async (context: NextPageContext): Promise<IProps> => {
+//     // Making an API request to get the data
+//     const res = await fetch(`http://localhost:3000/api/raises`);
+//     // Parsing the JSON data received from the API
+//     const data = await res.json();
+
+//     return { raises: data };
+
+// }
+
+
+
 // export const getStaticProps: GetStaticProps = async (context) => {
 
-//     try {
-//         // Making an API request to get the data
-//         const res = await fetch("http://localhost:3000/api/raises");
-//         // Parsing the JSON data received from the API
-//         const data = await res.json();
+//     // Making an API request to get the data
+//     const res = await fetch("http://localhost:3000/api/raises");
+//     // Parsing the JSON data received from the API
+//     const data = await res.json();
+//     console.log("tst")
 
-//         return {
-//             props: {
-//                 raises: data,
-//             },
-//         };
-//     } catch (error) {
-//         console.error(error);
-//         // In case of error, returning an empty array as the raises data
-//         return {
-//             props: {
-//                 raise: [],
-//             },
-//         };
+//     return {
+//         props: {
+
+//             raises: data,
+//         },
+//         revalidate: 5
+
+//     };
+// }
+
+
+// export const getStaticProps: GetStaticProps<{ raises: IProps[] }> = async (
+//     context
+//   ) => {
+//     const res = await fetch('http://localhost:3000/api/raises')
+//     const raises: IProps[] = await res.json()
+  
+//     return {
+//       props: {
+//         raises,
+//       },
+//       revalidate: 30,
 //     }
-// };
+//   }
