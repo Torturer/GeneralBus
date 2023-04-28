@@ -13,7 +13,7 @@ import styles from "../../styles/FligtTable/Table_Service.module.css"
 
 type IProps = {
     selectData: IDataRaise[];
-    pushToForm: (id: number) => void;
+    pushToForm: (id: string) => void;
 }
 
 const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
@@ -65,7 +65,7 @@ const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
 
                         <div className={styles.tools} >
                             <Tooltip content="Редагувати рейс">
-                                <IconButton onClick={() => pushToForm(raise._id)}>
+                                <IconButton onClick={() => pushToForm(raise.id)}>
                                     <EditIcon size={20} fill="#979797" height={undefined} width={undefined} />
                                 </IconButton>
                             </Tooltip>

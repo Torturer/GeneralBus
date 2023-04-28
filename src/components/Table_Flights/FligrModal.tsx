@@ -28,9 +28,9 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
 
     const [nameBus, setNameBus] = useState(data && data.busName),
         [urlImg, setUrlImg] = useState(data && data.busImg),
-        [numberBus, setNumberBus] = useState(data && data.busName),
+        [numberBus, setNumberBus] = useState(data && data.busNumber),
         [phoneNumber, setPhoneNumber] = useState(data && data.phone),
-        [cityStart, setCityStart] = useState(data && data.phone),
+        [cityStart, setCityStart] = useState(data && data.city),
         [cityGoGo, setCityGoGo] = useState(data && data.cityTarget.goGoCity),
         [cityStop, setCityStop] = useState(data && data.cityTarget.stopCity),
         [time, setTime] = useState(data && data.landingTime),

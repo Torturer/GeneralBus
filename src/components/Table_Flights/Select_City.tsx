@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { IDataRaise } from "./data/data"
+import React, { FC } from "react";
+import type { IDataRaise } from "./data/data"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { Checkbox, Container, Spacer } from "@nextui-org/react";
 
 type ICityTarget = string[]
@@ -69,4 +69,4 @@ const Select_City: FC<IProps> = ({ data, changeFun}) => {
     );
 }
 
-export default Select_City;
+export default React.memo(Select_City)

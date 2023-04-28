@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -10,8 +11,4 @@ a {
 body {
     overflow: auto !important;
     height: 100%;
-}
-
-.nextui-c-PJLV-iiQewsr-css {
-    height: auto !important;
 }
