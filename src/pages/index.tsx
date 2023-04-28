@@ -62,7 +62,7 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
 export default Table_Flights;
 
 export const getServerSideProps = async () => {
-    const res = await fetch(`http://` + process.env.HOST + `:3000/api/raises`);
+    const res = await fetch(`https://` + process.env.HOST + `:3000/api/raises`);
     // Parsing the JSON data received from the API
     const data = await res.json();
 
