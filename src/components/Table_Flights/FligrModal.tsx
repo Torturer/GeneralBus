@@ -8,7 +8,6 @@ import styled from "../../styles/FligtTable/FligrModal.module.css"
 
 
 type IFligrModal = {
-    apendData: () => void;
     switchFun: () => void;
     active: boolean;
     data?: IDataRaise;
@@ -21,7 +20,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
 
     const defaultStatus: IStatus = "primary"
 
-    const { data, active, switchFun, apendData } = props;
+    const { data, active, switchFun } = props;
 
     const [showLoader, setShowLoader] = useState(false)
     const [statusLoader, setStatusLoader] = useState<IStatus>("primary")
