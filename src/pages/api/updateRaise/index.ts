@@ -11,7 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     console.log(raise)
 
-    const post = await db.collection("raises").updateOne(
+    const post = await db.collection("raises").findOneAndUpdate(
         {
             _id: new ObjectId(id as string),
         },

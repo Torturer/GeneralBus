@@ -8,6 +8,7 @@ import styled from "../../styles/FligtTable/FligrModal.module.css"
 
 
 type IFligrModal = {
+    apendData: () => void;
     switchFun: () => void;
     active: boolean;
     data?: IDataRaise;
@@ -20,7 +21,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
 
     const defaultStatus: IStatus = "primary"
 
-    const { data, active, switchFun } = props;
+    const { data, active, switchFun, apendData } = props;
 
     const [showLoader, setShowLoader] = useState(false)
     const [statusLoader, setStatusLoader] = useState<IStatus>("primary")
@@ -43,36 +44,42 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
     const sendData = async () => {
         try {
             let api = data ? `/api/updateRaise?id=${data._id}` : `/api/addRaise`
+            let url = process.env.NEXT_PUBLIC_API_URL + api
+            let raise = {
+                busName: nameBus,
+                busImg: urlImg,
+                busNumber: numberBus,
+                phone: phoneNumber,
+                city: cityStart,
+                cityTarget: {
+                    goGoCity: cityGoGo,
+                    stopCity: cityStop
+                },
+                landingTime: time,
+                dataOfLanding: date,
+                price: price
+            }
+
             setShowLoader(true)
 
-            let respons = await fetch(process.env.HOST + api, {
+            let respons = await fetch(url, {
                 method: "POST",
-                body: JSON.stringify({
-                    busName: nameBus,
-                    busImg: urlImg,
-                    busNumber: numberBus,
-                    phone: phoneNumber,
-                    city: cityStart,
-                    cityTarget: {
-                        goGoCity: cityGoGo,
-                        stopCity: cityStop
-                    },
-                    landingTime: time,
-                    dataOfLanding: date,
-                    price: price
-                }),
+                body: JSON.stringify(raise),
                 headers: {
                     Accept: "application/json, text/plain, */*",
                     "Content-Type": "application/json",
                 },
             });
-            console.log(respons.json())
+
+            let result = await respons.json()
+
+            console.log(result.value)
             setStatusLoader("success")
             setTimeout(() => {
                 setShowLoader(false);
                 setStatusLoader("primary");
                 switchFun();
-            }, 2000)
+            }, 1000)
         } catch (error) {
             setStatusLoader("error")
             setTimeout(() => setShowLoader(false), 2000)
