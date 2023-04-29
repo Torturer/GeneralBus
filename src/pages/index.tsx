@@ -3,7 +3,7 @@ import { Button, Spacer } from "@nextui-org/react";
 import Select_City from "@/components/Table_Flights/Select_City";
 import Table_Service from "@/components/Table_Flights/Table_Service";
 import FligrModal from "@/components/Table_Flights/FligrModal";
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { IDataRaise } from "@/components/Table_Flights/data/data";
 
 
@@ -61,10 +61,15 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
 
 export default Table_Flights;
 
-export const getStaticProps = async () => {
-    const res = await fetch(`http://` + process.env.HOST + `/api/getRaises`);
+export const getStaticProps: GetStaticProps = async () => {
+    const res = await fetch(process.env.HOST + `/api/getRaises`);
     // Parsing the JSON data received from the API
     const data = await res.json();
-    return { props: { raises: data } }
+    return {
+        props: {
+            raises: data
+        },
+        revalidate: 10
+    }
 }
 

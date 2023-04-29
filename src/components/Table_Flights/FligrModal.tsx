@@ -42,36 +42,42 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
 
     const sendData = async () => {
         try {
+            let api = data ? `/api/updateRaise?id=${data._id}` : `/api/addRaise`
             setShowLoader(true)
-            setTimeout(() => setStatusLoader("success"), 2000)
+
+            let respons = await fetch(process.env.HOST + api, {
+                method: "POST",
+                body: JSON.stringify({
+                    busName: nameBus,
+                    busImg: urlImg,
+                    busNumber: numberBus,
+                    phone: phoneNumber,
+                    city: cityStart,
+                    cityTarget: {
+                        goGoCity: cityGoGo,
+                        stopCity: cityStop
+                    },
+                    landingTime: time,
+                    dataOfLanding: date,
+                    price: price
+                }),
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json",
+                },
+            });
+            console.log(respons.json())
+            setStatusLoader("success")
             setTimeout(() => {
                 setShowLoader(false);
                 setStatusLoader("primary");
                 switchFun();
-            }, 4000)
-
+            }, 2000)
         } catch (error) {
             setStatusLoader("error")
             setTimeout(() => setShowLoader(false), 2000)
             console.log(error)
         }
-
-        // try {
-        //     let response = await fetch(
-        //       "http://localhost:3000/api/deletePost?id=" + postId,
-        //       {
-        //         method: "POST",
-        //         headers: {
-        //           Accept: "application/json, text/plain, */*",
-        //           "Content-Type": "application/json",
-        //         },
-        //       }
-        //     );
-        //     response = await response.json();
-        //     window.location.reload();
-        //   } catch (error) {
-        //     console.log("An error occurred while deleting ", error);
-        //   }
     }
 
     useEffect(() => {
