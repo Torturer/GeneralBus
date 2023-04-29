@@ -3,7 +3,7 @@ import { Button, Spacer } from "@nextui-org/react";
 import Select_City from "@/components/Table_Flights/Select_City";
 import Table_Service from "@/components/Table_Flights/Table_Service";
 import FligrModal from "@/components/Table_Flights/FligrModal";
-import { GetStaticProps, NextPage, NextPageContext } from "next";
+import { NextPage } from "next";
 import { IDataRaise } from "@/components/Table_Flights/data/data";
 
 
@@ -61,56 +61,10 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
 
 export default Table_Flights;
 
-export const getServerSideProps = async () => {
-    const res = await fetch(`https://` + process.env.HOST + `/api/raises`);
+export const getStaticProps = async () => {
+    const res = await fetch(`http://` + process.env.HOST + `/api/getRaises`);
     // Parsing the JSON data received from the API
     const data = await res.json();
-
-    return {props: { raises: data }}
-
+    return { props: { raises: data } }
 }
 
-// Table_Flights.getInitialProps = async (context: NextPageContext): Promise<IProps> => {
-//     // Making an API request to get the data
-//     const res = await fetch(`http://localhost:3000/api/raises`);
-//     // Parsing the JSON data received from the API
-//     const data = await res.json();
-
-//     return { raises: data };
-
-// }
-
-
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-
-//     // Making an API request to get the data
-//     const res = await fetch("http://localhost:3000/api/raises");
-//     // Parsing the JSON data received from the API
-//     const data = await res.json();
-//     console.log("tst")
-
-//     return {
-//         props: {
-
-//             raises: data,
-//         },
-//         revalidate: 5
-
-//     };
-// }
-
-
-// export const getStaticProps: GetStaticProps<{ raises: IProps[] }> = async (
-//     context
-//   ) => {
-//     const res = await fetch('http://localhost:3000/api/raises')
-//     const raises: IProps[] = await res.json()
-  
-//     return {
-//       props: {
-//         raises,
-//       },
-//       revalidate: 30,
-//     }
-//   }

@@ -55,6 +55,23 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
             setTimeout(() => setShowLoader(false), 2000)
             console.log(error)
         }
+
+        // try {
+        //     let response = await fetch(
+        //       "http://localhost:3000/api/deletePost?id=" + postId,
+        //       {
+        //         method: "POST",
+        //         headers: {
+        //           Accept: "application/json, text/plain, */*",
+        //           "Content-Type": "application/json",
+        //         },
+        //       }
+        //     );
+        //     response = await response.json();
+        //     window.location.reload();
+        //   } catch (error) {
+        //     console.log("An error occurred while deleting ", error);
+        //   }
     }
 
     useEffect(() => {
