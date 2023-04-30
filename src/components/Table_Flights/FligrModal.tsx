@@ -227,7 +227,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                                 Відміна
                             </Button>
                             <Button auto onPress={sendData} disabled={actButtonSend} >
-                                {nameBus ? "Редагувати" : "Додати"}
+                                {data ? "Редагувати" : "Додати"}
                             </Button>
                         </Row>
                         <Spacer y={3} />
