@@ -5,6 +5,7 @@ import { Button, Container, Grid, Input, Modal, Row, Spacer, Text } from "@nextu
 import Loader from "../component/Loader";
 
 import styled from "../../styles/FligtTable/FligrModal.module.css"
+import { useRouter } from "next/router";
 
 
 type IFligrModal = {
@@ -16,6 +17,9 @@ type IFligrModal = {
 type IStatus = "default" | "success" | "error" | "primary"
 
 const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
+
+
+    const router = useRouter();
 
 
     const defaultStatus: IStatus = "primary"
@@ -72,13 +76,13 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
 
             let result = await respons.json()
 
-            console.log(result.value)
             setStatusLoader("success")
             setTimeout(() => {
                 setShowLoader(false);
                 setStatusLoader("primary");
                 switchFun();
             }, 1000)
+            router.reload()
         } catch (error) {
             setStatusLoader("error")
             setTimeout(() => setShowLoader(false), 2000)
