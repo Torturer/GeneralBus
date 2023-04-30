@@ -1,12 +1,17 @@
 import CardBus from "@/components/InfoRaise/CardBus";
+import type { IDataRaise } from "@/components/Table_Flights/data/data";
 // import { dataRaises } from "@/components/Table_Flights/data/data";
 
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 
-const RaisePage: NextPage = () => {
+type IProps = {
+    raise: IDataRaise
+}
+
+const RaisePage: NextPage<IProps> = ({ raise }) => {
 
     const router = useRouter()
 
@@ -15,7 +20,7 @@ const RaisePage: NextPage = () => {
 
     return (
         <>
-            {/* <CardBus raise={} /> */}
+            
         </>
     );
 
@@ -23,27 +28,10 @@ const RaisePage: NextPage = () => {
 
 export default RaisePage
 
-// export const getStaticPaths = () => {
-//     return {
-//         paths: [
-//             { params: { id: '1' } },
-//         ],
-//         fallback: true,
-//     }
-// }
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const res = await fetch(process.env.HOST + `/api/getRaise?id=${context.query.id}`);
+    // Parsing the JSON data received from the API
 
-// export const getStaticProps: GetStaticProps = async (context) => {
-//     try {
-//         const dataTarget = await dataRaises.find((raise) => context.locale as string === String(raise._id))
-//         console.log(context.locale)
-//         return {
-//             props: { raise: dataTarget }
-//         }
-
-//     } catch (error) {
-//         console.error(error);
-//         return { props: {} }
-//     }
-
-
-// };
+    const data = await res.json();
+    return { props: { raise: data } }
+}

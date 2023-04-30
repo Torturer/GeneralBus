@@ -32,7 +32,7 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
 
     // Fun target editing data and activate modal
     const pushToForm = (id: string): void => {
-        const foundRaise = raises.find((raise) => raise.id === id);
+        const foundRaise = raises.find((raise) => raise._id === id);
         if (foundRaise !== undefined) {
             setDataPushToForm(foundRaise);
             setActiveRedaction(true);

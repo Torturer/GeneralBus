@@ -17,6 +17,7 @@ type IProps = {
 }
 
 const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
+    
 
     return (
         <div className={styles.table}>
@@ -65,7 +66,7 @@ const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
 
                         <div className={styles.tools} >
                             <Tooltip content="Редагувати рейс">
-                                <IconButton onClick={() => pushToForm(raise.id)}>
+                                <IconButton onClick={() => pushToForm(raise._id)}>
                                     <EditIcon size={20} fill="#979797" height={undefined} width={undefined} />
                                 </IconButton>
                             </Tooltip>

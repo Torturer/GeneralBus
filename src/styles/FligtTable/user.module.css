@@ -3,6 +3,7 @@
     flex-direction: row;
     align-items: center;
     margin: 10px;
+    min-width: 183px;
 }
 
 .user_box_avatar {
