@@ -40,7 +40,7 @@ const DeleteButton: FC<IProp> = ({ id }) => {
     return (
         <>
             {showLoader ?
-                <Loading size="xs" color={statusLoader} >{statusLoader === "success" ? "Успіх" : "Помилка"} </Loading>
+                <Loading size="xs" color={statusLoader} >{statusLoader === "success" ? "Успіх" : statusLoader === "error"? "Помилка" : ""} </Loading>
                 :
                 <Tooltip
                     content="Видалити рейс"
