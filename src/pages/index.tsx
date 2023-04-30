@@ -39,8 +39,6 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
         }
     };
 
-    console.log(raises)
-
     return (
         <>
             <Select_City data={raises} changeFun={dataFilterChange} />

@@ -10,6 +10,7 @@ import Link from "next/link";
 import User from "../component/User";
 
 import styles from "../../styles/FligtTable/Table_Service.module.css"
+import { useRouter } from "next/router";
 
 type IProps = {
     selectData: IDataRaise[];
@@ -17,7 +18,23 @@ type IProps = {
 }
 
 const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
-    
+    const router = useRouter()
+
+
+    const sendDelete = async (id: string) => {
+        try {
+            const api = `/api/deletRaise?id=${id}`
+            const url = process.env.NEXT_PUBLIC_API_URL + api
+            await fetch(url);
+            router.reload()
+
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
 
     return (
         <div className={styles.table}>
@@ -74,7 +91,7 @@ const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
                                 content="Видалити рейс"
                                 color="error"
                             >
-                                <IconButton>
+                                <IconButton onClick={() => sendDelete(raise._id)}>
                                     <DeleteIcon size={20} fill="#FF0080" height={undefined} width={undefined} />
                                 </IconButton>
                             </Tooltip>
