@@ -9,7 +9,7 @@ import Link from "next/link";
 import User from "../component/User";
 
 import styles from "../../styles/FligtTable/Table_Service.module.css"
-import DeleteButton from "./deleteButton";
+import DeleteButton from "./DeleteButton";
 
 type IProps = {
     selectData: IDataRaise[];
