@@ -4,13 +4,12 @@ import type { IDataRaise } from "./data/data";
 import { Tooltip, Text, Badge } from "@nextui-org/react";
 import { IconButton } from "./icon/IconButton";
 import { EditIcon } from "./icon/EditIcon";
-import { DeleteIcon } from "./icon/DeleteIcon";
 import { EyeIcon } from "./icon/EyeIcon";
 import Link from "next/link";
 import User from "../component/User";
 
 import styles from "../../styles/FligtTable/Table_Service.module.css"
-import { useRouter } from "next/router";
+import DeleteButton from "./deleteButton";
 
 type IProps = {
     selectData: IDataRaise[];
@@ -18,22 +17,6 @@ type IProps = {
 }
 
 const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
-    const router = useRouter()
-
-
-    const sendDelete = async (id: string) => {
-        try {
-            const api = `/api/deletRaise?id=${id}`
-            const url = process.env.NEXT_PUBLIC_API_URL + api
-            await fetch(url);
-            router.reload()
-
-
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
 
 
     return (
@@ -81,18 +64,12 @@ const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
                             </div>
                         </div>
 
+                        <DeleteButton id={raise._id}/>
+
                         <div className={styles.tools} >
                             <Tooltip content="Редагувати рейс">
                                 <IconButton onClick={() => pushToForm(raise._id)}>
                                     <EditIcon size={20} fill="#979797" height={undefined} width={undefined} />
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip
-                                content="Видалити рейс"
-                                color="error"
-                            >
-                                <IconButton onClick={() => sendDelete(raise._id)}>
-                                    <DeleteIcon size={20} fill="#FF0080" height={undefined} width={undefined} />
                                 </IconButton>
                             </Tooltip>
                         </div>
