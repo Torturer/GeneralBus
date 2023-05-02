@@ -24,7 +24,7 @@ const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
             {selectData.map((raise, index) => {
                 return (
                     <div className={styles.table_cell} key={index}>
-                        <User squared src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>
+                        <User src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>
                             <a href={"tel:" + raise.phone} title="">{raise.phone}</a>
                         </User>
 

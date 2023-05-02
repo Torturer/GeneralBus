@@ -2,8 +2,15 @@ import Image from "next/image";
 
 import { Text } from "@nextui-org/react";
 import styled from "../../styles/FligtTable/user.module.css"
+import { FC, ReactNode } from "react";
 
-const User = (props) => {
+type IProps = {
+    src: string;
+    name: string;
+    children: ReactNode
+}
+
+const User:FC<IProps> = (props) => {
     return (
         <div className={styled.user_box}>
             <Image className={styled.user_box_avatar}
