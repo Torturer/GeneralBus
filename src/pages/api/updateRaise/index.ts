@@ -28,8 +28,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 price: raise.price
 
             },
+        },
+        {
+            returnDocument: "after"
         }
     );
 
-    res.json(post);
+    res.status(200).json(post);
 }

@@ -1,14 +1,14 @@
-import { FC } from "react"
+import { Dispatch, FC, SetStateAction } from "react"
 import { IDataRaise } from "./data/data";
 import { useEffect, useState } from "react";
 import { Button, Container, Grid, Input, Modal, Row, Spacer, Text } from "@nextui-org/react";
 import Loader from "../component/Loader";
 
 import styled from "../../styles/FligtTable/FligrModal.module.css"
-import { useRouter } from "next/router";
 
 
 type IFligrModal = {
+    setRaise: (result: IDataRaise, edit: boolean) => void
     switchFun: () => void;
     active: boolean;
     data?: IDataRaise;
@@ -18,13 +18,7 @@ type IStatus = "default" | "success" | "error" | "primary"
 
 const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
 
-
-    const router = useRouter();
-
-
-    const defaultStatus: IStatus = "primary"
-
-    const { data, active, switchFun } = props;
+    const { data, active, switchFun, setRaise } = props;
 
     const [showLoader, setShowLoader] = useState(false)
     const [statusLoader, setStatusLoader] = useState<IStatus>("primary")
@@ -42,6 +36,8 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
         [price, setPrice] = useState(data && data.price)
 
     const [actButtonSend, setActButtonSend] = useState(false)
+
+
 
 
     const sendData = async () => {
@@ -75,6 +71,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
             });
 
             let result = await respons.json()
+            data ? setRaise(result.value, true) : setRaise(result.value, false)
 
             setStatusLoader("success")
             setTimeout(() => {
@@ -82,7 +79,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                 setStatusLoader("primary");
                 switchFun();
             }, 1000)
-            router.reload()
+
         } catch (error) {
             setStatusLoader("error")
             setTimeout(() => setShowLoader(false), 2000)

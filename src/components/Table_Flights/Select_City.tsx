@@ -9,25 +9,31 @@ type ICityRange = string[]
 
 interface IProps {
     data: IDataRaise[];
-    changeFun: (dataRaise: string[]) => void;
+    changeFun: (dataRaise: IDataRaise[]) => void;
     // add any other required props here
 }
 
 const Select_City: FC<IProps> = ({ data, changeFun}) => {
-    const [selected, setSelected] = useState<ICityTarget>();
+    const [dataRaise, setDataRaise] = useState(data)
+    const [selected, setSelected] = useState<ICityTarget>([]);
     const [cityes, setCityes] = useState<ICityRange>();
+
+
+    const dataFilter = (arr: ICityTarget) =>  dataRaise.filter((raise) => arr.includes(raise.city)) as IDataRaise[]
 
     useEffect(() => {
         const x: string[] = []
 
-        data.forEach((raise: IDataRaise) => {
+        dataRaise.forEach((raise: IDataRaise) => {
             !x.includes(raise.city) && x.push(raise.city)
         });
         setCityes(x)
     }, [])
 
     useEffect(() => {
-        changeFun((selected as ICityTarget))
+        let target = []
+        selected.length ? target = dataFilter(selected) : target = dataRaise
+        changeFun(target)
     }, [selected])
 
     return (

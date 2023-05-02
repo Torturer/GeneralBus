@@ -7,6 +7,8 @@ type IProps = {
 }
 
 const Loader: FC<IProps> = ({ status }): JSX.Element => {
+
+    
     return (
         <div className={styles.loader_box}>
             <Loading

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react"
 import type { IDataRaise } from "./data/data";
 
 import { Tooltip, Text, Badge } from "@nextui-org/react";
@@ -12,18 +12,20 @@ import styles from "../../styles/FligtTable/Table_Service.module.css"
 import DeleteButton from "./DeleteButton";
 
 type IProps = {
-    selectData: IDataRaise[];
+    data: IDataRaise[];
     pushToForm: (id: string) => void;
+    setRaise: (id:string) => void;
+
 }
 
-const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
+const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element => {
 
 
     return (
         <div className={styles.table}>
-            {selectData.map((raise, index) => {
+            {data.map((raise, index) => {
                 return (
-                    <div className={styles.table_cell} key={index}>
+                    <div className={styles.table_cell} key={raise._id}>
                         <User src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>
                             <a href={"tel:" + raise.phone} title="">{raise.phone}</a>
                         </User>
@@ -64,7 +66,7 @@ const Table_Service: FC<IProps> = ({ selectData, pushToForm }): JSX.Element => {
                             </div>
                         </div>
 
-                        <DeleteButton id={raise._id}/>
+                        <DeleteButton id={raise._id} setRaise={setRaise}/>
 
                         <div className={styles.tools} >
                             <Tooltip content="Редагувати рейс">
