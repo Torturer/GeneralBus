@@ -14,7 +14,7 @@ import DeleteButton from "./DeleteButton";
 type IProps = {
     data: IDataRaise[];
     pushToForm: (id: string) => void;
-    setRaise: (id:string) => void;
+    setRaise: (id: string) => void;
 
 }
 
@@ -23,7 +23,7 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
 
     return (
         <div className={styles.table}>
-            {data.map((raise, index) => {
+            {data.map((raise) => {
                 return (
                     <div className={styles.table_cell} key={raise._id}>
                         <User src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>
@@ -66,8 +66,6 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
                             </div>
                         </div>
 
-                        <DeleteButton id={raise._id} setRaise={setRaise}/>
-
                         <div className={styles.tools} >
                             <Tooltip content="Редагувати рейс">
                                 <IconButton onClick={() => pushToForm(raise._id)}>
@@ -75,6 +73,9 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
                                 </IconButton>
                             </Tooltip>
                         </div>
+
+                        <DeleteButton id={raise._id} setRaise={setRaise} />
+
                     </div>
                 )
             })}
