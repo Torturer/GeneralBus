@@ -3,8 +3,9 @@ import { Button, Spacer } from "@nextui-org/react";
 import Select_City from "@/components/Table_Flights/Select_City";
 import Table_Service from "@/components/Table_Flights/Table_Service";
 import FligrModal from "@/components/Table_Flights/FligrModal";
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { IDataRaise } from "@/components/Table_Flights/data/data";
+import { isNull } from "util";
 
 
 
@@ -39,30 +40,43 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
         }
     };
 
-    return (
-        <>
-            <Select_City data={raises} changeFun={dataFilterChange} />
-            <Table_Service selectData={selectRaises.length ? selectRaises : raises} pushToForm={pushToForm} />
-            <Spacer y={1} />
-            <Button size="sm" onPress={() => setActiveModalFlight(true)} css={{ margin: "0px auto" }} color="warning">
-                Додати рейс
-            </Button>
-            {activeModalFlight ? (
-                <FligrModal active={activeModalFlight} switchFun={switchModalFlight} />
-            ) : null}
-            {activeRedaction ? (
-                <FligrModal switchFun={switchActiveRedaction} active={activeRedaction} data={dataPushToForm} />
-            ) : null}
-        </>
-    );
+    if (!isNull(raises)) {
+        return (
+            <>
+                <Select_City data={raises} changeFun={dataFilterChange} />
+                <Table_Service selectData={selectRaises.length ? selectRaises : raises} pushToForm={pushToForm} />
+                <Spacer y={1} />
+                <Button size="sm" onPress={() => setActiveModalFlight(true)} css={{ margin: "0px auto" }} color="warning">
+                    Додати рейс
+                </Button>
+                {activeModalFlight ? (
+                    <FligrModal active={activeModalFlight} switchFun={switchModalFlight} />
+                ) : null}
+                {activeRedaction ? (
+                    <FligrModal switchFun={switchActiveRedaction} active={activeRedaction} data={dataPushToForm} />
+                ) : null}
+            </>
+        );
+    } else {
+        return <div>Not found</div>
+    }
 };
 
 export default Table_Flights;
 
-export const getServerSideProps = async () => {
-    const res = await fetch(process.env.HOST + `/api/getRaises`);
-    // Parsing the JSON data received from the API
-    const data = await res.json();
-    return { props: { raises: data } }
+export const getStaticProps: GetStaticProps = async () => {
+
+    try {
+        const res = await fetch(process.env.HOST + `/api/getRaises`);
+        // Parsing the JSON data received from the API
+        const data = await res.json();
+        return { props: { raises: data }, revalidate: 10}
+    } catch (error) {
+        return {
+            props: { raises: null },
+            revalidate: 4
+            
+        }
+    }
 }
 
