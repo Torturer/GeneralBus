@@ -7,7 +7,7 @@ type IProps = {
     data: IListOFStops[] | undefined
 }
 
-const Table = ({ data }: IProps) => {
+const Table: FC<IProps> = ({ data }) => {
 
 
 
@@ -16,15 +16,17 @@ const Table = ({ data }: IProps) => {
     if (listStops) {
         return (
 
-            listStops.map((stop, index) => {
-                return (
-                    <div key={stop.nameStop}>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                )
-            })
+            <>
+                {listStops.map((stop, index) => {
+                    return (
+                        <div key={stop.nameStop}>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    )
+                })}
+            </>
 
         )
     } else {
