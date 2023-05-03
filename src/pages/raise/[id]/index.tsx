@@ -10,6 +10,7 @@ import { GetServerSideProps, GetStaticProps } from "next";
 import styles from "../../../styles/InfoRaise/InfoRaise.module.css"
 import { Button, Spacer } from "@nextui-org/react";
 import Table from "@/components/InfoRaise/Table";
+import Link from "next/link";
 type IProps = {
     raise: IDataRaise
 }
@@ -31,18 +32,19 @@ const RaisePage: NextPage<IProps> = ({ raise }) => {
             <div className={styles.box_info_raise}>
 
                 <CardBus raise={targetRaise} />
-                <Table data={targetRaise.listOfStops}/> 
+                <Table data={targetRaise.listOfStops} />
 
 
             </div>
 
             <Spacer y={2} />
-            <Button
-                className={styles.button}
-                onClick={() => route.push("/")}
-            >
-                назад
-            </Button>
+            <Link href="/" about="back" prefetch={false}>
+                <Button
+                    className={styles.button}
+                >
+                    назад
+                </Button>
+            </Link>
 
         </div >
     );
@@ -50,6 +52,9 @@ const RaisePage: NextPage<IProps> = ({ raise }) => {
 }
 
 export default RaisePage
+
+
+
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const res = await fetch(process.env.HOST + `/api/getRaise?id=${context.query.id}`);

@@ -9,7 +9,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const raise = req.body;
 
         const post = await db.collection("raises").insertOne({
-            ...raise
+            busName: raise.busName,
+            busImg: raise.busImg,
+            busNumber: raise.busNumber,
+            phone: raise.phone,
+            city: raise.city,
+            cityTarget: raise.cityTarget,
+            landingTime: raise.landingTime,
+            dataOfLanding: raise.dataOfLanding,
+            price: raise.price
+
         });
 
         res.json(post);
