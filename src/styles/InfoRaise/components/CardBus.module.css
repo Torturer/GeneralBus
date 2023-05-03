@@ -1,0 +1,25 @@
+.image {
+    border-radius: 25px;
+    margin-bottom: 14px;
+}
+
+.box span {
+    font-size: 17px;
+    font-weight: 600;
+
+}
+
+.box {
+    min-width: 310px;
+    max-width: 400px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.box p { 
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+}

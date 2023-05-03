@@ -1,27 +1,50 @@
+import { NextPage } from "next";
+import { useRouter } from "next/router";
+import { useState } from "react";
+
 import CardBus from "@/components/InfoRaise/CardBus";
-import type { IDataRaise } from "@/components/Table_Flights/data/data";
+import type { IDataRaise, IListOFStops } from "@/components/Table_Flights/data/data";
 // import { dataRaises } from "@/components/Table_Flights/data/data";
 
 import { GetServerSideProps, GetStaticProps } from "next";
-
-import { NextPage } from "next";
-import { useRouter } from "next/router";
-
+import styles from "../../../styles/InfoRaise/InfoRaise.module.css"
+import { Button, Spacer } from "@nextui-org/react";
+import Table from "@/components/InfoRaise/Table";
 type IProps = {
     raise: IDataRaise
 }
 
 const RaisePage: NextPage<IProps> = ({ raise }) => {
 
-    const router = useRouter()
+    const [targetRaise, setTargetRaise] = useState(raise)
+
+    const route = useRouter()
+
+
 
 
 
 
     return (
-        <>
-            
-        </>
+        <div className={styles.container}>
+            <Spacer y={2} />
+            <div className={styles.box_info_raise}>
+
+                <CardBus raise={targetRaise} />
+                <Table data={targetRaise.listOfStops}/> 
+
+
+            </div>
+
+            <Spacer y={2} />
+            <Button
+                className={styles.button}
+                onClick={() => route.push("/")}
+            >
+                назад
+            </Button>
+
+        </div >
     );
 
 }

@@ -1,0 +1,19 @@
+.button {
+    margin: 0 auto
+}
+
+.container {
+    padding: 0 24px;
+}
+
+.box_info_raise {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+
+.table {
+    width: 100%
+}

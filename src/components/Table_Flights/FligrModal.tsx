@@ -2,7 +2,6 @@ import { Dispatch, FC, SetStateAction } from "react"
 import { IDataRaise } from "./data/data";
 import { useEffect, useState } from "react";
 import { Button, Container, Grid, Input, Loading, Modal, Row, Spacer, Text } from "@nextui-org/react";
-import Loader from "../component/Loader";
 
 import styled from "../../styles/FligtTable/FligrModal.module.css"
 
@@ -78,7 +77,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                 setShowLoader(false);
                 setStatusLoader("primary");
                 switchFun();
-            }, 1000)
+            }, 2000)
 
         } catch (error) {
             setStatusLoader("error")

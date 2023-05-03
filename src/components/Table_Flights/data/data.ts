@@ -4,11 +4,11 @@ interface IDataRaiseCityTarget {
     stopCity: string;
 }
 
-interface IListOFStops {
-    _id: number;
+export interface IListOFStops {
+    _id: string;
     nameStop: string;
     time: string;
-    map: object;
+    map: string;
     status: string;
 }
 
