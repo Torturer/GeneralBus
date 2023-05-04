@@ -71,8 +71,9 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
 
             let result = await respons.json()
 
-            if(data) {
-                let res = await fetch(process.env.NEXT_PUBLIC_API_URL + `/api/getRaise?id=${result.insertedId}`)
+            if(!data) {
+    
+                const res = await fetch(process.env.NEXT_PUBLIC_API_URL + `/api/getRaise?id=${result.insertedId}`);
                 result = await res.json()
             }
 
