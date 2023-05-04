@@ -23,16 +23,16 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
     const [statusLoader, setStatusLoader] = useState<IStatus>("currentColor")
 
 
-    const [nameBus, setNameBus] = useState(data && data.busName),
-        [urlImg, setUrlImg] = useState(data && data.busImg),
-        [numberBus, setNumberBus] = useState(data && data.busNumber),
-        [phoneNumber, setPhoneNumber] = useState(data && data.phone),
-        [cityStart, setCityStart] = useState(data && data.city),
-        [cityGoGo, setCityGoGo] = useState(data && data.cityTarget.goGoCity),
-        [cityStop, setCityStop] = useState(data && data.cityTarget.stopCity),
-        [time, setTime] = useState(data && data.landingTime),
-        [date, setDate] = useState(data && data.dataOfLanding),
-        [price, setPrice] = useState(data && data.price)
+    const [nameBus, setNameBus] = useState(data ? data.busName : ""),
+        [urlImg, setUrlImg] = useState(data ? data.busImg : ""),
+        [numberBus, setNumberBus] = useState(data ? data.busNumber : ""),
+        [phoneNumber, setPhoneNumber] = useState(data ? data.phone : ""),
+        [cityStart, setCityStart] = useState(data ? data.city : ""),
+        [cityGoGo, setCityGoGo] = useState(data ? data.cityTarget.goGoCity : ""),
+        [cityStop, setCityStop] = useState(data ? data.cityTarget.stopCity : ""),
+        [time, setTime] = useState(data ? data.landingTime : ""),
+        [date, setDate] = useState(data ? data.dataOfLanding : ""),
+        [price, setPrice] = useState(data ?  data.price : "")
 
     const [actButtonSend, setActButtonSend] = useState(false)
 
@@ -60,6 +60,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
 
             setShowLoader(true)
 
+
             let respons = await fetch(url, {
                 method: "POST",
                 body: JSON.stringify(raise),
@@ -82,7 +83,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                 setShowLoader(false);
                 setStatusLoader("primary");
                 switchFun();
-                if (data) { setRaise(result.value, true) } else { setRaise(result.value, false) }
+                if (data) { setRaise(result.value, true) } else { setRaise(result, false) }
 
             }, 2000)
 
@@ -94,11 +95,11 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
     }
 
     useEffect(() => {
-        if (price && date && time && cityStop && cityGoGo && phoneNumber && numberBus && urlImg && nameBus) {
+        if (price && date && time && cityStop && phoneNumber && numberBus && urlImg && nameBus) {
             setActButtonSend(false)
         } else { setActButtonSend(true) }
 
-    }, [price, date, time, cityStop, cityGoGo, cityStart, phoneNumber, numberBus, urlImg, nameBus])
+    }, [price, date, time, cityStop, cityStart, phoneNumber, numberBus, urlImg, nameBus])
 
 
 
