@@ -4,6 +4,8 @@ import type { IDataRaise } from "./data/data"
 import { useEffect, useState, useMemo } from 'react'
 import { Checkbox, Container, Spacer } from "@nextui-org/react";
 
+import styles from "../../styles/FligtTable/Table_Service.module.css"
+
 type ICityTarget = string[]
 type ICityRange = string[]
 
@@ -13,13 +15,13 @@ interface IProps {
     // add any other required props here
 }
 
-const Select_City: FC<IProps> = ({ data, changeFun}) => {
+const Select_City: FC<IProps> = ({ data, changeFun }) => {
     const [dataRaise, setDataRaise] = useState(data)
     const [selected, setSelected] = useState<ICityTarget>([]);
     const [cityes, setCityes] = useState<ICityRange>();
 
 
-    const dataFilter = (arr: ICityTarget) =>  dataRaise.filter((raise) => arr.includes(raise.city)) as IDataRaise[]
+    const dataFilter = (arr: ICityTarget) => dataRaise.filter((raise) => arr.includes(raise.city)) as IDataRaise[]
 
     useEffect(() => {
         const x: string[] = []
@@ -42,7 +44,7 @@ const Select_City: FC<IProps> = ({ data, changeFun}) => {
             justify='center'
         >
             <Spacer y={2} />
-            <Checkbox.Group
+            <Checkbox.Group 
                 label="Виберіть місто відправлення"
                 value={selected}
                 onChange={(setSelected)}

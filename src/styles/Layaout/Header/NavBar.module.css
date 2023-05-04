@@ -1,0 +1,32 @@
+.box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: static;
+    height: auto;
+    color: var(--nextui--navbarTextColor);
+    z-index: var(--nextui-zIndices-2);
+}
+
+
+
+.container {
+    width: 100%;
+    height: 76px;
+    min-height: 76px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    color: inherit;
+    padding: 0 24px 0 24px;
+    background: var(--nextui--navbarBlurBackgroundColor);
+    z-index: var(--nextui-zIndices-5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 12px 20px 6px rgb(104 112 118 / 0.08);
+
+}
