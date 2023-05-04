@@ -17,7 +17,7 @@ export default function NavBar() {
 
     return (
         <>
-            <Navbar isBordered variant="sticky" shouldHideOnScroll >
+            <Navbar isBordered variant="static" >
                 <Navbar.Brand>
                     <Image src={logoImg} width={36} height={36} alt="logo" quality={100} />
                     <Text css={{ marginLeft: "15px" }} b color="inherit" hideIn="xs" >
