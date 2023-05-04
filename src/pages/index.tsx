@@ -35,6 +35,7 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
     const raiseDelete = (id: string) => { setRaisesData((prev) => prev.filter((targ) => targ._id !== id)) }
 
     const raiseChange = (result: IDataRaise, edit: boolean) => {
+        debugger
 
         if (edit) {
             setRaisesData((prev) => [...prev.filter((tar) => tar._id !== result._id), result])

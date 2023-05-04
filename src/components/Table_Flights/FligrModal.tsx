@@ -70,13 +70,19 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
             });
 
             let result = await respons.json()
-            data ? setRaise(result.value, true) : setRaise(result.value, false)
+
+            if(data) {
+                let res = await fetch(process.env.NEXT_PUBLIC_API_URL + `/api/getRaise?id=${result.insertedId}`)
+                result = await res.json()
+            }
 
             setStatusLoader("success")
             setTimeout(() => {
                 setShowLoader(false);
                 setStatusLoader("primary");
                 switchFun();
+                if (data) { setRaise(result.value, true) } else { setRaise(result.value, false) }
+
             }, 2000)
 
         } catch (error) {
