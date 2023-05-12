@@ -16,26 +16,26 @@ const Select_City: FC<IProps> = ({ data, changeFun }) => {
 
 
     const [selectedStart, setSelectedStart] = useState<string[]>([]),
-        [selectedStops, setSelectedStops] = useState<string[]>([]),
+        // [selectedStops, setSelectedStops] = useState<string[]>([]),
         [selectedFinish, setSelectedFinish] = useState<string[]>([]);
 
     const [startCityes, setStartCityes] = useState<string[]>([]),
-        [stopsCityes, setStopsCityes] = useState<string[]>([]),
+        // [stopsCityes, setStopsCityes] = useState<string[]>([]),
         [finishCityes, setFinishCityes] = useState<string[]>([]);
 
     useEffect(() => {
         const start: string[] = []
-        const stops: string[] = []
+        // const stops: string[] = []
         const finish: string[] = []
 
         data.forEach((raise: IDataRaise) => {
             !start.includes(raise.city) && start.push(raise.city)
-            !stops.includes(raise.cityTarget.goGoCity) && stops.push(raise.cityTarget.goGoCity)
+            // !stops.includes(raise.cityTarget.goGoCity) && stops.push(raise.cityTarget.goGoCity)
             !finish.includes(raise.cityTarget.stopCity) && finish.push(raise.cityTarget.stopCity)
 
         });
         setStartCityes(start);
-        setStopsCityes(stops);
+        // setStopsCityes(stops);
         setFinishCityes(finish)
     }, [])
 
@@ -44,11 +44,11 @@ const Select_City: FC<IProps> = ({ data, changeFun }) => {
         let targetData = data
 
         if (selectedStart.length) { targetData = targetData.filter((raise) => selectedStart.includes(raise.city)) }
-        if (selectedStops.length) { targetData = targetData.filter((raise) => selectedStops.includes(raise.cityTarget.goGoCity)) }
+        // if (selectedStops.length) { targetData = targetData.filter((raise) => selectedStops.includes(raise.cityTarget.goGoCity)) }
         if (selectedFinish.length) { targetData = targetData.filter((raise) => selectedFinish.includes(raise.cityTarget.stopCity)) }
 
         changeFun(targetData)
-    }, [selectedStart, selectedStops, selectedFinish])
+    }, [selectedStart, selectedFinish])
 
     return (
         <>
@@ -65,13 +65,13 @@ const Select_City: FC<IProps> = ({ data, changeFun }) => {
                     setValue={setSelectedStart}
                     cityes={startCityes}
                 />
-                <CheckBoxGroup
+                {/* <CheckBoxGroup
 
                     label="Де будемо проїжджати?"
                     value={selectedStops}
                     setValue={setSelectedStops}
                     cityes={stopsCityes}
-                />
+                /> */}
 
                 <CheckBoxGroup
 
