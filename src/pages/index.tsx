@@ -14,6 +14,7 @@ interface IProps {
 }
 
 const Table_Flights: NextPage<IProps> = ({ raises }) => {
+    const [globalData, setGlobalData] = useState(raises)
     const [raisesData, setRaisesData] = useState(raises)
     const [activeModalFlight, setActiveModalFlight] = useState(false); // Activates adding a new flight
     const [activeRedaction, setActiveRedaction] = useState(false); // Activates editing a flight
@@ -37,8 +38,8 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
     const raiseChange = (result: IDataRaise, edit: boolean) => {
 
         if (edit) {
-            setRaisesData((prev) => [...prev.filter((tar) => tar._id !== result._id), result])
-        } else setRaisesData((prev) => [...prev, result])
+            setGlobalData((prev) => [...prev.filter((tar) => tar._id !== result._id), result])
+        } else setGlobalData((prev) => [...prev, result])
     }
 
 
@@ -46,7 +47,7 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
     if (!isNull(raises)) {
         return (
             <>
-                <Select_City data={raises} changeFun={dataFilterChange} />
+                <Select_City data={globalData} changeFun={dataFilterChange} />
                 <Table_Service data={raisesData} pushToForm={pushToForm} setRaise={raiseDelete} />
                 <Spacer y={1} />
                 <Button size="sm" onPress={() => setActiveModalFlight(true)} css={{ margin: "0px auto" }} color="warning">
