@@ -26,7 +26,7 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
     return (
         <div className={styles.table}>
 
-            <AnimatePresence initial={false} >
+            {data.length ? <AnimatePresence initial={false} >
                 {data.map((raise) => {
                     return (
                         <motion.div
@@ -87,13 +87,13 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
                             <DeleteButton id={raise._id} setRaise={setRaise} />
 
                         </motion.div>
-
-
-
                     )
                 })}
 
             </AnimatePresence>
+                :
+                <Text>Нажаль рейсів не знайденно</Text>
+            }
         </div>
     )
 }

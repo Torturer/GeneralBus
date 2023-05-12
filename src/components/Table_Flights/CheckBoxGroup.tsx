@@ -19,6 +19,7 @@ const CheckBoxGroup: FC<IProps> = ({label, value, setValue, cityes}) => {
         value={value}
         onChange={(setValue)}
         css={{ display: "flex", alignItems: "center", flexWrap: "wrap", justifyContent: "center", margin: "10px"}}
+        defaultValue={cityes}
     >
         <Container
             css={{
