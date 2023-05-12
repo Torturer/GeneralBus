@@ -60,14 +60,14 @@ const Select_City: FC<IProps> = ({ data, changeFun }) => {
             >
                 <CheckBoxGroup
 
-                    label="Виберіть місто відправлення"
+                    label="Звідки їдимо?"
                     value={selectedStart}
                     setValue={setSelectedStart}
                     cityes={startCityes}
                 />
                 <CheckBoxGroup
 
-                    label="Виберіть проїздне місто"
+                    label="Де будемо проїзжати?"
                     value={selectedStops}
                     setValue={setSelectedStops}
                     cityes={stopsCityes}
@@ -75,7 +75,7 @@ const Select_City: FC<IProps> = ({ data, changeFun }) => {
 
                 <CheckBoxGroup
 
-                    label="Виберіть місто прибуття"
+                    label="В яке місто їдимо?"
                     value={selectedFinish}
                     setValue={setSelectedFinish}
                     cityes={finishCityes}
