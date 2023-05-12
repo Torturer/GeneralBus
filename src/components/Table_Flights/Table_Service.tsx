@@ -25,74 +25,82 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
 
     return (
         <div className={styles.table}>
+            <Text
+                css={{
+                    borderBottom: "2px inset",
+                    minWidth: "300px",
+                    textAlign: "center"
+                }}
+            > Заплановані рейси</Text>
 
-            {data.length ? <AnimatePresence initial={false} >
-                {data.map((raise) => {
-                    return (
-                        <motion.div
-                            className={styles.table_cell}
-                            key={raise._id}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                        >
-                            <User src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>
-                                <a href={"tel:" + raise.phone} title="">{raise.phone}</a>
-                            </User>
+            {data.length ?
+                <AnimatePresence initial={false} >
+                    {data.map((raise) => {
+                        return (
+                            <motion.div
+                                className={styles.table_cell}
+                                key={raise._id}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                            >
+                                <User src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>
+                                    <a href={"tel:" + raise.phone} title="">{raise.phone}</a>
+                                </User>
 
-                            <div className={styles.box_city_price}>
-                                <div className={styles.cityText}>
-                                    <Text b size={15} css={{ tt: "capitalize" }}>
-                                        {raise.city}
-                                    </Text>
-                                    <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
-                                        {raise.cityTarget.goGoCity + " -> " + raise.cityTarget.stopCity}
-                                    </Text>
-                                </div >
+                                <div className={styles.box_city_price}>
+                                    <div className={styles.cityText}>
+                                        <Text b size={15} css={{ tt: "capitalize" }}>
+                                            {raise.city}
+                                        </Text>
+                                        <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
+                                            {raise.cityTarget.goGoCity + " -> " + raise.cityTarget.stopCity}
+                                        </Text>
+                                    </div >
 
-                                <Badge className={styles.price_box} isSquared color="primary" variant="bordered" css={{ minWidth: "80px" }}>
-                                    {raise.price + " UAH"}
-                                </Badge>
-                            </div>
+                                    <Badge className={styles.price_box} isSquared color="primary" variant="bordered" css={{ minWidth: "80px" }}>
+                                        {raise.price + " UAH"}
+                                    </Badge>
+                                </div>
 
-                            <div className={styles.box_time_info}>
-                                <div className={styles.time_fligt}>
-                                    <Text b size={15} css={{ tt: "capitalize" }}>
-                                        {raise.landingTime}
-                                    </Text>
-                                    <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
-                                        {raise.dataOfLanding}
-                                    </Text>
-                                </div >
+                                <div className={styles.box_time_info}>
+                                    <div className={styles.time_fligt}>
+                                        <Text b size={15} css={{ tt: "capitalize" }}>
+                                            {raise.landingTime}
+                                        </Text>
+                                        <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
+                                            {raise.dataOfLanding}
+                                        </Text>
+                                    </div >
 
-                                <div className={styles.info}>
-                                    <Tooltip content="Більше про рейс">
-                                        <Link href={`/raise/` + raise._id}>
-                                            <IconButton>
-                                                <EyeIcon size={20} fill="#979797" height={undefined} width={undefined} />
-                                            </IconButton>
-                                        </Link>
+                                    <div className={styles.info}>
+                                        <Tooltip content="Більше про рейс">
+                                            <Link href={`/raise/` + raise._id}>
+                                                <IconButton>
+                                                    <EyeIcon size={20} fill="#979797" height={undefined} width={undefined} />
+                                                </IconButton>
+                                            </Link>
+                                        </Tooltip>
+                                    </div>
+                                </div>
+
+                                <div className={styles.tools} >
+                                    <Tooltip content="Редагувати рейс">
+                                        <IconButton onClick={() => pushToForm(raise._id)}>
+                                            <EditIcon size={20} fill="#979797" height={undefined} width={undefined} />
+                                        </IconButton>
                                     </Tooltip>
                                 </div>
-                            </div>
 
-                            <div className={styles.tools} >
-                                <Tooltip content="Редагувати рейс">
-                                    <IconButton onClick={() => pushToForm(raise._id)}>
-                                        <EditIcon size={20} fill="#979797" height={undefined} width={undefined} />
-                                    </IconButton>
-                                </Tooltip>
-                            </div>
+                                <DeleteButton id={raise._id} setRaise={setRaise} />
 
-                            <DeleteButton id={raise._id} setRaise={setRaise} />
+                            </motion.div>
+                        )
+                    })}
 
-                        </motion.div>
-                    )
-                })}
-
-            </AnimatePresence>
+                </AnimatePresence>
                 :
-                <Text>Нажаль рейсів не знайденно</Text>
+                <Text>Нажаль запланованих рейсів не знайденно</Text>
             }
         </div>
     )

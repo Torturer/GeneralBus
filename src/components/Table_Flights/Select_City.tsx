@@ -67,7 +67,7 @@ const Select_City: FC<IProps> = ({ data, changeFun }) => {
                 />
                 <CheckBoxGroup
 
-                    label="Де будемо проїзжати?"
+                    label="Де будемо проїжджати?"
                     value={selectedStops}
                     setValue={setSelectedStops}
                     cityes={stopsCityes}
