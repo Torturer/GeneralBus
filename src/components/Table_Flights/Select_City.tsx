@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import type { IDataRaise } from "./data/data"
 
-import { useEffect, useState, useMemo } from 'react'
-import { Checkbox, Container, Spacer } from "@nextui-org/react";
+import { useEffect, useState } from 'react'
+import { Container } from "@nextui-org/react";
 
-import styles from "../../styles/FligtTable/Table_Service.module.css"
+// import styles from "../../styles/FligtTable/Table_Service.module.css"
 import CheckBoxGroup from "./CheckBoxGroup";
 
 interface IProps {
