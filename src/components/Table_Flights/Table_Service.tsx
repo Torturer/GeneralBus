@@ -31,7 +31,7 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
                     minWidth: "300px",
                     textAlign: "center"
                 }}
-            > Заплановані рейси</Text>
+            >Гарячі рейси</Text>
 
             {data.length ?
                 <AnimatePresence initial={false} >

@@ -1,6 +1,7 @@
 .image {
     border-radius: 25px;
     margin-bottom: 14px;
+    object-fit: cover;
 }
 
 .box span {

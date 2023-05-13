@@ -38,8 +38,8 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
     const raiseChange = (result: IDataRaise, edit: boolean) => {
 
         if (edit) {
-            setGlobalData((prev) => [...prev.filter((tar) => tar._id !== result._id), result])
-        } else setGlobalData((prev) => [...prev, result])
+            setRaisesData((prev) => [...prev.filter((tar) => tar._id !== result._id), result])
+        } else setRaisesData((prev) => [...prev, result])
     }
 
 
@@ -47,7 +47,9 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
     if (!isNull(raises)) {
         return (
             <>
-                <Select_City data={globalData} changeFun={dataFilterChange} />
+                <Select_City data={raises} changeFun={dataFilterChange} />
+                <Table_Service data={raisesData} pushToForm={pushToForm} setRaise={raiseDelete} />
+                <Spacer y={1} />
                 <Table_Service data={raisesData} pushToForm={pushToForm} setRaise={raiseDelete} />
                 <Spacer y={1} />
                 <Button size="sm" onPress={() => setActiveModalFlight(true)} css={{ margin: "0px auto" }} color="warning">
