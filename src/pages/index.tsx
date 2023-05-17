@@ -5,9 +5,6 @@ import Table_Service from "@/components/Table_Flights/Table_Service";
 import FligrModal from "@/components/Table_Flights/FligrModal";
 import { GetStaticProps, NextPage } from "next";
 import { IDataRaise } from "@/components/Table_Flights/data/data";
-import { isNull } from "util";
-
-
 
 interface IProps {
     raises: IDataRaise[];
@@ -44,13 +41,13 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
 
 
 
-    if (!isNull(raises)) {
+    if (raises.length) {
         return (
             <>
                 <Select_City data={raises} changeFun={dataFilterChange} />
                 <Table_Service data={raisesData} pushToForm={pushToForm} setRaise={raiseDelete} />
-                <Spacer y={1} />
-                <Table_Service data={raisesData} pushToForm={pushToForm} setRaise={raiseDelete} />
+                {/* <Spacer y={1} />
+                <Table_Service data={raisesData} pushToForm={pushToForm} setRaise={raiseDelete} /> */}
                 <Spacer y={1} />
                 <Button size="sm" onPress={() => setActiveModalFlight(true)} css={{ margin: "0px auto" }} color="warning">
                     Додати рейс
@@ -79,8 +76,9 @@ export const getStaticProps: GetStaticProps = async () => {
         return { props: { raises: data }, revalidate: 10 }
     } catch (error) {
         return {
-            props: { raises: null },
+            props: { raises: [] },
             revalidate: 4
+            
 
         }
     }

@@ -30,6 +30,7 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
                     borderBottom: "2px inset",
                     minWidth: "300px",
                     textAlign: "center"
+                    
                 }}
             >Гарячі рейси</Text>
 
