@@ -56,7 +56,7 @@ const Select_City: FC<IProps> = ({ data, changeFun }) => {
                 alignItems='center'
                 justify='center'
                 display="flex"
-                css={{ margin: "15px 0 15px 0", maxWidth: "inherit"}}
+                css={{ margin: "15px 0 15px 0", maxWidth: "inherit", alignItems: "flex-start"}}
             >
                 <CheckBoxGroup
 

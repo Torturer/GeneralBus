@@ -101,7 +101,7 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
 
                 </AnimatePresence>
                 :
-                <Text>Нажаль запланованих рейсів не знайденно</Text>
+                <Text>Нажаль зазначених в фільтрі рейсів не знайденно. </Text>
             }
         </div>
     )
