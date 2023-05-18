@@ -8,7 +8,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   const { isBrowser } = useSSR()
   return (
     isBrowser && (
-      <NextUIProvider >
+      <NextUIProvider>
         <Layout>
           <Component {...pageProps} />
         </Layout>

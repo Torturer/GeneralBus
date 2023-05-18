@@ -4,6 +4,9 @@
 
 .container {
     padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .box_info_raise {
@@ -16,4 +19,17 @@
 
 .table {
     width: 100%
+}
+
+.button {
+    border-radius: 9px;
+    color: white;
+    background-color: #F5A524;
+    font-family: inherit;
+    width: 144px;
+    height: 32px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

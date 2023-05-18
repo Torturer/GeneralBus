@@ -76,7 +76,7 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
 
                                     <div className={styles.info}>
                                         <Tooltip content="Більше про рейс">
-                                            <Link href={`/raise/` + raise._id}>
+                                            <Link href={`/raise/` + raise._id} shallow passHref>
                                                 <IconButton>
                                                     <EyeIcon size={20} fill="#979797" height={undefined} width={undefined} />
                                                 </IconButton>

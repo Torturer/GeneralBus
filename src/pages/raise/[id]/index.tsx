@@ -26,13 +26,7 @@ const RaisePage: NextPage<IProps> = ({ raise }) => {
                 </div>
 
                 <Spacer y={2} />
-                <Link href="/" about="back">
-                    <Button
-                        className={styles.button}
-                    >
-                        назад
-                    </Button>
-                </Link>
+                <Link href="/" className={styles.button}>назад</Link>
 
             </div >
         );
