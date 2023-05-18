@@ -30,7 +30,7 @@ const CardBus: FC<IProps> = ({ raise }) => {
                 <Text size={16}>Проїздне місто: {<span>{raise.cityTarget.goGoCity}</span>}</Text>
             }
 
-            <Text size={16}>Місто приуття: <span>{raise.cityTarget.stopCity}</span></Text>
+            <Text size={16}>Місто прибуття: <span>{raise.cityTarget.stopCity}</span></Text>
 
             <Text size={16}>Дата та час: <span>{raise.dataOfLanding} в {raise.landingTime}</span></Text>
 
