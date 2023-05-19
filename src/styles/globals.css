@@ -36,6 +36,8 @@ body {
 
 .nextui-checkbox-group-label {
   text-align: center;
+  width: 320px;
+  border-bottom: 3px inset;
 }
 
 
@@ -51,6 +53,6 @@ body:first-child:first-child {
   height: 100%;
 }
 
-div[data-overlay-container] { 
+div[data-overlay-container] {
   height: 100%;
 }
