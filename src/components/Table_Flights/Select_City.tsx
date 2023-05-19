@@ -1,88 +1,81 @@
-import React, { FC } from "react";
+// Import required modules and interfaces
+import React, { FC, useMemo, useCallback } from "react";
 import type { IDataRaise } from "./data/data"
-
 import { useEffect, useState } from 'react'
 import { Container } from "@nextui-org/react";
-
-// import styles from "../../styles/FligtTable/Table_Service.module.css"
 import CheckBoxGroup from "./CheckBoxGroup";
 
+// Define props interface for component
 interface IProps {
     data: IDataRaise[];
     changeFun: (dataRaise: IDataRaise[]) => void;
 }
 
-const Select_City: FC<IProps> = ({ data, changeFun }) => {
+// Define SelectCity functional component
+const SelectCity: FC<IProps> = ({ data, changeFun }) => {
 
+    // Define state hooks for selected checkboxes
+    const [selectedStart, setSelectedStart] = useState<string[]>([]);
+    const [selectedStops, setSelectedStops] = useState<string[]>([]);
+    const [selectedFinish, setSelectedFinish] = useState<string[]>([]);
 
-    const [selectedStart, setSelectedStart] = useState<string[]>([]),
-        [selectedStops, setSelectedStops] = useState<string[]>([]),
-        [selectedFinish, setSelectedFinish] = useState<string[]>([]);
+    // Memoize distinct values of cities from the data array
+    const startCities = useMemo(() => Array.from(new Set(data.map(raise => raise.city))), [data]);
+    const stopsCities = useMemo(() => Array.from(new Set(data.map(raise => raise.cityTarget.goGoCity))), [data]);
+    const finishCities = useMemo(() => Array.from(new Set(data.map(raise => raise.cityTarget.stopCity))), [data]);
 
-    const [startCityes, setStartCityes] = useState<string[]>([]),
-        [stopsCityes, setStopsCityes] = useState<string[]>([]),
-        [finishCityes, setFinishCityes] = useState<string[]>([]);
+    // Define function to filter data array based on selected checkboxes
+    const filterData = useCallback(() => {
+        let targetData = data;
 
+        if (selectedStart.length) {
+            targetData = targetData.filter(raise => selectedStart.includes(raise.city));
+        }
+        if (selectedStops.length) {
+            targetData = targetData.filter(raise => selectedStops.includes(raise.cityTarget.goGoCity));
+        }
+        if (selectedFinish.length) {
+            targetData = targetData.filter(raise => selectedFinish.includes(raise.cityTarget.stopCity));
+        }
+
+        return targetData;
+    }, [selectedStart, selectedStops, selectedFinish, data]);
+
+    // Trigger filtering and changing of data when selected checkboxes change
     useEffect(() => {
-        const start: string[] = []
-        const stops: string[] = []
-        const finish: string[] = []
+        changeFun(filterData());
+    }, [filterData]);
 
-        data.forEach((raise: IDataRaise) => {
-            !start.includes(raise.city) && start.push(raise.city)
-            !stops.includes(raise.cityTarget.goGoCity) && stops.push(raise.cityTarget.goGoCity)
-            !finish.includes(raise.cityTarget.stopCity) && finish.push(raise.cityTarget.stopCity)
-
-        });
-        setStartCityes(start);
-        setStopsCityes(stops);
-        setFinishCityes(finish)
-    }, [])
-
-
-    useEffect(() => {
-        let targetData = data
-
-        if (selectedStart.length) { targetData = targetData.filter((raise) => selectedStart.includes(raise.city)) }
-        if (selectedStops.length) { targetData = targetData.filter((raise) => selectedStops.includes(raise.cityTarget.goGoCity)) }
-        if (selectedFinish.length) { targetData = targetData.filter((raise) => selectedFinish.includes(raise.cityTarget.stopCity)) }
-
-        changeFun(targetData)
-    }, [selectedStart, selectedStops, selectedFinish])
-
+    // Render checkbox groups inside a container component
     return (
-        <>
-            <Container
-                alignItems='center'
-                justify='center'
-                display="flex"
-                css={{ margin: "15px 0 15px 0", maxWidth: "inherit", alignItems: "flex-start"}}
-            >
-                <CheckBoxGroup
+        <Container
+            alignItems="center"
+            justify="center"
+            display="flex"
+            css={{ margin: "15px 0", maxWidth: "inherit", alignItems: "flex-start" }}
+        >
+            <CheckBoxGroup
+                label="Звідки їдимо?"
+                value={selectedStart}
+                setValue={setSelectedStart}
+                cityes={startCities}
+            />
+            <CheckBoxGroup
+                label="Де будемо проїжджати?"
+                value={selectedStops}
+                setValue={setSelectedStops}
+                cityes={stopsCities}
+            />
 
-                    label="Звідки їдимо?"
-                    value={selectedStart}
-                    setValue={setSelectedStart}
-                    cityes={startCityes}
-                />
-                <CheckBoxGroup
-
-                    label="Де будемо проїжджати?"
-                    value={selectedStops}
-                    setValue={setSelectedStops}
-                    cityes={stopsCityes}
-                />
-
-                <CheckBoxGroup
-
-                    label="В яке місто їдимо?"
-                    value={selectedFinish}
-                    setValue={setSelectedFinish}
-                    cityes={finishCityes}
-                />
-            </Container>
-        </>
+            <CheckBoxGroup
+                label="В яке місто їдимо?"
+                value={selectedFinish}
+                setValue={setSelectedFinish}
+                cityes={finishCities}
+            />
+        </Container>
     );
-}
+};
 
-export default Select_City
+// Export SelectCity component as the default export
+export default SelectCity;

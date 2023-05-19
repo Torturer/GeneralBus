@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react"
+import { FC } from "react"
 import { IDataRaise } from "./data/data";
 import { useEffect, useState } from "react";
 import { Button, Container, Grid, Input, Loading, Modal, Row, Spacer, Text } from "@nextui-org/react";
@@ -32,7 +32,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
         [cityStop, setCityStop] = useState(data ? data.cityTarget.stopCity : ""),
         [time, setTime] = useState(data ? data.landingTime : ""),
         [date, setDate] = useState(data ? data.dataOfLanding : ""),
-        [price, setPrice] = useState(data ?  data.price : "")
+        [price, setPrice] = useState(data ? data.price : "")
 
     const [actButtonSend, setActButtonSend] = useState(false)
 
@@ -72,8 +72,8 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
 
             let result = await respons.json()
 
-            if(!data) {
-    
+            if (!data) {
+
                 const res = await fetch(process.env.NEXT_PUBLIC_API_URL + `/api/getRaise?id=${result.insertedId}`);
                 result = await res.json()
             }

@@ -17,7 +17,7 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
     const [activeRedaction, setActiveRedaction] = useState(false); // Activates editing a flight
     const [dataPushToForm, setDataPushToForm] = useState<IDataRaise>();
 
-    const dataFilterChange = (data: IDataRaise[]) => { setRaisesData(data) } // Filter data fun
+    const dataFilterChange = (data: IDataRaise[]) => { setRaisesData([...data]) } // Filter data fun
     const switchActiveRedaction = () => { setActiveRedaction(false) } // Fun deactivate editing
     const switchModalFlight = () => { setActiveModalFlight(false) } // Fun deactivate modal
 
@@ -30,13 +30,13 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
         }
     };
 
-    const raiseDelete = (id: string) => { setRaisesData((prev) => prev.filter((targ) => targ._id !== id)) }
+    const raiseDelete = (id: string) => { setGlobalData((prev) => prev.filter((targ) => targ._id !== id)) }
 
     const raiseChange = (result: IDataRaise, edit: boolean) => {
 
         if (edit) {
-            setRaisesData((prev) => [...prev.filter((tar) => tar._id !== result._id), result])
-        } else setRaisesData((prev) => [...prev, result])
+            setGlobalData((prev) => [...prev.filter((tar) => tar._id !== result._id), result])
+        } else setGlobalData((prev) => [...prev, result])
     }
 
 
@@ -44,7 +44,7 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
     if (raises.length) {
         return (
             <>
-                <Select_City data={raises} changeFun={dataFilterChange} />
+                <Select_City data={globalData} changeFun={dataFilterChange} />
                 <Table_Service data={raisesData} pushToForm={pushToForm} setRaise={raiseDelete} />
                 {/* <Spacer y={1} />
                 <Table_Service data={raisesData} pushToForm={pushToForm} setRaise={raiseDelete} /> */}
