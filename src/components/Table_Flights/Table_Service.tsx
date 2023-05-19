@@ -29,7 +29,9 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
                 css={{
                     borderBottom: "2px inset",
                     minWidth: "300px",
-                    textAlign: "center"
+                    textAlign: "center", 
+                    background: "rgba(241, 13, 13, 0.05)",
+                    borderRadius: "15px"
                     
                 }}
             >Гарячі рейси</Text>
@@ -45,8 +47,8 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                             >
-                                <User src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>
-                                    <a href={"tel:" + raise.phone} title="">{raise.phone}</a>
+                                <User src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>Забронювати:
+                                    <a href={"tel:" } title=""> ссылка</a>
                                 </User>
 
                                 <div className={styles.box_city_price}>

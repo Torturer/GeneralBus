@@ -13,7 +13,6 @@ const CardBus: FC<IProps> = ({ raise }) => {
         busImg,
         busName,
         busNumber,
-        phone,
         city,
         cityTarget,
         dataOfLanding,
@@ -39,9 +38,7 @@ const CardBus: FC<IProps> = ({ raise }) => {
             </Text>
             <Text size={16}>
                 Телефон для запису:{" "}
-                <a href={`tel:${phone}`} title="">
-                    {phone}
-                </a>
+                <a href={`tel:`} title=""> </a>
             </Text>
             <Text size={16}>Місто відправлення: <span>{city}</span></Text>
             {cityTarget.goGoCity && (

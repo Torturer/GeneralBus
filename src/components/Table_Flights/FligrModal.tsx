@@ -26,7 +26,6 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
     const [nameBus, setNameBus] = useState(data ? data.busName : ""),
         [urlImg, setUrlImg] = useState(data ? data.busImg : ""),
         [numberBus, setNumberBus] = useState(data ? data.busNumber : ""),
-        [phoneNumber, setPhoneNumber] = useState(data ? data.phone : ""),
         [cityStart, setCityStart] = useState(data ? data.city : ""),
         [cityGoGo, setCityGoGo] = useState(data ? data.cityTarget.goGoCity : ""),
         [cityStop, setCityStop] = useState(data ? data.cityTarget.stopCity : ""),
@@ -47,7 +46,6 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                 busName: nameBus,
                 busImg: urlImg,
                 busNumber: numberBus,
-                phone: phoneNumber,
                 city: cityStart,
                 cityTarget: {
                     goGoCity: cityGoGo,
@@ -85,21 +83,21 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                 switchFun();
                 if (data) { setRaise(result.value, true) } else { setRaise(result, false) }
 
-            }, 2000)
+            }, 750)
 
         } catch (error) {
             setStatusLoader("error")
-            setTimeout(() => setShowLoader(false), 2000)
+            setTimeout(() => setShowLoader(false), 750)
             console.log(error)
         }
     }
 
     useEffect(() => {
-        if (price && date && time && cityStop && phoneNumber && numberBus && urlImg && nameBus) {
+        if (price && date && time && cityStop && numberBus && urlImg && nameBus) {
             setActButtonSend(false)
         } else { setActButtonSend(true) }
 
-    }, [price, date, time, cityStop, cityStart, phoneNumber, numberBus, urlImg, nameBus])
+    }, [price, date, time, cityStop, cityStart, numberBus, urlImg, nameBus])
 
 
 
@@ -156,16 +154,6 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                                 width="290px"
                                 value={numberBus}
                                 onChange={(e) => setNumberBus(e.target.value)}
-                            />
-                        </Grid>
-                        <Grid>
-                            <Input
-                                placeholder="+380808000090"
-                                label="Номер телефону"
-                                type="text"
-                                width="290px"
-                                value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
                             />
                         </Grid>
                         <Grid>
