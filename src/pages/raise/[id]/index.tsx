@@ -4,15 +4,37 @@ import Table from "@/components/InfoRaise/Table";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import styles from "../../../styles/InfoRaise/InfoRaise.module.css";
-import { Button, Spacer } from "@nextui-org/react";
+import { Spacer } from "@nextui-org/react";
 import type { IDataRaise } from "@/components/Table_Flights/data/data";
+import { useState } from "react";
+import StopModal from "@/components/InfoRaise/StopModal";
 
 type IProps = {
-    raise: IDataRaise;
+    raise: IDataRaise | undefined;
 };
 
 const RaisePage: NextPage<IProps> = ({ raise }) => {
-    if (!raise) {
+    const [dataRaise, setDataRaise] = useState(raise)
+    const [showModal, setShowModal] = useState(false);
+    const [targetEditingStopID, setTargetEditingStopID] = useState<string | undefined>()
+
+    const handleChancheModal = (clear: boolean) => {
+        setShowModal((pre) => !pre)
+        clear && setTargetEditingStopID(undefined)
+
+    }
+    const updateRaiseFun = (updatedRaise: IDataRaise) => {
+        setDataRaise(updatedRaise);
+        setTargetEditingStopID(undefined)
+    }
+
+    const editStopActivator = (id: string) => {
+        setTargetEditingStopID(id);
+        handleChancheModal(false)
+    }
+
+
+    if (!dataRaise) {
         return <div>Данні готуюуться</div>;
     }
 
@@ -21,14 +43,20 @@ const RaisePage: NextPage<IProps> = ({ raise }) => {
             <Spacer y={2} />
 
             <div className={styles.box_info_raise}>
-                <CardBus raise={raise} />
-                <Table data={raise.listOfStops} />
+                <CardBus raise={dataRaise} />
+                <Table  funEditingStop={editStopActivator} setRaise={updateRaiseFun} raise={dataRaise} />
             </div>
 
             <Spacer y={2} />
             <Link href="/" className={styles.button}>
                 назад
             </Link>
+            <div className={styles.button} style={{ backgroundColor: "blueviolet", margin: "10px auto", cursor: "pointer"}} onClick={() => handleChancheModal(true)}> Додати зупинку</div>
+
+            {showModal ?
+                <StopModal active={showModal} switchFun={handleChancheModal} raise={dataRaise} id={targetEditingStopID} setRaise={updateRaiseFun} />
+                : null
+            }
         </div>
     );
 };

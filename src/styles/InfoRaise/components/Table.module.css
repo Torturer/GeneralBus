@@ -1,0 +1,50 @@
+.table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.table_cell {
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    border-bottom: 2px inset;
+    border-radius: 13px;
+    background-color: rgb(240 255 242 / 70%);
+    padding: 5px 10px;
+    min-width: 320px;
+}
+
+.cityText {
+    min-width: 140px;
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+}
+
+.price_box {
+    margin: 10px
+}
+
+.time_fligt {
+    min-width: 140px;
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+}
+
+.info {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tools {
+    display: flex;
+    margin: 10px;
+    gap: 10px;
+}

@@ -5,7 +5,6 @@ import { FaFacebookSquare, FaInstagram, FaTelegram, FaViber } from "react-icons/
 import styles from "../styles/Layaout/Footer/Footter.module.css"
 
 
-
 const Footter: FC = (): JSX.Element => {
     // const soc = {
     //     instagram: "https://instagram",

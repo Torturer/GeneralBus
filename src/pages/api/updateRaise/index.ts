@@ -25,7 +25,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 cityTarget: raise.cityTarget,
                 landingTime: raise.landingTime,
                 dataOfLanding: raise.dataOfLanding,
-                price: raise.price
+                price: raise.price,
+                listOfStops: raise.listOfStops ?? []
 
             },
         },

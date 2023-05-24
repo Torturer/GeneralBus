@@ -5,11 +5,21 @@ interface IDataRaiseCityTarget {
 }
 
 export interface IListOFStops {
-    _id: string;
     nameStop: string;
     time: string;
+    date: string,
     map: string;
-    status: string;
+    id: string
+}
+
+interface IRegular {
+    mon: boolean,
+    tues: boolean,
+    wed: boolean,
+    thurs: boolean,
+    fri: boolean,
+    sat: boolean,
+    sun: boolean
 }
 
 
@@ -22,13 +32,14 @@ export type  IDataRaise = {
     busName: string;
     busImg: string;
     price: number;
-    phone: string;
     map: object;
     landingTime: string;
     dataOfLanding: string;
     status: string;
     cityTarget: IDataRaiseCityTarget;
     listOfStops: IListOFStops[];
+    isRegular?: boolean;
+    regular?: IRegular
 }
 
 

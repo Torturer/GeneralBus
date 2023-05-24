@@ -1,44 +1,52 @@
 import { FC, useState, useCallback } from "react";
-import { IconButton } from "./icon/IconButton";
-import { DeleteIcon } from "./icon/DeleteIcon";
+import { IconButton } from "../Table_Flights/icon/IconButton";
 import { Loading, Tooltip } from "@nextui-org/react";
-import { BiXCircle } from "react-icons/bi"
-
-const DELETE_API = "/api/deleteRaise?id=";
+import { IDataRaise } from "../Table_Flights/data/data";
+import { BiXCircle } from "react-icons/bi";
 
 type IProp = {
     id: string;
-    setRaise: (id: string) => void;
+    raise: IDataRaise;
+    setRaise: (updatedRaise: IDataRaise) => void
+
 }
 
-const DeleteButton: FC<IProp> = ({ id, setRaise }) => {
 
-    // Define showLoader state variable and setShowLoader function for controlling the loading indicator
+const DeleteButtonStop: FC<IProp> = ({ id, raise, setRaise }) => {
+
     const [showLoader, setShowLoader] = useState(false)
     const [statusLoader, setStatusLoader] = useState<"primary" | "success" | "error">(`primary`)
 
 
-    /**
-     * sendDelete function for deleting a raise with the given ID
-     * @param {string} id - ID of the raise to be deleted
-     */
-    const sendDelete = useCallback(async () => {
+    const confirmedStops = () => raise.listOfStops.filter((value) => value.id !== id)
+
+    const deleteStop = async () => {
         try {
-            // Set showLoader state variable to true to show loading indicator
+            let api = `/api/updateRaise?id=${raise._id}`
+            let url = process.env.NEXT_PUBLIC_API_URL + api
+            let newRaiseInfo = {
+                ...raise,
+                listOfStops: confirmedStops()
+            }
+
             setShowLoader(true)
+            let respons = await fetch(url, {
+                method: "POST",
+                body: JSON.stringify(newRaiseInfo),
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json",
+                },
+            });
 
-            // Construct URL for delete API endpoint with the given raise ID
-            const url = process.env.NEXT_PUBLIC_API_URL + DELETE_API + id;
-
-            // Send DELETE request to delete API endpoint
-            const result = await fetch(url);
+            let result = await respons.json()
             setStatusLoader("success")
 
             // Invoke setRaise function to update parent component with the deleted raise ID
             setTimeout(() => {
                 setShowLoader(false)
                 setStatusLoader("primary")
-                setRaise(id)
+                setRaise(newRaiseInfo)
             }, 500)
 
         } catch (error) {
@@ -48,16 +56,14 @@ const DeleteButton: FC<IProp> = ({ id, setRaise }) => {
             setTimeout(() => {
                 setShowLoader(false)
                 setStatusLoader("primary")
-
-
             }, 500)
-
 
             // Show error message and give option to retry
             setShowLoader(false);
             alert("An error occurred while deleting the raise. Please try again.");
         }
-    }, [id, setRaise]);
+    }
+
 
     return (
         <>
@@ -68,7 +74,7 @@ const DeleteButton: FC<IProp> = ({ id, setRaise }) => {
                 // If showLoader is false, show delete button wrapped in tooltip
                 <Tooltip content="Видалити рейс" color="error">
                     {/* Invoke sendDelete function when delete button is clicked */}
-                    <IconButton onClick={sendDelete}>
+                    <IconButton onClick={deleteStop}>
                         <BiXCircle size={20} fill="#FF0080" height={undefined} width={undefined} />
                     </IconButton>
                 </Tooltip>
@@ -77,5 +83,4 @@ const DeleteButton: FC<IProp> = ({ id, setRaise }) => {
     )
 }
 
-export default DeleteButton;
-
+export default DeleteButtonStop;

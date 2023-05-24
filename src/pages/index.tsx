@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Spacer } from "@nextui-org/react";
+import { Button, Spacer, Text } from "@nextui-org/react";
 import Select_City from "@/components/Table_Flights/Select_City";
 import Table_Service from "@/components/Table_Flights/Table_Service";
 import FligrModal from "@/components/Table_Flights/FligrModal";
@@ -61,7 +61,13 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
             </>
         );
     } else {
-        return <div>Готую данні</div>
+        return (
+            <div
+                style={{
+                    height: "100%", display: "flex", alignItems: "center", justifyContent: "center"
+                }}>
+                <Text>Готую данні</Text>
+            </div>)
     }
 };
 
@@ -78,7 +84,7 @@ export const getStaticProps: GetStaticProps = async () => {
         return {
             props: { raises: [] },
             revalidate: 4
-            
+
 
         }
     }
