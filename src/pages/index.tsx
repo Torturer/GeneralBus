@@ -14,21 +14,11 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
     const [globalData, setGlobalData] = useState(raises)
     const [raisesData, setRaisesData] = useState(raises)
     const [activeModalFlight, setActiveModalFlight] = useState(false); // Activates adding a new flight
-    const [activeRedaction, setActiveRedaction] = useState(false); // Activates editing a flight
-    const [dataPushToForm, setDataPushToForm] = useState<IDataRaise>();
 
     const dataFilterChange = (data: IDataRaise[]) => { setRaisesData([...data]) } // Filter data fun
-    const switchActiveRedaction = () => { setActiveRedaction(false) } // Fun deactivate editing
     const switchModalFlight = () => { setActiveModalFlight(false) } // Fun deactivate modal
 
     // Fun target editing data and activate modal
-    const pushToForm = (id: string): void => {
-        const foundRaise = raisesData.find((raise) => raise._id === id);
-        if (foundRaise) {
-            setDataPushToForm(foundRaise);
-            setActiveRedaction(true);
-        }
-    };
 
     const raiseDelete = (id: string) => { setGlobalData((prev) => prev.filter((targ) => targ._id !== id)) }
 
@@ -45,7 +35,7 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
         return (
             <>
                 <Select_City data={globalData} changeFun={dataFilterChange} />
-                <Table_Service data={raisesData} pushToForm={pushToForm} setRaise={raiseDelete} />
+                <Table_Service data={raisesData}/>
                 {/* <Spacer y={1} />
                 <Table_Service data={raisesData} pushToForm={pushToForm} setRaise={raiseDelete} /> */}
                 <Spacer y={1} />
@@ -54,9 +44,6 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
                 </Button>
                 {activeModalFlight ? (
                     <FligrModal active={activeModalFlight} switchFun={switchModalFlight} setRaise={raiseChange} />
-                ) : null}
-                {activeRedaction ? (
-                    <FligrModal switchFun={switchActiveRedaction} active={activeRedaction} data={dataPushToForm} setRaise={raiseChange} />
                 ) : null}
             </>
         );
@@ -79,7 +66,7 @@ export const getStaticProps: GetStaticProps = async () => {
         const res = await fetch(process.env.HOST + `/api/getRaises`);
         // Parsing the JSON data received from the API
         const data = await res.json();
-        return { props: { raises: data }, revalidate: 10 }
+        return { props: { raises: data }, revalidate: 3 }
     } catch (error) {
         return {
             props: { raises: [] },

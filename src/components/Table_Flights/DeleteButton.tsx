@@ -1,21 +1,21 @@
 import { FC, useState, useCallback } from "react";
 import { IconButton } from "./icon/IconButton";
-import { DeleteIcon } from "./icon/DeleteIcon";
 import { Loading, Tooltip } from "@nextui-org/react";
 import { BiXCircle } from "react-icons/bi"
+import { useRouter } from "next/router";
 
 const DELETE_API = "/api/deleteRaise?id=";
 
 type IProp = {
     id: string;
-    setRaise: (id: string) => void;
 }
 
-const DeleteButton: FC<IProp> = ({ id, setRaise }) => {
+const DeleteButton: FC<IProp> = ({ id }) => {
 
     // Define showLoader state variable and setShowLoader function for controlling the loading indicator
     const [showLoader, setShowLoader] = useState(false)
-    const [statusLoader, setStatusLoader] = useState<"primary" | "success" | "error">(`primary`)
+    const [statusLoader, setStatusLoader] = useState<"primary" | "success" | "error" | "warning">(`primary`)
+    const router = useRouter()
 
 
     /**
@@ -36,10 +36,14 @@ const DeleteButton: FC<IProp> = ({ id, setRaise }) => {
 
             // Invoke setRaise function to update parent component with the deleted raise ID
             setTimeout(() => {
-                setShowLoader(false)
-                setStatusLoader("primary")
-                setRaise(id)
+                setStatusLoader("warning")
             }, 500)
+            setTimeout(() => {
+                setShowLoader(false)
+                router.push("/")
+
+            }, 3500)
+
 
         } catch (error) {
             console.log(error)
@@ -57,7 +61,7 @@ const DeleteButton: FC<IProp> = ({ id, setRaise }) => {
             setShowLoader(false);
             alert("An error occurred while deleting the raise. Please try again.");
         }
-    }, [id, setRaise]);
+    }, [id]);
 
     return (
         <>
@@ -66,7 +70,7 @@ const DeleteButton: FC<IProp> = ({ id, setRaise }) => {
                 <Loading size="xs" color={statusLoader} >{statusLoader === "success" ? "Успіх" : statusLoader === "error" ? "Помилка" : ""} </Loading>
             ) : (
                 // If showLoader is false, show delete button wrapped in tooltip
-                <Tooltip content="Видалити рейс" color="error">
+                <Tooltip content="Видалити рейс" color="error" >
                     {/* Invoke sendDelete function when delete button is clicked */}
                     <IconButton onClick={sendDelete}>
                         <BiXCircle size={20} fill="#FF0080" height={undefined} width={undefined} />

@@ -8,6 +8,8 @@ import { Spacer } from "@nextui-org/react";
 import type { IDataRaise } from "@/components/Table_Flights/data/data";
 import { useState } from "react";
 import StopModal from "@/components/InfoRaise/StopModal";
+import FligrModal from "@/components/Table_Flights/FligrModal";
+import DeleteButton from "@/components/Table_Flights/DeleteButton";
 
 type IProps = {
     raise: IDataRaise | undefined;
@@ -17,6 +19,12 @@ const RaisePage: NextPage<IProps> = ({ raise }) => {
     const [dataRaise, setDataRaise] = useState(raise)
     const [showModal, setShowModal] = useState(false);
     const [targetEditingStopID, setTargetEditingStopID] = useState<string | undefined>()
+
+    const [activeRedaction, setActiveRedaction] = useState(false)
+
+
+    const switchActiveRedaction = () => { setActiveRedaction((prevState) => !prevState) }
+    const raiseChange = (data: IDataRaise, editing = true) => { editing && setDataRaise({ ...data }) }
 
     const handleChancheModal = (clear: boolean) => {
         setShowModal((pre) => !pre)
@@ -44,19 +52,25 @@ const RaisePage: NextPage<IProps> = ({ raise }) => {
 
             <div className={styles.box_info_raise}>
                 <CardBus raise={dataRaise} />
-                <Table  funEditingStop={editStopActivator} setRaise={updateRaiseFun} raise={dataRaise} />
+                <Table funEditingStop={editStopActivator} setRaise={updateRaiseFun} raise={dataRaise} />
             </div>
 
             <Spacer y={2} />
             <Link href="/" className={styles.button}>
                 назад
             </Link>
-            <div className={styles.button} style={{ backgroundColor: "blueviolet", margin: "10px auto", cursor: "pointer"}} onClick={() => handleChancheModal(true)}> Додати зупинку</div>
+            <div className={styles.button} style={{ backgroundColor: "blueviolet", margin: "10px auto", cursor: "pointer" }} onClick={() => handleChancheModal(true)}> Додати зупинку</div>
+            <div className={styles.button} style={{ backgroundColor: "blueviolet", margin: "10px auto", cursor: "pointer" }} onClick={() => switchActiveRedaction()}> Редаугвати рейс</div>
+            <DeleteButton id={dataRaise._id} />
 
             {showModal ?
                 <StopModal active={showModal} switchFun={handleChancheModal} raise={dataRaise} id={targetEditingStopID} setRaise={updateRaiseFun} />
                 : null
             }
+
+            {activeRedaction ? (
+                <FligrModal switchFun={switchActiveRedaction} active={activeRedaction} data={dataRaise} setRaise={raiseChange} />
+            ) : null}
         </div>
     );
 };

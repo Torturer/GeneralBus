@@ -1,26 +1,20 @@
 import { FC } from "react"
 import type { IDataRaise } from "./data/data";
 
-import { Tooltip, Text, Badge } from "@nextui-org/react";
-import { IconButton } from "./icon/IconButton";
-import { EditIcon } from "./icon/EditIcon";
-import { EyeIcon } from "./icon/EyeIcon";
+import { Text, Badge } from "@nextui-org/react";
 import Link from "next/link";
 import User from "../component/User";
 
 
 import styles from "../../styles/FligtTable/Table_Service.module.css"
-import DeleteButton from "./DeleteButton";
 import { motion, AnimatePresence } from "framer-motion";
 
 type IProps = {
     data: IDataRaise[];
-    pushToForm: (id: string) => void;
-    setRaise: (id: string) => void;
 
 }
 
-const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element => {
+const Table_Service: FC<IProps> = ({ data }): JSX.Element => {
 
 
     return (
@@ -75,7 +69,7 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
                                     </div>
 
                                     <div className={styles.box_time_info}>
-                                        <div style={{display: "flex", alignItems: "center", margin: "0px 7px"}}>
+                                        <div style={{ display: "flex", alignItems: "center", margin: "0px 7px" }}>
                                             <Text size={16}>Відправлення:</Text>
                                             <div className={styles.time_fligt}>
                                                 <Text b size={15} css={{ tt: "capitalize" }}>
@@ -87,7 +81,7 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
                                             </div >
                                         </div>
 
-                                        <div style={{display: "flex", alignItems: "center", margin: "0px 7px"}}>
+                                        <div style={{ display: "flex", alignItems: "center", margin: "0px 7px" }}>
                                             <Text size={16}>Прибуття:</Text>
                                             <div className={styles.time_fligt}>
                                                 <Text b size={15} css={{ tt: "capitalize" }}>
