@@ -1,13 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import clientPromise from "@/lib/mongodb";
 import { ObjectId } from "mongodb";
+import { IDataRaise } from "@/components/Table_Flights/data/data";
 
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const client = await clientPromise;
     const db = client.db("fligt");
     const { id } = req.query;
-    const raise = req.body;
+    const raise = req.body as IDataRaise
 
     console.log(raise)
 
@@ -20,15 +21,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 busName: raise.busName,
                 busImg: raise.busImg,
                 busNumber: raise.busNumber,
-                phone: raise.phone,
                 city: raise.city,
                 cityTarget: raise.cityTarget,
                 landingTime: raise.landingTime,
                 dataOfLanding: raise.dataOfLanding,
                 price: raise.price,
-                listOfStops: raise.listOfStops ?? []
+                listOfStops: raise.listOfStops ?? [],
+                finishDate: raise.finishDate,
+                finishTime: raise.finishTime
 
-            },
+            } as IDataRaise
         },
         {
             returnDocument: "after"

@@ -55,7 +55,7 @@ const SelectCity: FC<IProps> = ({ data, changeFun }) => {
             css={{ margin: "15px 0", maxWidth: "inherit", alignItems: "flex-start" }}
         >
             <CheckBoxGroup
-                label="Звідки їдимо?"
+                label="Звідки їдемо?"
                 value={selectedStart}
                 setValue={setSelectedStart}
                 cityes={startCities}
@@ -68,7 +68,7 @@ const SelectCity: FC<IProps> = ({ data, changeFun }) => {
             />
 
             <CheckBoxGroup
-                label="В яке місто їдимо?"
+                label="В яке місто їдемо?"
                 value={selectedFinish}
                 setValue={setSelectedFinish}
                 cityes={finishCities}

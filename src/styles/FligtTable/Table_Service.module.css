@@ -13,7 +13,12 @@
     flex-wrap: wrap;
     border-bottom: 2px inset;
     border-radius: 13px;
-    background-color: rgb(240 255 242 / 70%);
+    transition: 0.5s;
+    border-color: rgb(175 170 170 / 28%);
+}
+
+.table_cell:hover {
+    background-color: rgba(147, 236, 159, 0.7);
 }
 
 .cityText {
@@ -28,7 +33,7 @@
 }
 
 .time_fligt {
-    min-width: 140px;
+    min-width: 70px;
     display: flex;
     margin: 10px;
     flex-direction: column;
@@ -53,8 +58,17 @@
 
 .box_time_info {
     display: flex;
+    align-items: center;
 
 }
+
+
+.link {
+     text-decoration: none;
+     width: 100%;
+}
+
+
 
 /* @media(max-width: 422px) {
     .table {}

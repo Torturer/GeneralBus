@@ -1,9 +1,10 @@
 import { FC } from "react"
 import { IDataRaise } from "./data/data";
 import { useEffect, useState } from "react";
-import { Button, Container, Grid, Input, Loading, Modal, Row, Spacer, Text } from "@nextui-org/react";
+import { Button, Checkbox, Container, Grid, Input, Loading, Modal, Row, Spacer, Text } from "@nextui-org/react";
 
 import styled from "../../styles/FligtTable/FligrModal.module.css"
+import SelectWeek from "../component/SelectWeek";
 
 
 type IFligrModal = {
@@ -31,7 +32,10 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
         [cityStop, setCityStop] = useState(data ? data.cityTarget.stopCity : ""),
         [time, setTime] = useState(data ? data.landingTime : ""),
         [date, setDate] = useState(data ? data.dataOfLanding : ""),
-        [price, setPrice] = useState(data ? data.price : "")
+        [timeFinish, setTimeFinish] = useState(data ? data.finishTime : ""),
+        [dateFinish, setDateFinish] = useState(data ? data.finishDate : ""),
+        [price, setPrice] = useState(data ? data.price : ""),
+        [regularRaise, setRegularRaise] = useState(data ? data.regular : true)
 
     const [actButtonSend, setActButtonSend] = useState(false)
 
@@ -53,8 +57,10 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                 },
                 landingTime: time,
                 dataOfLanding: date,
-                price: price
-            }
+                price: price,
+                finishDate: dateFinish,
+                finishTime: timeFinish
+            } as IDataRaise
 
             setShowLoader(true)
 
@@ -195,25 +201,74 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                                 onChange={(e) => setPrice(parseInt(e.target.value))}
                             />
                         </Grid>
-                        <Grid>
-                            <Input
-                                width="290px"
-                                label="Час"
-                                type="time"
-                                value={time}
-                                onChange={(e) => setTime(e.target.value)}
-                            />
-                        </Grid>
-                        <Grid>
-                            <Input
-                                width="290px"
-                                label="Дата"
-                                type="date"
-                                value={date}
-                                onChange={(e) => setDate(e.target.value)}
-                            />
-                        </Grid>
+                        <div>
+                            <Grid>
+                                <Input
+                                    width="290px"
+                                    label="Час відправлення"
+                                    type="time"
+                                    value={time}
+                                    onChange={(e) => setTime(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid>
+                                <Input
+                                    width="290px"
+                                    label="Час прибуття"
+                                    type="time"
+                                    value={timeFinish}
+                                    onChange={(e) => setTimeFinish(e.target.value)}
+                                />
+                            </Grid>
+
+                            {regularRaise ?
+                                <div style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    minWidth: "302px",
+                                    padding: "6px"
+                                }}>
+                                    <SelectWeek />
+                                </div>
+                                :
+                                <>
+                                    <Grid>
+                                        <Input
+                                            width="290px"
+                                            label="Дата відправлення"
+                                            type="date"
+                                            value={date}
+                                            onChange={(e) => setDate(e.target.value)}
+                                        />
+                                    </Grid>
+                                    <Grid>
+                                        <Input
+                                            width="290px"
+                                            label="Дата прибуття"
+                                            type="date"
+                                            value={dateFinish}
+                                            onChange={(e) => setDateFinish(e.target.value)}
+                                        />
+                                    </Grid>
+                                </>
+
+                            }
+
+
+                        </div>
                     </Grid.Container>
+                    <Spacer />
+                    <Checkbox
+                        isSelected={regularRaise as boolean}
+                        color="success"
+                        onChange={setRegularRaise}
+                        size="xs"
+                        css={{ width: "100%", justifyContent: "center" }}
+                    >
+                        Це регулярний рейс?
+                    </Checkbox>
+
                     <Spacer y={1} />
                     <Row gap={3} justify="space-evenly" css={{ marginLeft: "0px" }} >
                         <Button auto flat color="error" onPress={switchFun}>

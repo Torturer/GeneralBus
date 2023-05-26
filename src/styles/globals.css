@@ -56,3 +56,12 @@ body:first-child:first-child {
 div[data-overlay-container] {
   height: 100%;
 }
+
+.square { 
+  text-align: center;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white
+}

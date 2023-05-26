@@ -72,7 +72,7 @@ const DeleteButtonStop: FC<IProp> = ({ id, raise, setRaise }) => {
                 <Loading size="xs" color={statusLoader} >{statusLoader === "success" ? "Успіх" : statusLoader === "error" ? "Помилка" : ""} </Loading>
             ) : (
                 // If showLoader is false, show delete button wrapped in tooltip
-                <Tooltip content="Видалити рейс" color="error">
+                <Tooltip content="Видалити зупинку" color="error">
                     {/* Invoke sendDelete function when delete button is clicked */}
                     <IconButton onClick={deleteStop}>
                         <BiXCircle size={20} fill="#FF0080" height={undefined} width={undefined} />

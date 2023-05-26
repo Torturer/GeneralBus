@@ -29,75 +29,94 @@ const Table_Service: FC<IProps> = ({ data, pushToForm, setRaise }): JSX.Element 
                 css={{
                     borderBottom: "2px inset",
                     minWidth: "300px",
-                    textAlign: "center", 
+                    textAlign: "center",
                     background: "rgba(241, 13, 13, 0.05)",
                     borderRadius: "15px"
-                    
+
                 }}
             >Гарячі рейси</Text>
 
             {data.length ?
+
+
+
+
+
                 <AnimatePresence initial={false} >
                     {data.map((raise) => {
                         return (
-                            <motion.div
-                                className={styles.table_cell}
+                            <Link href={`/raise/` + raise._id} shallow passHref className={styles.link}
+
                                 key={raise._id}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
                             >
-                                <User src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>Забронювати:
-                                    <a href={"tel:" } title=""> ссылка</a>
-                                </User>
+                                <motion.div
+                                    className={styles.table_cell}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                >
+                                    <User src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>Забронювати:
+                                        <a href={"tel:"} title=""> ссылка</a>
+                                    </User>
 
-                                <div className={styles.box_city_price}>
-                                    <div className={styles.cityText}>
-                                        <Text b size={15} css={{ tt: "capitalize" }}>
-                                            {raise.city}
-                                        </Text>
-                                        <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
-                                            {raise.cityTarget.goGoCity + " -> " + raise.cityTarget.stopCity}
-                                        </Text>
-                                    </div >
+                                    <div className={styles.box_city_price}>
+                                        <div className={styles.cityText}>
+                                            <Text b size={15} css={{ tt: "capitalize" }}>
+                                                {raise.city}
+                                            </Text>
+                                            <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
+                                                {raise.cityTarget.goGoCity + " -> " + raise.cityTarget.stopCity}
+                                            </Text>
+                                        </div >
 
-                                    <Badge className={styles.price_box} isSquared color="primary" variant="bordered" css={{ minWidth: "80px" }}>
-                                        {raise.price + " UAH"}
-                                    </Badge>
-                                </div>
+                                        <Badge className={styles.price_box} isSquared color="primary" variant="bordered" css={{ minWidth: "80px" }}>
+                                            {raise.price + " UAH"}
+                                        </Badge>
+                                    </div>
 
-                                <div className={styles.box_time_info}>
-                                    <div className={styles.time_fligt}>
-                                        <Text b size={15} css={{ tt: "capitalize" }}>
-                                            {raise.landingTime}
-                                        </Text>
-                                        <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
-                                            {raise.dataOfLanding}
-                                        </Text>
-                                    </div >
+                                    <div className={styles.box_time_info}>
+                                        <div style={{display: "flex", alignItems: "center", margin: "0px 7px"}}>
+                                            <Text size={16}>Відправлення:</Text>
+                                            <div className={styles.time_fligt}>
+                                                <Text b size={15} css={{ tt: "capitalize" }}>
+                                                    {raise.landingTime}
+                                                </Text>
+                                                <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
+                                                    {raise.dataOfLanding}
+                                                </Text>
+                                            </div >
+                                        </div>
 
-                                    <div className={styles.info}>
-                                        <Tooltip content="Більше про рейс">
-                                            <Link href={`/raise/` + raise._id} shallow passHref>
-                                                <IconButton>
-                                                    <EyeIcon size={20} fill="#979797" height={undefined} width={undefined} />
-                                                </IconButton>
-                                            </Link>
+                                        <div style={{display: "flex", alignItems: "center", margin: "0px 7px"}}>
+                                            <Text size={16}>Прибуття:</Text>
+                                            <div className={styles.time_fligt}>
+                                                <Text b size={15} css={{ tt: "capitalize" }}>
+                                                    {raise.finishTime}
+                                                </Text>
+                                                <Text b size={12} css={{ tt: "capitalize", color: "$accents7" }}>
+                                                    {raise.finishDate}
+                                                </Text>
+                                            </div >
+                                        </div>
+
+                                    </div>
+
+
+
+                                    {/* <div className={styles.tools} >
+                                        <Tooltip content="Редагувати рейс">
+                                            <IconButton onClick={() => pushToForm(raise._id)}>
+                                                <EditIcon size={20} fill="#979797" height={undefined} width={undefined} />
+                                            </IconButton>
                                         </Tooltip>
                                     </div>
-                                </div>
 
-                                <div className={styles.tools} >
-                                    <Tooltip content="Редагувати рейс">
-                                        <IconButton onClick={() => pushToForm(raise._id)}>
-                                            <EditIcon size={20} fill="#979797" height={undefined} width={undefined} />
-                                        </IconButton>
-                                    </Tooltip>
-                                </div>
+                                    <DeleteButton id={raise._id} setRaise={setRaise} /> */}
 
-                                <DeleteButton id={raise._id} setRaise={setRaise} />
+                                </motion.div>
 
-                            </motion.div>
+                            </Link>
+
                         )
                     })}
 
