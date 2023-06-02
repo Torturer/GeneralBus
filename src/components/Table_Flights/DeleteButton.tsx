@@ -8,9 +8,10 @@ const DELETE_API = "/api/deleteRaise?id=";
 
 type IProp = {
     id: string;
+    setRaise: (id: string) => void
 }
 
-const DeleteButton: FC<IProp> = ({ id }) => {
+const DeleteButton: FC<IProp> = ({ id, setRaise }) => {
 
     // Define showLoader state variable and setShowLoader function for controlling the loading indicator
     const [showLoader, setShowLoader] = useState(false)
@@ -36,8 +37,8 @@ const DeleteButton: FC<IProp> = ({ id }) => {
 
             // Invoke setRaise function to update parent component with the deleted raise ID
             setTimeout(() => {
-                setStatusLoader("warning")
-            }, 500)
+                setRaise(id)
+            }, 1000)
             setTimeout(() => {
                 setShowLoader(false)
                 router.push("/")

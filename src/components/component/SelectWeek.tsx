@@ -1,18 +1,19 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { IRegular } from "../Table_Flights/data/data"
 import styles from "../../styles/SelectWeek.module.css"
 
 type IProps = {
-    // selectFun: (selectedGroup: object) => void
+    changeFun: (data: IRegular) => void
+    regular: IRegular | undefined
 }
 
 
 
 
-const SelectWeek: FC<IProps> = () => {
-    const [selectGroup, setSelectGroup] = useState<IRegular>({
+const SelectWeek: FC<IProps> = ({ regular, changeFun }) => {
+    const [selectGroup, setSelectGroup] = useState<IRegular>(regular ?? {
 
-        mon: true,
+        mon: false,
         tues: false,
         wed: false,
         thurs: false,
@@ -23,9 +24,20 @@ const SelectWeek: FC<IProps> = () => {
     })
 
 
+    useEffect(() => { changeFun(selectGroup) }, [selectGroup])
+
+
 
     return (
-        <>
+        <div
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minWidth: "302px",
+                padding: "6px"
+            }}
+        >
 
             <div
                 className={`${styles.square} ${selectGroup.mon && styles.active}`}
@@ -64,7 +76,7 @@ const SelectWeek: FC<IProps> = () => {
             </div >
 
 
-        </>
+        </div>
     )
 }
 

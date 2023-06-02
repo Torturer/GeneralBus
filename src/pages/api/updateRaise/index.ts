@@ -28,7 +28,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 price: raise.price,
                 listOfStops: raise.listOfStops ?? [],
                 finishDate: raise.finishDate,
-                finishTime: raise.finishTime
+                finishTime: raise.finishTime,
+                isRegular: raise.isRegular,
+                regular: raise.regular
 
             } as IDataRaise
         },

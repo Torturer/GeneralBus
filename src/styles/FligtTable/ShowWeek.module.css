@@ -1,0 +1,37 @@
+.square {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    color: #11181C;
+    border: #0072f500 2px solid;
+    background-color: #e2dbdb9b;
+    font-weight: 500;
+
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+}
+
+.active {
+    background-color: #0072F5;
+    color: white;
+    border: #0072F5 2px solid;
+
+}
+
+.box {
+    height: 30px;
+    padding: 5px;
+    background-color: #0072F5;
+    border-radius: 5px;
+    color: white;
+    background-color: #0072F5;
+    font-weight: 500;
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+}

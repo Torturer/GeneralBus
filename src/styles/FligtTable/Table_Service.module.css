@@ -10,15 +10,22 @@
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
-    flex-wrap: wrap;
     border-bottom: 2px inset;
     border-radius: 13px;
     transition: 0.3s;
     border-color: rgb(175 170 170 / 28%);
+
+   
+}
+@media(max-width: 1185px) {
+    .table_cell {
+        flex-wrap: wrap;
+    }
+        
 }
 
 .table_cell:hover {
-    background-color: rgba(147, 236, 159, 0.7);
+    background-color: rgba(147, 236, 159, 0.213);
 }
 
 .cityText {
@@ -50,6 +57,7 @@
     display: flex;
     margin: 10px;
     gap: 10px;
+    justify-content: center;
 }
 
 .box_city_price {
@@ -58,7 +66,9 @@
 
 .box_time_info {
     display: flex;
+    justify-content: space-around;
     align-items: center;
+    width: 100%;
 
 }
 

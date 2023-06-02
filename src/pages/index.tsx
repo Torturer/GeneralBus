@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Spacer, Text } from "@nextui-org/react";
 import Select_City from "@/components/Table_Flights/Select_City";
 import Table_Service from "@/components/Table_Flights/Table_Service";
@@ -13,12 +13,22 @@ interface IProps {
 const Table_Flights: NextPage<IProps> = ({ raises }) => {
     const [globalData, setGlobalData] = useState(raises)
     const [raisesData, setRaisesData] = useState(raises)
+    const [raisesDataRegular, setRaisesDataRegular] = useState(raisesData.filter((value) => value.isRegular))
+    const [raisesDataNoRegular, setRaisesDataNoRegular] = useState(raisesData.filter((value) => !value.isRegular))
+
     const [activeModalFlight, setActiveModalFlight] = useState(false); // Activates adding a new flight
+    const [editingRaise, setEditingRaise] = useState(raises[0]);
+    const [activeEditingModal, setActiveEditingModal] = useState(false)
 
     const dataFilterChange = (data: IDataRaise[]) => { setRaisesData([...data]) } // Filter data fun
     const switchModalFlight = () => { setActiveModalFlight(false) } // Fun deactivate modal
+    const switchEditingModal = () => { setActiveEditingModal((pre) => !pre) }
 
-    // Fun target editing data and activate modal
+
+    const editFun = (value: IDataRaise) => {
+        setActiveEditingModal((pre) => !pre);
+        setEditingRaise(value)
+    } // Fun target editing data and activate modal
 
     const raiseDelete = (id: string) => { setGlobalData((prev) => prev.filter((targ) => targ._id !== id)) }
 
@@ -29,15 +39,55 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
         } else setGlobalData((prev) => [...prev, result])
     }
 
+    useEffect(() => {
+        setRaisesDataRegular(raisesData.filter((value) => value.isRegular))
+        setRaisesDataNoRegular(raisesData.filter((value) => !value.isRegular))
+
+    }, [raisesData])
+
+
+    console.log(raisesDataRegular)
 
 
     if (raises.length) {
         return (
             <>
                 <Select_City data={globalData} changeFun={dataFilterChange} />
-                <Table_Service data={raisesData}/>
-                {/* <Spacer y={1} />
-                <Table_Service data={raisesData} pushToForm={pushToForm} setRaise={raiseDelete} /> */}
+
+                <Spacer />
+
+                {raisesData.length ?
+                    <>
+                        {raisesDataNoRegular.length ?
+                            <Table_Service
+                                data={raisesDataNoRegular}
+                                isRegular={false}
+                                label="Гарячі рейси"
+                                targetAction={editFun}
+                                raiseDeletFun={raiseDelete} />
+                            :
+                            null}
+                        <Spacer y={1} />
+
+                        {raisesDataRegular.length ?
+                            <Table_Service
+                                data={raisesDataRegular}
+                                isRegular={true}
+                                label="Регулярні рейси"
+                                targetAction={editFun}
+                                raiseDeletFun={raiseDelete} />
+                            :
+                            null}
+
+                    </>
+                    :
+                    <div
+                        style={{
+                            height: "100%", display: "flex", alignItems: "center", justifyContent: "center", flex: "1 1 auto"
+                        }}>
+                        <Text>Нажаль інформацію по обранним рейсам не знайденно</Text>
+                    </div>
+                }
                 <Spacer y={1} />
                 <Button size="sm" onPress={() => setActiveModalFlight(true)} css={{ margin: "0px auto" }} color="warning">
                     Додати рейс
@@ -45,15 +95,19 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
                 {activeModalFlight ? (
                     <FligrModal active={activeModalFlight} switchFun={switchModalFlight} setRaise={raiseChange} />
                 ) : null}
+
+                {activeEditingModal ? (
+                    <FligrModal switchFun={switchEditingModal} active={activeEditingModal} data={editingRaise} setRaise={raiseChange} />
+                ) : null}
             </>
         );
     } else {
         return (
             <div
                 style={{
-                    height: "100%", display: "flex", alignItems: "center", justifyContent: "center"
+                    height: "100%", display: "flex", alignItems: "center", justifyContent: "center", flex: "1 1 auto"
                 }}>
-                <Text>Готую данні</Text>
+                <Text>Упс.. Щось пішло не так :(</Text>
             </div>)
     }
 };

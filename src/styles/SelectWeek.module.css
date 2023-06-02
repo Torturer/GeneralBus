@@ -13,11 +13,12 @@
     align-items: center;
     font-size: 11px;
     transition: 0.3s;
+    cursor: pointer;
 }
 
-.square:hover {
+/* .square:hover {
     background-color: #5EA2EF;
-}
+} */
 
 .active {
     background-color: #0072F5;

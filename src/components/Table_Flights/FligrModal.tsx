@@ -1,10 +1,11 @@
-import { FC } from "react"
-import { IDataRaise } from "./data/data";
+import { FC, useMemo } from "react"
+import { IDataRaise, IRegular } from "./data/data";
 import { useEffect, useState } from "react";
-import { Button, Checkbox, Container, Grid, Input, Loading, Modal, Row, Spacer, Text } from "@nextui-org/react";
+import { Button, Checkbox, Container, Grid, Input, Loading, Modal, Row, Spacer, Text, useInput } from "@nextui-org/react";
 
 import styled from "../../styles/FligtTable/FligrModal.module.css"
 import SelectWeek from "../component/SelectWeek";
+import { AnimatePresence, motion } from "framer-motion";
 
 
 type IFligrModal = {
@@ -24,20 +25,26 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
     const [statusLoader, setStatusLoader] = useState<IStatus>("currentColor")
 
 
-    const [nameBus, setNameBus] = useState(data ? data.busName : ""),
-        [urlImg, setUrlImg] = useState(data ? data.busImg : ""),
-        [numberBus, setNumberBus] = useState(data ? data.busNumber : ""),
-        [cityStart, setCityStart] = useState(data ? data.city : ""),
-        [cityGoGo, setCityGoGo] = useState(data ? data.cityTarget.goGoCity : ""),
-        [cityStop, setCityStop] = useState(data ? data.cityTarget.stopCity : ""),
-        [time, setTime] = useState(data ? data.landingTime : ""),
-        [date, setDate] = useState(data ? data.dataOfLanding : ""),
-        [timeFinish, setTimeFinish] = useState(data ? data.finishTime : ""),
-        [dateFinish, setDateFinish] = useState(data ? data.finishDate : ""),
-        [price, setPrice] = useState(data ? data.price : ""),
-        [regularRaise, setRegularRaise] = useState(data ? data.regular : true)
+    const [nameBus, setNameBus] = useState(data?.busName ?? ""),
+        [urlImg, setUrlImg] = useState(data?.busImg ?? ""),
+        [numberBus, setNumberBus] = useState(data?.busNumber ?? ""),
+        [cityStart, setCityStart] = useState(data?.city ?? ""),
+        [cityGoGo, setCityGoGo] = useState(data?.cityTarget.goGoCity ?? ""),
+        [cityStop, setCityStop] = useState(data?.cityTarget.stopCity ?? ""),
+        [time, setTime] = useState(data?.landingTime ?? ""),
+        [date, setDate] = useState(data?.dataOfLanding ?? ""),
+        [timeFinish, setTimeFinish] = useState(data?.finishTime ?? ""),
+        [dateFinish, setDateFinish] = useState(data?.finishDate ?? ""),
+        [price, setPrice] = useState(data?.price ?? ""),
+        [isRegular, setIsRegular] = useState(data?.isRegular ?? true),
+        [regularData, setRegularData] = useState(data?.regular ?? undefined)
 
     const [actButtonSend, setActButtonSend] = useState(false)
+
+
+
+
+    const editRegularDataFun = (data: IRegular) => { setRegularData({ ...data }) }
 
 
 
@@ -59,10 +66,13 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                 dataOfLanding: date,
                 price: price,
                 finishDate: dateFinish,
-                finishTime: timeFinish
+                finishTime: timeFinish,
+                isRegular,
+                regular: regularData
             } as IDataRaise
 
             setShowLoader(true)
+
 
 
             let respons = await fetch(url, {
@@ -80,7 +90,9 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
 
                 const res = await fetch(process.env.NEXT_PUBLIC_API_URL + `/api/getRaise?id=${result.insertedId}`);
                 result = await res.json()
-            }
+
+                setRaise(result.value, true)
+            } else { setRaise(result.value, false)}
 
             setStatusLoader("success")
             setTimeout(() => {
@@ -99,13 +111,17 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
     }
 
     useEffect(() => {
-        if (price && date && time && cityStop && numberBus && urlImg && nameBus) {
-            setActButtonSend(false)
-        } else { setActButtonSend(true) }
+        if (cityStart && price && time && timeFinish && cityStop && numberBus && urlImg && nameBus) {
+            if (!isRegular) {
+                if (data || dateFinish) {
+                    setActButtonSend(false)
+                } else { setActButtonSend(true) }
+            } else { setActButtonSend(false) }
+        } else {
+            setActButtonSend(true)
+        }
 
-    }, [price, date, time, cityStop, cityStart, numberBus, urlImg, nameBus])
-
-
+    }, [price, date, dateFinish, timeFinish, isRegular, time, cityStop, cityStart, numberBus, urlImg, nameBus])
 
 
 
@@ -221,18 +237,30 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                                 />
                             </Grid>
 
-                            {regularRaise ?
-                                <div style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    minWidth: "302px",
-                                    padding: "6px"
-                                }}>
-                                    <SelectWeek />
-                                </div>
+
+
+
+
+                            {isRegular ?
+                                <motion.div
+                                    key="motion2"
+
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+
+                                >
+                                    <SelectWeek regular={regularData} changeFun={editRegularDataFun} />
+                                </motion.div>
                                 :
-                                <>
+                                <motion.div
+
+                                    key="motion2"
+
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                >
                                     <Grid>
                                         <Input
                                             width="290px"
@@ -251,18 +279,19 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                                             onChange={(e) => setDateFinish(e.target.value)}
                                         />
                                     </Grid>
-                                </>
+                                </motion.div>
 
                             }
+
 
 
                         </div>
                     </Grid.Container>
                     <Spacer />
                     <Checkbox
-                        isSelected={regularRaise as boolean}
+                        isSelected={isRegular}
                         color="success"
-                        onChange={setRegularRaise}
+                        onChange={setIsRegular}
                         size="xs"
                         css={{ width: "100%", justifyContent: "center" }}
                     >

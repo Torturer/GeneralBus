@@ -4,7 +4,7 @@ import Table from "@/components/InfoRaise/Table";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import styles from "../../../styles/InfoRaise/InfoRaise.module.css";
-import { Spacer } from "@nextui-org/react";
+import { Button, Loading, Spacer } from "@nextui-org/react";
 import type { IDataRaise } from "@/components/Table_Flights/data/data";
 import { useState } from "react";
 import StopModal from "@/components/InfoRaise/StopModal";
@@ -59,18 +59,12 @@ const RaisePage: NextPage<IProps> = ({ raise }) => {
             <Link href="/" className={styles.button}>
                 назад
             </Link>
-            <div className={styles.button} style={{ backgroundColor: "blueviolet", margin: "10px auto", cursor: "pointer" }} onClick={() => handleChancheModal(true)}> Додати зупинку</div>
-            <div className={styles.button} style={{ backgroundColor: "blueviolet", margin: "10px auto", cursor: "pointer" }} onClick={() => switchActiveRedaction()}> Редаугвати рейс</div>
-            <DeleteButton id={dataRaise._id} />
+            <div className={styles.button} style={{ backgroundColor: "#F5A524", margin: "10px auto", cursor: "pointer" }} onClick={() => handleChancheModal(true)}> Додати зупинку</div>
 
             {showModal ?
                 <StopModal active={showModal} switchFun={handleChancheModal} raise={dataRaise} id={targetEditingStopID} setRaise={updateRaiseFun} />
                 : null
             }
-
-            {activeRedaction ? (
-                <FligrModal switchFun={switchActiveRedaction} active={activeRedaction} data={dataRaise} setRaise={raiseChange} />
-            ) : null}
         </div>
     );
 };
