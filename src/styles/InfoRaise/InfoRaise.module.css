@@ -1,5 +1,5 @@
 .button {
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .container {
@@ -24,7 +24,7 @@
 .button {
     border-radius: 9px;
     color: white;
-    background-color: #F5A524;
+    background-color: #0072F5;
     font-family: inherit;
     width: 144px;
     height: 32px;
