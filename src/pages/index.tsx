@@ -63,7 +63,7 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
                                 raiseDeletFun={raiseDelete} />
                             :
                             null}
-                        <Spacer y={1} />
+                        <Spacer y={2} />
 
                         {raisesDataRegular.length ?
                             <Table_Service
