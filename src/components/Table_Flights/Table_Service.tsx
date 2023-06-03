@@ -34,24 +34,25 @@ const Table_Service: FC<IProps> = ({ data, label, isRegular, targetAction, raise
                 <Badge size="lg" color="warning">{label}</Badge>}
 
             {data.length ?
-
-
-
-
-
                 <AnimatePresence initial={false} >
                     {data.map((raise) => {
                         return (
-                            <div key={raise._id} style={{ width: "100%" }}>
-                                <Link href={`/raise/` + raise._id} shallow passHref className={styles.link}
-
-
+                            <motion.div
+                                key={raise._id}
+                                style={{ width: "100%" }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                            >
+                                <Link
+                                    href={`/raise/` + raise._id}
+                                    shallow
+                                    passHref
+                                    className={styles.link}
                                 >
-                                    <motion.div
+                                    <div
                                         className={styles.table_cell}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
+
                                     >
                                         <User src={raise.busImg} name={raise.busName + " -- " + raise.busNumber}>Забронювати
 
@@ -104,7 +105,7 @@ const Table_Service: FC<IProps> = ({ data, label, isRegular, targetAction, raise
                                             :
                                             null
                                         }
-                                    </motion.div>
+                                    </div>
 
                                 </Link>
 
@@ -118,7 +119,7 @@ const Table_Service: FC<IProps> = ({ data, label, isRegular, targetAction, raise
 
                                 </div> */}
 
-                            </div>
+                            </motion.div>
                         )
                     })}
 

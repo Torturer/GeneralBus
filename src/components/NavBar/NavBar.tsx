@@ -1,13 +1,15 @@
 import Image from 'next/image';
 import logoImg from "../../../public/logo.png"
-import { Navbar, Button, Text } from "@nextui-org/react";
-import { useState } from 'react';
+import {Text } from "@nextui-org/react";
 // import Modal_SignUp from './Modal_SignUp';
 // import Modal_Regestration from './Modal_Regestration';
 
 import styles from "../../styles/Layaout/Header/NavBar.module.css"
+import { useRouter } from 'next/router';
 
 export default function NavBar() {
+
+    const router = useRouter()
 
     // const [VisibleModalSignUp, setVisibleModalSignUp] = useState(false);
     // const openSignUpModal = () => setVisibleModalSignUp(true);
@@ -21,7 +23,7 @@ export default function NavBar() {
 
         // <div className={styles.box}>
             <div className={styles.container}>
-                <Image src={logoImg} width={36} height={36} alt="logo" quality={100} />
+                <Image src={logoImg} width={36} height={36} alt="logo" quality={100} onClick={() => router.push("/")} style={{cursor:"pointer"}}/>
                 <Text css={{ marginLeft: "15px" }} b color="inherit" hideIn="xs" >
                     GeneralBus
                 </Text>
