@@ -22,6 +22,10 @@ const CardBus: FC<IProps> = ({ raise }) => {
         landingTime,
         price,
         map,
+        finishDate,
+        finishTime,
+        isRegular,
+        regular
     } = raise;
 
     return (
@@ -50,15 +54,35 @@ const CardBus: FC<IProps> = ({ raise }) => {
                 </Text>
             )}
             <Text size={16}>Місто прибуття: <span>{cityTarget.stopCity}</span></Text>
-            <Text size={16}>
-                Дата та час: <span>{dataOfLanding} в {landingTime}</span>
-            </Text>
+
+            {!isRegular ?
+                <>
+                    <Text size={16}>
+                        Відправляється: <span>{dataOfLanding} в {landingTime}</span>
+                    </Text>
+                    <Text size={16}>
+                        Прибуває: <span>{finishDate} в {finishTime}</span>
+                    </Text>
+
+                </>
+                :
+                <>
+                    <Text size={16}>
+                        Відправляється: <span>{landingTime}</span>
+                    </Text>
+                    <Text size={16}>
+                        Прибуває: <span>{finishTime}</span>
+                    </Text>
+
+                </>
+            }
+
             <Text size={16}>
                 Ціна за місце: <span>{price} UAH</span>
             </Text>
             {map.length &&
 
-                <div style={{display: "flex", width: "100%" , justifyContent: "space-between"}}>
+                <div style={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
                     <Text size={16}>Місце посадки на мапі: </Text>
                     <Tooltip content="Пергелянути на мапі">
                         <Link href={map} target="_blank" shallow passHref>
