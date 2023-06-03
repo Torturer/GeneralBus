@@ -30,7 +30,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 finishDate: raise.finishDate,
                 finishTime: raise.finishTime,
                 isRegular: raise.isRegular,
-                regular: raise.regular
+                regular: raise.regular,
+                map: raise.map
 
             } as IDataRaise
         },

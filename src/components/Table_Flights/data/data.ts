@@ -31,7 +31,7 @@ export type  IDataRaise = {
     busName: string;
     busImg: string;
     price: number;
-    map: object;
+    map: string;
     landingTime: string;
     dataOfLanding: string;
     finishTime: string;

@@ -37,7 +37,8 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
         [dateFinish, setDateFinish] = useState(data?.finishDate ?? ""),
         [price, setPrice] = useState(data?.price ?? ""),
         [isRegular, setIsRegular] = useState(data?.isRegular ?? true),
-        [regularData, setRegularData] = useState(data?.regular ?? undefined)
+        [regularData, setRegularData] = useState(data?.regular ?? undefined),
+        [mapUrl, setMapUrl] = useState(data?.map ?? "")
 
     const [actButtonSend, setActButtonSend] = useState(false)
 
@@ -92,7 +93,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                 result = await res.json()
 
                 setRaise(result.value, true)
-            } else { setRaise(result.value, false)}
+            } else { setRaise(result.value, false) }
 
             setStatusLoader("success")
             setTimeout(() => {
@@ -111,7 +112,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
     }
 
     useEffect(() => {
-        if (cityStart && price && time && timeFinish && cityStop && numberBus && urlImg && nameBus && cityGoGo) {
+        if (cityStart && price && time && timeFinish && cityStop && numberBus && urlImg && nameBus && cityGoGo && mapUrl) {
             if (!isRegular) {
                 if (data || dateFinish) {
                     setActButtonSend(false)
@@ -121,7 +122,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
             setActButtonSend(true)
         }
 
-    }, [price, date, dateFinish, timeFinish, isRegular, time, cityStop, cityStart, numberBus, urlImg, nameBus, cityGoGo])
+    }, [price, date, dateFinish, timeFinish, isRegular, time, cityStop, cityStart, numberBus, urlImg, nameBus, cityGoGo, mapUrl])
 
 
 
@@ -215,6 +216,16 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                                 type="number"
                                 value={price}
                                 onChange={(e) => setPrice(parseInt(e.target.value))}
+                            />
+                        </Grid>
+                        <Grid>
+                            <Input
+                                placeholder="https://goo.gl/maps/Bqnthj5m9AR7sgeY6"
+                                label="Точка відправлення на GoogleMaps"
+                                type="text"
+                                width="290px"
+                                value={mapUrl}
+                                onChange={(e) => setMapUrl(e.target.value)}
                             />
                         </Grid>
                         <div>
