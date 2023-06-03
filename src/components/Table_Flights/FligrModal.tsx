@@ -111,7 +111,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
     }
 
     useEffect(() => {
-        if (cityStart && price && time && timeFinish && cityStop && numberBus && urlImg && nameBus) {
+        if (cityStart && price && time && timeFinish && cityStop && numberBus && urlImg && nameBus && cityGoGo) {
             if (!isRegular) {
                 if (data || dateFinish) {
                     setActButtonSend(false)
@@ -121,7 +121,7 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
             setActButtonSend(true)
         }
 
-    }, [price, date, dateFinish, timeFinish, isRegular, time, cityStop, cityStart, numberBus, urlImg, nameBus])
+    }, [price, date, dateFinish, timeFinish, isRegular, time, cityStop, cityStart, numberBus, urlImg, nameBus, cityGoGo])
 
 
 

@@ -4,7 +4,7 @@ import Table from "@/components/InfoRaise/Table";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import styles from "../../../styles/InfoRaise/InfoRaise.module.css";
-import { Button, Loading, Spacer } from "@nextui-org/react";
+import { Badge, Button, Loading, Spacer } from "@nextui-org/react";
 import type { IDataRaise } from "@/components/Table_Flights/data/data";
 import { useState } from "react";
 import StopModal from "@/components/InfoRaise/StopModal";

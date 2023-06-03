@@ -104,13 +104,6 @@ const Table_Service: FC<IProps> = ({ data, label, isRegular, targetAction, raise
                                             :
                                             null
                                         }
-
-
-
-
-
-
-
                                     </motion.div>
 
                                 </Link>
@@ -126,8 +119,6 @@ const Table_Service: FC<IProps> = ({ data, label, isRegular, targetAction, raise
                                 </div>
 
                             </div>
-
-
                         )
                     })}
 
