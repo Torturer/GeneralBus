@@ -45,10 +45,6 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
 
     }, [raisesData])
 
-
-    console.log(raisesDataRegular)
-
-
     if (raises.length) {
         return (
             <>
@@ -89,9 +85,9 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
                     </div>
                 }
                 <Spacer y={1} />
-                <Button size="sm" onPress={() => setActiveModalFlight(true)} css={{ margin: "0px auto" }} color="warning">
+                {/* <Button size="sm" onPress={() => setActiveModalFlight(true)} css={{ margin: "0px auto" }} color="warning">
                     Додати рейс
-                </Button>
+                </Button> */}
                 {activeModalFlight ? (
                     <FligrModal active={activeModalFlight} switchFun={switchModalFlight} setRaise={raiseChange} />
                 ) : null}

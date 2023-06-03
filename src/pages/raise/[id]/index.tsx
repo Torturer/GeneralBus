@@ -59,7 +59,7 @@ const RaisePage: NextPage<IProps> = ({ raise }) => {
             <Link href="/" className={styles.button}>
                 назад
             </Link>
-            <div className={styles.button} style={{ backgroundColor: "#F5A524", margin: "10px auto", cursor: "pointer" }} onClick={() => handleChancheModal(true)}> Додати зупинку</div>
+            {/* <div className={styles.button} style={{ backgroundColor: "#F5A524", margin: "10px auto", cursor: "pointer" }} onClick={() => handleChancheModal(true)}> Додати зупинку</div> */}
 
             {showModal ?
                 <StopModal active={showModal} switchFun={handleChancheModal} raise={dataRaise} id={targetEditingStopID} setRaise={updateRaiseFun} />

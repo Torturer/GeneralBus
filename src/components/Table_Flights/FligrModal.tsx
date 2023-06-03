@@ -69,7 +69,8 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                 finishDate: dateFinish,
                 finishTime: timeFinish,
                 isRegular,
-                regular: regularData
+                regular: regularData,
+                map: mapUrl
             } as IDataRaise
 
             setShowLoader(true)
