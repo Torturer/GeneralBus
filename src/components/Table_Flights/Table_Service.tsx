@@ -109,7 +109,7 @@ const Table_Service: FC<IProps> = ({ data, label, isRegular, targetAction, raise
 
                                 </Link>
 
-                                {/* <div className={styles.tools} >
+                                <div className={styles.tools} >
                                     <Tooltip content="Редагувати рейс">
                                         <IconButton onClick={() => targetAction(raise)}>
                                             <EditIcon size={20} fill="#979797" height={undefined} width={undefined} />
@@ -117,7 +117,7 @@ const Table_Service: FC<IProps> = ({ data, label, isRegular, targetAction, raise
                                     </Tooltip>
                                     <DeleteButton id={raise._id} setRaise={raiseDeletFun} />
 
-                                </div> */}
+                                </div>
 
                             </motion.div>
                         )

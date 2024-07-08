@@ -93,8 +93,8 @@ const FligrModal: FC<IFligrModal> = (props): JSX.Element => {
                 const res = await fetch(process.env.NEXT_PUBLIC_API_URL + `/api/getRaise?id=${result.insertedId}`);
                 result = await res.json()
 
-                setRaise(result.value, true)
-            } else { setRaise(result.value, false) }
+                setRaise(result.value, false)
+            } else { setRaise(result.value, true) }
 
             setStatusLoader("success")
             setTimeout(() => {

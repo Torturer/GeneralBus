@@ -16,8 +16,6 @@ const DeleteButton: FC<IProp> = ({ id, setRaise }) => {
     // Define showLoader state variable and setShowLoader function for controlling the loading indicator
     const [showLoader, setShowLoader] = useState(false)
     const [statusLoader, setStatusLoader] = useState<"primary" | "success" | "error" | "warning">(`primary`)
-    const router = useRouter()
-
 
     /**
      * sendDelete function for deleting a raise with the given ID
@@ -41,8 +39,6 @@ const DeleteButton: FC<IProp> = ({ id, setRaise }) => {
             }, 1000)
             setTimeout(() => {
                 setShowLoader(false)
-                router.push("/")
-
             }, 3500)
 
 

@@ -62,7 +62,7 @@ const FlightStopList: React.FC<Props> = ({ funEditingStop, setRaise, raise }) =>
                                         </Tooltip>
                                     </div>
 
-                                    {/* <div className={styles.tools} >
+                                    <div className={styles.tools} >
                                         <Tooltip content="Редагувати зупинку">
                                             <IconButton onClick={() => funEditingStop(stop.id)} >
                                                 <MdOutlineModeEditOutline size={20} fill="#979797" height={undefined} width={undefined} />
@@ -70,7 +70,7 @@ const FlightStopList: React.FC<Props> = ({ funEditingStop, setRaise, raise }) =>
                                         </Tooltip>
                                     </div>
 
-                                    <DeleteButtonStop id={stop.id} setRaise={setRaise} raise={raise} /> */}
+                                    <DeleteButtonStop id={stop.id} setRaise={setRaise} raise={raise} />
 
                                 </motion.div>
                             )

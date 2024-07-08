@@ -32,11 +32,20 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
 
     const raiseDelete = (id: string) => { setGlobalData((prev) => prev.filter((targ) => targ._id !== id)) }
 
-    const raiseChange = (result: IDataRaise, edit: boolean) => {
+    const raiseChange = async (result: IDataRaise, edit: boolean) => {
 
-        if (edit) {
-            setGlobalData((prev) => [...prev.filter((tar) => tar._id !== result._id), result])
-        } else setGlobalData((prev) => [...prev, result])
+        try {
+            if (edit) {
+                const res = await fetch(process.env.NEXT_PUBLIC_API_URL + `/api/getRaises`);
+                const data = await res.json();
+    
+                setGlobalData([...data])
+            } else setGlobalData((prev) => [...prev, result])
+            } catch (error) {
+                alert(error)
+
+        }
+
     }
 
     useEffect(() => {
@@ -85,9 +94,9 @@ const Table_Flights: NextPage<IProps> = ({ raises }) => {
                     </div>
                 }
                 <Spacer y={1} />
-                {/* <Button size="sm" onPress={() => setActiveModalFlight(true)} css={{ margin: "0px auto" }} color="warning">
+                <Button size="sm" onPress={() => setActiveModalFlight(true)} css={{ margin: "0px auto" }} color="warning">
                     Додати рейс
-                </Button> */}
+                </Button>
                 {activeModalFlight ? (
                     <FligrModal active={activeModalFlight} switchFun={switchModalFlight} setRaise={raiseChange} />
                 ) : null}
